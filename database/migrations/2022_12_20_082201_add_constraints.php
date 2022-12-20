@@ -15,14 +15,14 @@ return new class extends Migration
     //Adds all constrains to all tables
     public function up()
     {
-        Schema::table('professional_field_decision', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('professional_field_id')->references('id')->on('professional_field');
+        Schema::table('professional_field_decisions', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('professional_field_id')->references('id')->on('professional_fields');
         });
 
-        Schema::table('general_presentation_decision', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('general_presentation_id')->references('id')->on('general_presentation');
+        Schema::table('general_presentation_decisions', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('general_presentation_id')->references('id')->on('general_presentations');
         });
     }
 

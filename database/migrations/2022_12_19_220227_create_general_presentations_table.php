@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_account', function (Blueprint $table) {
+        Schema::create('general_presentations', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 100);
-            $table->string('password', 250);
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('name', 250);
+            $table->longText('description');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_account');
+        Schema::dropIfExists('general_presentation');
     }
 };

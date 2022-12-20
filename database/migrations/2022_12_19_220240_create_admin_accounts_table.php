@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('professional_field', function (Blueprint $table) {
+        Schema::create('admin_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 250);
-            $table->longText('description');
-            $table->smallInteger('current_count');
-            $table->smallInteger('max_count');
+            $table->string('username', 100);
+            $table->string('password', 250);
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professional_field');
+        Schema::dropIfExists('admin_account');
     }
 };
