@@ -12,15 +12,25 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    //### Properties
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'surname',
         'email',
-        'password',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'hash' => '0'
     ];
 
     /**
@@ -29,16 +39,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'remember_token'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+    //### Relationships
+    //Relationship with GeneralPresentationDecision
+    public function general_presentation_decisions(){
+        return $this->hasMany(GeneralPresentationDecision::class, 'user_id');
+    }
+
+    //Relationship with ProfessionalFieldDecision
+    public function professional_field_decisions(){
+        return $this->hasMany(ProfessionalFieldDecision::class, 'user_id');
+    }
+
 }
