@@ -17,9 +17,6 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('professional_field_id');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('professional_field_id')->references('id')->on('professional_field');
         });
     }
 

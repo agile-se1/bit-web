@@ -17,9 +17,6 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('general_presentation_id');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('general_presentation_id')->references('id')->on('general_presentation');
         });
     }
 
