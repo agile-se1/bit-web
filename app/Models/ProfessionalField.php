@@ -39,7 +39,7 @@ class ProfessionalField extends Model
 
     //### Relationships
     //Relationship with ProfessionalFieldDecision
-    public function professional_field_decisions(){
+    public function professionalFieldDecision(){
         return $this->hasMany(ProfessionalFieldDecision::class, 'professional_field_id');
     }
 }

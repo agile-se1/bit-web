@@ -29,7 +29,7 @@ class GeneralPresentation extends Model
 
     //### Relationships
     //Relationship with GeneralPresentationDecision
-    public function general_presentation_decisions(){
+    public function generalPresentationDecision(){
         return $this->hasMany(GeneralPresentationDecision::class, 'general_presentation_id');
     }
 

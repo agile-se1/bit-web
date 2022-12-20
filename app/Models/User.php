@@ -45,12 +45,12 @@ class User extends Authenticatable
 
     //### Relationships
     //Relationship with GeneralPresentationDecision
-    public function general_presentation_decisions(){
+    public function generalPresentationDecision(){
         return $this->hasMany(GeneralPresentationDecision::class, 'user_id');
     }
 
     //Relationship with ProfessionalFieldDecision
-    public function professional_field_decisions(){
+    public function professionalFieldDecision(){
         return $this->hasMany(ProfessionalFieldDecision::class, 'user_id');
     }
 
