@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('professional_field_decision', function (Blueprint $table) {
-            $table->bigInteger('user_id');
-            $table->bigInteger('professional_field_id');
-            $table->timestamps();
+        Schema::create('professional_fields', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 250);
+            $table->longText('description');
+            $table->smallInteger('current_count');
+            $table->smallInteger('max_count');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professional_field_decision');
+        Schema::dropIfExists('professional_field');
     }
 };

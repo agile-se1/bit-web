@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\GeneralPresentationDecision;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +16,53 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //Create 3 User
+        \App\Models\User::factory(3)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        //Create 1 Admin
+        \App\Models\AdminAccount::factory()->create();
+
+        //Create 3 GeneralPresentation
+        \App\Models\GeneralPresentation::factory(3)->create();
+
+        //Create 3 ProfessionalFields
+        \App\Models\ProfessionalField::factory(3)
+            ->state(new Sequence(
+                ['current_count' => 2],
+                ['current_count' => 1],
+                ['current_count' => 1]
+            ))
+            ->create();
+
+        //Create for the first two user a GeneralPresentation and two ProfessionalFieldDecisions
+        \App\Models\ProfessionalFieldDecision::factory()->create([
+            'user_id' => 1,
+            'professional_field_id' => 2
+        ]);
+        \App\Models\ProfessionalFieldDecision::factory()->create([
+            'user_id' => 1,
+            'professional_field_id' => 1
+        ]);
+        \App\Models\GeneralPresentationDecision::factory()->create([
+            'user_id' => 1,
+            'general_presentation_id' => 2
+        ]);
+
+
+        \App\Models\ProfessionalFieldDecision::factory()->create([
+            'user_id' => 3,
+            'professional_field_id' => 1
+        ]);
+        \App\Models\ProfessionalFieldDecision::factory()->create([
+            'user_id' => 3,
+            'professional_field_id' => 3
+        ]);
+        \App\Models\GeneralPresentationDecision::factory()->create([
+            'user_id' => 3,
+            'general_presentation_id' => 3
+        ]);
+
+
+
     }
 }

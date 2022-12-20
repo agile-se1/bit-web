@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('general_presentation', function (Blueprint $table) {
+        Schema::create('professional_field_decisions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 250);
-            $table->longText('description');
+            $table->bigInteger('user_id');
+            $table->bigInteger('professional_field_id');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general_presentation');
+        Schema::dropIfExists('professional_field_decision');
     }
 };
