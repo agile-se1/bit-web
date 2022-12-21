@@ -8,12 +8,19 @@
 <body>
     <h1>Upload CSV to create User</h1>
 
+    @if(count($errors) > 0)
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+
+    @if (\Session::has('success'))
+        <p>{!! \Session::get('success') !!}</p>
+    @endif
+
     <form method="post" action="/admin/createUserByCSV" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file" id="file">
-        @error('file')
-        <p>{{$message}}</p>
-        @enderror
         <input type="submit" value="Upload">
     </form>
 </body>

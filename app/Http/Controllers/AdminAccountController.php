@@ -13,53 +13,60 @@ class AdminAccountController extends Controller
     }
 
     public function storeUserByCSV(Request $request){
-
-        //Validation
+        //Validation of file
         $request->validate([
             'file' => 'required|mimes:csv,txt'
         ]);
 
-        //Read files and save rows in array
-        $file = $request->file('file');
-        $csvData = file_get_contents($file);
-        $rows = explode("\r\n", $csvData);
+        try {
+            //Reads files and saves rows in array
+            $file = $request->file('file');
+            $csvData = file_get_contents($file);
+            $rows = explode("\r\n", $csvData);
 
-        //Create $header
-        $header = array_shift($rows);
-        $header = explode(';', $header);
+            //Creates $header
+            $header = array_shift($rows);
+            $header = explode(';', $header);
+        } catch (\Exception $e){
+            return redirect()->back()->withErrors("The CSV format does not match the required format");
+        }
 
-        //Loop throw each $rows and create a new user for each $row
+        $userArray = [];
+        //Loops throw each $rows and creates a new user (only data) for each $row
         foreach ($rows as $rowString){
-            //Combine $row with $header
+            //Combines $row with $header
             $row = explode(';', $rowString);
             $row = array_combine($header, $row);
 
             //Validation
-            if(trim($row['first_name']) == ""){
-                $row['first_name'] = null;
-            }
-            if(trim($row['surname']) == ""){
-                $row['surname'] = null;
-            }
-            if(trim($row['email']) == ""){
-                $row['email'] = null;
-            }
-            if (!filter_var($row['email'], FILTER_VALIDATE_EMAIL)) {
-                $row['email'] = null;
-            }
-
-
-            //Try to create a user
             try{
-                User::create([
-                    'first_name' => $row['first_name'],
-                    'surname' => $row['surname'],
-                    'email' => $row['email']
-                ]);
+                if(trim($row['first_name']) == ""){
+                    $row['first_name'] = null;
+                }
+                if(trim($row['surname']) == ""){
+                    $row['surname'] = null;
+                }
+                if(trim($row['email']) == ""){
+                    $row['email'] = null;
+                }
+                if (!filter_var($row['email'], FILTER_VALIDATE_EMAIL)) {
+                    $row['email'] = null;
+                }
             } catch (\Exception $e){
-                return redirect('/admin/createUserByCSV')->withErrors('A user could be created');
+                return redirect()->back()->withErrors("A required column is missing.");
             }
+
+            //Saves validated input in array
+            $userArray[] = $row;
         }
-        return redirect('/');
+
+        //Tries to save everything into the database
+        try{
+            User::upsert($userArray, ['email'], ['first_name', 'surname']);
+        } catch (\Exception $e){
+            return redirect()->back()->withErrors("CSV file could not be converted to users. Please look for missing cells.");
+        }
+
+        return redirect()->back()->with('success', 'User created successfully');
     }
 }

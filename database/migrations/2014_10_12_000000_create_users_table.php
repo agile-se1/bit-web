@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('first_name', 100);
             $table->string('surname', 100);
             $table->string('email', 250)->unique();
-            $table->string('hash', 10);
+            $table->string('hash', 10)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
