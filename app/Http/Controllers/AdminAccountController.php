@@ -60,7 +60,7 @@ class AdminAccountController extends Controller
             $userArray[] = $row;
         }
 
-        //Tries to save everything into the database
+        //Tries to save everything into the database or update the entry
         try{
             User::upsert($userArray, ['email'], ['first_name', 'surname']);
         } catch (\Exception $e){
