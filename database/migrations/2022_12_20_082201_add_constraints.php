@@ -33,12 +33,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('professional_field_decision', function (Blueprint $table) {
+        Schema::table('professional_field_decisions', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['professional_field_id']);
         });
 
-        Schema::table('general_presentation_decision', function (Blueprint $table) {
+        Schema::table('general_presentation_decisions', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['general_presentation_id']);
         });
