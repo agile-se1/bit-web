@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia('Home');
 });
+
+//###Admin
+//Import user by CSV
+Route::get('/admin/createUserByCSV', [\App\Http\Controllers\AdminAccountController::class, 'createUserByCSV']);
+Route::post('/admin/createUserByCSV', [\App\Http\Controllers\AdminAccountController::class, 'storeUserByCSV']);
