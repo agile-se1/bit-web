@@ -46,12 +46,6 @@ class AdminAccountController extends Controller
                 if(trim($row['surname']) == ""){
                     $row['surname'] = null;
                 }
-                if(trim($row['email']) == ""){
-                    $row['email'] = null;
-                }
-                if (!filter_var($row['email'], FILTER_VALIDATE_EMAIL)) {
-                    $row['email'] = null;
-                }
             } catch (\Exception $e){
                 return redirect()->back()->withErrors("A required column is missing.");
             }
@@ -62,6 +56,10 @@ class AdminAccountController extends Controller
             } catch (\Exception $e){
                 return redirect()->back()->withErrors("There was a problem with the User Hash. Please try again");
             }
+
+            //Add the email address Format: max.mustermann@gym-mellendorf.de
+            $row['email'] = $row['first_name'] . "." . $row['surname'] . "@gym-mellendorf.de";
+            $row['email'] = strtolower($row['email']);
 
             //Saves validated input in array
             $userArray[] = $row;
