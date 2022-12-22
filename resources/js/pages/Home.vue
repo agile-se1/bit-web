@@ -1,5 +1,5 @@
 <template>
-    <h1>THIS IS A DEMO SITE</h1>
+    <h1 class="text-3xl">THIS IS A DEMO SITE</h1>
     <p> {{ message }} </p>
     <p> {{ number }}</p>
     <div>
