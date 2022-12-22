@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,7 +23,7 @@ class UserFactory extends Factory
             'first_name' => fake()->firstName(),
             'surname' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'remember_token' => Str::random(10)
+            'hash' => UserController::createNewHash()
          ];
     }
 }

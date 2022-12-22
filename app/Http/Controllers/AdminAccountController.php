@@ -56,6 +56,13 @@ class AdminAccountController extends Controller
                 return redirect()->back()->withErrors("A required column is missing.");
             }
 
+            //Add the hash
+            try {
+                $row['hash'] = UserController::createNewHash();
+            } catch (\Exception $e){
+                return redirect()->back()->withErrors("There was a problem with the User Hash. Please try again");
+            }
+
             //Saves validated input in array
             $userArray[] = $row;
         }
