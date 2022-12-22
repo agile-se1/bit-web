@@ -18,8 +18,8 @@ class AdminAccountController extends Controller
             'file' => 'required|mimes:csv,txt'
         ]);
 
+        //Reads files and saves rows in array
         try {
-            //Reads files and saves rows in array
             $file = $request->file('file');
             $csvData = file_get_contents($file);
             $rows = explode("\r\n", $csvData);
@@ -46,6 +46,15 @@ class AdminAccountController extends Controller
                 if(trim($row['surname']) == ""){
                     $row['surname'] = null;
                 }
+
+                if(key_exists('email', $row)){
+                    if(trim($row['email']) == ""){
+                        $row['email'] = null;
+                    }
+                    if (!filter_var($row['email'], FILTER_VALIDATE_EMAIL)) {
+                        $row['email'] = null;
+                    }
+                }
             } catch (\Exception $e){
                 return redirect()->back()->withErrors("A required column is missing.");
             }
@@ -57,9 +66,12 @@ class AdminAccountController extends Controller
                 return redirect()->back()->withErrors("There was a problem with the User Hash. Please try again");
             }
 
-            //Add the email address Format: max.mustermann@gym-mellendorf.de
-            $row['email'] = $row['first_name'] . "." . $row['surname'] . "@gym-mellendorf.de";
-            $row['email'] = strtolower($row['email']);
+            //If there is no email address, it will use the Iserv-Email address
+            if(!key_exists('email', $row) || is_null($row['email'])){
+                //Add the email address Format: max.mustermann@gym-mellendorf.de
+                $row['email'] = $row['first_name'] . "." . $row['surname'] . "@gym-mellendorf.de";
+                $row['email'] = strtolower($row['email']);
+            }
 
             //Saves validated input in array
             $userArray[] = $row;
