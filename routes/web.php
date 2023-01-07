@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\HashAuthController;
+use App\Http\Controllers\TestSitesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +23,14 @@ Route::get('/', function () {
 
 //###Admin
 //Import user by CSV
-Route::get('/admin/createUserByCSV', [\App\Http\Controllers\AdminAccountController::class, 'createUserByCSV']);
-Route::post('/admin/createUserByCSV', [\App\Http\Controllers\AdminAccountController::class, 'storeUserByCSV']);
+Route::get('/admin/createUserByCSV', [AdminAccountController::class, 'createUserByCSV']);
+Route::post('/admin/createUserByCSV', [AdminAccountController::class, 'storeUserByCSV']);
+
+//Auth user
+ROUTE::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
+Route::get('/logout', [HashAuthController::class, 'logout']);
+
+//Test routes
+Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
+Route::get('/testLoginLinks', [TestSitesController::class, 'testLoginLinks']);
+
