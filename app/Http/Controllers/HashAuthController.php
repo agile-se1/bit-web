@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,7 +37,7 @@ class HashAuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return Redirect('/showAuthData');
+        return redirect('/showAuthData');
     }
 
     public function showNoticeToLogin (){
