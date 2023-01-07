@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\HashAuthController;
 use App\Http\Controllers\TestSitesController;
 use App\Http\Controllers\UserController;
@@ -27,8 +28,16 @@ Route::get('/admin/createUserByCSV', [AdminAccountController::class, 'createUser
 Route::post('/admin/createUserByCSV', [AdminAccountController::class, 'storeUserByCSV']);
 
 //Auth user
-ROUTE::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
+Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
 Route::get('/logout', [HashAuthController::class, 'logout']);
+
+Route::middleware('auth')->group(function (){
+    //Insert here every route that need user login
+    Route::get('/decision',[DecisionController::class, 'show']);
+});
+
+//Fallback route, if the user is not logged in
+Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
 
 //Test routes
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);

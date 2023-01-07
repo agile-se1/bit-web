@@ -40,4 +40,8 @@ class HashAuthController extends Controller
 
         return Redirect('/showAuthData');
     }
+
+    public function showNoticeToLogin (){
+        return view('login.noticeToLogin');
+    }
 }
