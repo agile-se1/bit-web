@@ -25,9 +25,20 @@
     <p>There are no general presentations</p>
 @endunless
 
-<h1>Test sender</h1>
+<h1>Test sender (Insert)</h1>
 <form method="POST" action="/decision">
     @csrf
+    <input type="number" placeholder="generalPresentation" name="generalPresentation"> <br/>
+    <input type="number" placeholder="professionalField1" name="professionalField1"> <br/>
+    <input type="number" placeholder="professionalField2" name="professionalField2"> <br/>
+
+    <input type="submit" value="Save">
+</form>
+
+<h1>Test sender (Update)</h1>
+<form method="POST" action="/decision">
+    @csrf
+    @method('PUT')
     <input type="number" placeholder="generalPresentation" name="generalPresentation"> <br/>
     <input type="number" placeholder="professionalField1" name="professionalField1"> <br/>
     <input type="number" placeholder="professionalField2" name="professionalField2"> <br/>

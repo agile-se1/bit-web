@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/decision',[DecisionController::class, 'index']);
     //Saves the decision
     Route::post('/decision', [DecisionController::class, 'store']);
+    Route::put('/decision', [DecisionController::class, 'update']);
 });
 
 //Fallback route, if the user is not logged in

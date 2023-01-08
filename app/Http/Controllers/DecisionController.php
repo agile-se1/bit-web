@@ -19,16 +19,8 @@ class DecisionController extends Controller
     }
 
     public function store(Request $request){
-        //Get max count for the decision values
-        $maxNumberOfGeneralPresentations = GeneralPresentation::all()->count();
-        $maxNumberOfProfessionalFields = ProfessionalField::all()->count();
 
-        //Validate the input
-        $request->validate([
-            'generalPresentation' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfGeneralPresentations],
-            'professionalField1' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfProfessionalFields, 'different:professionalField2'],
-            'professionalField2' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfProfessionalFields, 'different:professionalField1']
-        ]);
+        $this->requestValidation($request);
 
         //Save everything in the database
         try{
@@ -52,5 +44,43 @@ class DecisionController extends Controller
         }
 
         return redirect('/decision');
+    }
+
+    public function update (Request $request){
+        $this->requestValidation($request);
+
+        //Get all data from the database and save the new values
+        try{
+            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', Auth::id())->first();
+            $generalPresentationDecision->general_presentation_id = $request->generalPresentation;
+            $generalPresentationDecision->save();
+
+            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', Auth::id())->first();
+            $professionalFieldDecision1->professional_field_id = $request->professionalField1;
+            $professionalFieldDecision1->save();
+
+            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
+            $professionalFieldDecision2->professional_field_id = $request->professionalField2;
+            $professionalFieldDecision2->save();
+        } catch (\Exception $e){
+            return back()->withErrors('' . $e);
+        }
+
+        return redirect('/decision');
+    }
+
+    //Helper
+    //Validation
+    private function requestValidation(Request $request){
+        //Get max count for the decision values
+        $maxNumberOfGeneralPresentations = GeneralPresentation::all()->count();
+        $maxNumberOfProfessionalFields = ProfessionalField::all()->count();
+
+        //Validate the input
+        return $request->validate([
+            'generalPresentation' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfGeneralPresentations],
+            'professionalField1' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfProfessionalFields, 'different:professionalField2'],
+            'professionalField2' => ['required', 'integer', 'between:'. 1 . ',' . $maxNumberOfProfessionalFields, 'different:professionalField1']
+        ]);
     }
 }
