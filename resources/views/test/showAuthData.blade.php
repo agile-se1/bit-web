@@ -16,5 +16,6 @@
 
 <br/>
 <hr/>
-<a href="/logout">Logout</a>
-<a href="/testLoginLinks">Test Links</a>
+<a href="/logout">Logout</a> <br/>
+<a href="/testLoginLinks">Test Links</a> <br/>
+<a href="/decision">Decision</a> <br/>
