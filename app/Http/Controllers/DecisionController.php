@@ -22,6 +22,14 @@ class DecisionController extends Controller
 
         $this->requestValidation($request);
 
+        //Checks if the user already made a decision
+        if(
+            !is_null(GeneralPresentationDecision::where('user_id', Auth::id())->first()) ||
+            !is_null(ProfessionalFieldDecision::where('user_id', Auth::id())->first())
+        ){
+            return back()->withErrors('User already set a decision');
+        }
+
         //Save everything in the database
         try{
             GeneralPresentationDecision::create([
@@ -39,7 +47,7 @@ class DecisionController extends Controller
                 'professional_field_id' => $request->professionalField2
             ]);
 
-        } catch (\Exception $e){
+        } catch (\Throwable $e){
             return back()->withErrors('Couldn\'t save the decision');
         }
 
@@ -62,7 +70,7 @@ class DecisionController extends Controller
             $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
             $professionalFieldDecision2->professional_field_id = $request->professionalField2;
             $professionalFieldDecision2->save();
-        } catch (\Exception $e){
+        } catch (\Throwable $e){
             return back()->withErrors('' . $e);
         }
 
