@@ -34,17 +34,17 @@ class DatabaseSeeder extends Seeder
             ))
             ->create();
 
-        //Create for the first two user a GeneralPresentation and two ProfessionalFieldDecisions
+        //Create for the two user a GeneralPresentation and two ProfessionalFieldDecisions
         \App\Models\ProfessionalFieldDecision::factory()->create([
-            'user_id' => 1,
+            'user_id' => 2,
             'professional_field_id' => 2
         ]);
         \App\Models\ProfessionalFieldDecision::factory()->create([
-            'user_id' => 1,
+            'user_id' => 2,
             'professional_field_id' => 1
         ]);
         \App\Models\GeneralPresentationDecision::factory()->create([
-            'user_id' => 1,
+            'user_id' => 2,
             'general_presentation_id' => 2
         ]);
 
