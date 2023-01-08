@@ -33,7 +33,9 @@ Route::get('/logout', [HashAuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function (){
     //Insert here every route that need user login
-    Route::get('/decision',[DecisionController::class, 'show']);
+    Route::get('/decision',[DecisionController::class, 'index']);
+    //Saves the decision
+    Route::post('/decision', [DecisionController::class, 'store']);
 });
 
 //Fallback route, if the user is not logged in

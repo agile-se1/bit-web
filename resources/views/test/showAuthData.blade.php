@@ -1,8 +1,7 @@
-@if(count($errors) > 0)
-    @foreach ($errors->all() as $error)
-        <p>{{ $error }}</p>
-    @endforeach
-@endif
+<?php
+use Illuminate\Support\Facades\Auth;
+?>
+<x-error/>
 
 @auth
     <h1>Logged in</h1>
