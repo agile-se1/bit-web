@@ -3,6 +3,7 @@
 ?>
 <h1>Links</h1>
 <h2>Working</h2>
+<x-error/>
 <?php
     $user = User::where('id', '=', 1)->first();
 
