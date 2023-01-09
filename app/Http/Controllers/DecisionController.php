@@ -16,8 +16,8 @@ class DecisionController extends Controller
     public function index()
     {
         return view('decision.decision', [
-            'professionalFields' => ProfessionalField::all(),
-            'generalPresentations' => GeneralPresentation::all()
+            'professionalFields' => ProfessionalField::orderBy('id')->get(),
+            'generalPresentations' => GeneralPresentation::orderBy('id')->get()
         ]);
     }
 
