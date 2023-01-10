@@ -8,11 +8,7 @@
 <body>
     <h1>Upload CSV to create User</h1>
 
-    @if(count($errors) > 0)
-        @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    @endif
+    <x-error/>
 
     @if (\Session::has('success'))
         <p>{!! \Session::get('success') !!}</p>
