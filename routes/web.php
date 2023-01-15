@@ -45,6 +45,7 @@ Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->
 //Send Emails
 Route::get('/email/sendLoginLinksToAllUsers', [EmailController::class, 'sendLoginLinkEmailToAllUsers']);
 Route::get('/email/sendReminderEmailForNextBITToAllUsers', [EmailController::class, 'sendReminderEmailForNextBITToAllUsers']);
+Route::get('/email/sendDecisionReminderMailToAllUser', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
 
 //Test routes
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
