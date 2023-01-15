@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\DecisionController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HashAuthController;
 use App\Http\Controllers\TestSitesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function (){
 
 //Fallback route, if the user is not logged in
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
+
+//Send Emails
+Route::get('/email/sendLoginLinksToAllUsers', [EmailController::class, 'sendLoginLinkEmailToAllUsers']);
 
 //Test routes
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
