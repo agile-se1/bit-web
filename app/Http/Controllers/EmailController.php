@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\LoginLinkMail;
+use App\Mail\ReminderEmailForNextBITMail;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
@@ -18,7 +18,6 @@ class EmailController extends Controller
     }
 
     //Routes
-
     public function sendLoginLinkEmailToAllUsers (){
         $users = User::all();
         foreach($users as $user) {
@@ -26,8 +25,21 @@ class EmailController extends Controller
         }
     }
 
+    public function sendReminderEmailForNextBITToAllUsers(){
+        $users = User::all();
+        foreach($users as $user) {
+            $this->sendReminderEmailEmailForNextBIT($user);
+        }
+    }
+
+
+
     //Single Emails
     private function sendLoginLinkEmail(User $user){
         Mail::to($user->email)->send(new LoginLinkMail($user));
+    }
+
+    private function sendReminderEmailEmailForNextBIT(User $user){
+        Mail::to($user->email)->send(new ReminderEmailForNextBITMail($user));
     }
 }
