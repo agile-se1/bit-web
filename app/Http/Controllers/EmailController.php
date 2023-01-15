@@ -8,6 +8,7 @@ use App\Mail\ReminderEmailForNextBITMail;
 use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
@@ -45,6 +46,18 @@ class EmailController extends Controller
         }
     }
 
+    public function sendNewLoginLink (Request $request){
+        //Tries to get a user from the database
+        $user = User::where([
+            ['first_name', '=', $request->first_name],
+            ['surname', '=', $request->surname]
+        ])->first();
+
+        //Checks if the user exists, if so, send a email
+        if(isset($user)){
+            $this->sendLoginLinkEmail($user);
+        }
+    }
 
 
     //Single Emails
