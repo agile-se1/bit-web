@@ -17,6 +17,7 @@ class ReminderEmailForNextBITMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    //Attributes
     public User $user;
     public ?ProfessionalField $professionalField1;
     public ?ProfessionalField $professionalField2;
@@ -31,6 +32,7 @@ class ReminderEmailForNextBITMail extends Mailable
     {
         $this->user = $user;
 
+        //Get values for the decision attributes
         $this->getProfessionalFields();
     }
 
@@ -69,6 +71,7 @@ class ReminderEmailForNextBITMail extends Mailable
         return [];
     }
 
+    //This function tries to fetch the user decision from the database, if the user didn't make a choice, it sets the object to null
     private function getProfessionalFields (){
         //Professional fields
         try {
