@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\decisionReminderMail;
 use App\Mail\LoginLinkMail;
-use App\Mail\ReminderEmailForNextBITMail;
-use App\Models\ProfessionalField;
+use App\Mail\BeforeBITMail;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,29 +12,24 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-
-    //Test functions
-    public function sendTestLoginEmail(){
-        $user = User::where('id', 1)->first();
-
-        $this->sendLoginLinkEmail($user);
-    }
-
     //Routes
-    public function sendLoginLinkEmailToAllUsers (){
+    //Send a mail with a login link to all users
+    public function sendLoginLinkMailToAllUsers (){
         $users = User::all();
         foreach($users as $user) {
-           $this->sendLoginLinkEmail($user);
+           $this->sendLoginLinkMail($user);
         }
     }
 
-    public function sendReminderEmailForNextBITToAllUsers(){
+    //Send a mail before the next BIT to remind the user for the date and also about his decision
+    public function sendBeforeBITMailToAllUsers(){
         $users = User::all();
         foreach($users as $user) {
-            $this->sendReminderEmailEmailForNextBIT($user);
+            $this->sendBeforeBITMail($user);
         }
     }
 
+    //Send a mail to all users, who doesn't make a decision
     public function sendDecisionReminderMailToAllUsers(){
         $users = User::all();
         foreach($users as $user) {
@@ -46,43 +40,41 @@ class EmailController extends Controller
         }
     }
 
-    public function sendNewLoginLink (Request $request){
+    //Get new LoginLink by first_name and surname
+    public function sendNewLoginLinkMailByFirstAndSurname (Request $request){
         //Tries to get a user from the database
         $user = User::where([
             ['first_name', '=', $request->first_name],
             ['surname', '=', $request->surname]
         ])->first();
 
-        //Checks if the user exists, if so, send a email
+        //Checks if the user exists, if so, send an email
         if(isset($user)){
-            $this->sendLoginLinkEmail($user);
+            $this->sendLoginLinkMail($user);
         }
     }
 
-
-    //Single Emails
-    private function sendLoginLinkEmail(User $user){
+    //Single Mail Sender
+    private function sendLoginLinkMail(User $user){
         Mail::to($user->email)->send(new LoginLinkMail($user));
     }
 
-    private function sendReminderEmailEmailForNextBIT(User $user){
-        Mail::to($user->email)->send(new ReminderEmailForNextBITMail($user));
+    private function sendBeforeBITMail(User $user){
+        Mail::to($user->email)->send(new BeforeBITMail($user));
     }
 
     private function sendDecisionReminderMail(User $user){
         Mail::to($user->email)->send(new DecisionReminderMail($user));
     }
 
-    //Helper
+    //Helper functions
     private function userMadeDecision(User $user):bool{
-        //Tries to fetch a user decision. If it can find one entry, the user made his complete decision, because it is not possible to just set a single decision
-        try {
-            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
-            ProfessionalField::where('id', $professionalFieldDecision1->professional_field_id)->first();
+        //If the system can find an entry in professionalFieldDecision, the system knows that the user made a complete decision, because it is not possible to just select one professionalField
+        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
+        if(isset($professionalFieldDecision1)){
             return true;
-        } catch (\Throwable $e){
-            return false;
         }
 
+        return false;
     }
 }

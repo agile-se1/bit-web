@@ -42,11 +42,11 @@ Route::middleware('auth')->group(function (){
 //Fallback route, if the user is not logged in
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
 
-//Send Emails
-Route::get('/email/sendLoginLinksToAllUsers', [EmailController::class, 'sendLoginLinkEmailToAllUsers']);
-Route::get('/email/sendReminderEmailForNextBITToAllUsers', [EmailController::class, 'sendReminderEmailForNextBITToAllUsers']);
-Route::get('/email/sendDecisionReminderMailToAllUser', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
-Route::get('/email/sendNewLoginLink/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLink']);
+//Send Mails
+Route::get('/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);
+Route::get('/email/sendBeforeBITMailToAllUsers', [EmailController::class, 'sendBeforeBITMailToAllUsers']);
+Route::get('/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
+Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
 
 //Test routes
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);

@@ -13,15 +13,15 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ReminderEmailForNextBITMail extends Mailable
+class BeforeBITMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     //Attributes
     public User $user;
-    public ?ProfessionalField $professionalField1;
-    public ?ProfessionalField $professionalField2;
-    public ?GeneralPresentation $generalPresentation;
+    public ?ProfessionalField $professionalField1 = null;
+    public ?ProfessionalField $professionalField2 = null;
+    public ?GeneralPresentation $generalPresentation = null;
 
     /**
      * Create a new message instance.
@@ -32,7 +32,6 @@ class ReminderEmailForNextBITMail extends Mailable
     {
         $this->user = $user;
 
-        //Get values for the decision attributes
         $this->getProfessionalFields();
     }
 
@@ -73,30 +72,22 @@ class ReminderEmailForNextBITMail extends Mailable
 
     //This function tries to fetch the user decision from the database, if the user didn't make a choice, it sets the object to null
     private function getProfessionalFields (){
-        //Professional fields
-        try {
-            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $this->user->id)->first();
+        //Professional field 1
+        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $this->user->id)->first();
+        if(isset($professionalFieldDecision1)){
             $this->professionalField1 = ProfessionalField::where('id', $professionalFieldDecision1->professional_field_id)->first();
-        } catch (\Throwable $e){
-          //unset($this->professionalField1);
-            $this->professionalField1 = null;
         }
 
-        try{
-            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $this->user->id)->orderBy('id', 'desc')->first();
+        //Professional field 2
+        $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $this->user->id)->orderBy('id', 'desc')->first();
+        if(isset($professionalFieldDecision2)){
             $this->professionalField2 = ProfessionalField::where('id', $professionalFieldDecision2->professional_field_id)->first();
-        } catch (\Throwable $e){
-            //unset($this->professionalField2);
-            $this->professionalField2 = null;
         }
 
         //General presentation
-        try{
-            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $this->user->id)->first();
+        $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $this->user->id)->first();
+        if(isset($generalPresentationDecision)){
             $this->generalPresentation = GeneralPresentation::where('id', $generalPresentationDecision->general_presentation_id)->first();
-        } catch (\Throwable $e){
-            //unset($this->generalPresentation);
-            $this->generalPresentation = null;
         }
     }
 }
