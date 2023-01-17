@@ -70,8 +70,8 @@ class EmailController extends Controller
     //Helper functions
     private function userMadeDecision(User $user):bool{
         //If the system can find an entry in professionalFieldDecision, the system knows that the user made a complete decision, because it is not possible to just select one professionalField
-        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
-        if(isset($professionalFieldDecision1)){
+        $anyProfessionalFieldDecision = ProfessionalFieldDecision::where('user_id', $user->id)->first();
+        if(isset($anyProfessionalFieldDecision)){
             return true;
         }
 
