@@ -23,3 +23,15 @@ Für die tägliche Entwicklungsarbeit müssen jeweils folgende Schritte durchgef
 * `sail artisan migrate:fresh` setzt die Datenbank zurück und baut eine neue auf
 * `sail artisan migrate` setzt eine neue Datenbank auf
 * `sail artisan db:seed` speichert die Testwerte in die Datenbank
+
+## Mailhog benutzen
+* Folgendes muss in die .env Datei 
+* `MAIL_MAILER=smtp`
+* `MAIL_HOST=mailhog`
+* `MAIL_PORT=1025`
+* `MAIL_USERNAME=`
+* `MAIL_PASSWORD=`
+* `MAIL_ENCRYPTION=tls`
+* `MAIL_FROM_ADDRESS="info@gm-bit.de"`
+* `MAIL_FROM_NAME="Berufsinformationstag"`
+* Mailhog findet man dann unter `localhost:8025`
