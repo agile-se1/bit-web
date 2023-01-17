@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\decisionReminderMail;
+use App\Mail\DecisionReminderMail;
 use App\Mail\LoginLinkMail;
 use App\Mail\BeforeBITMail;
 use App\Models\ProfessionalFieldDecision;
