@@ -25,7 +25,7 @@ Für die tägliche Entwicklungsarbeit müssen jeweils folgende Schritte durchgef
 * `sail artisan db:seed` speichert die Testwerte in die Datenbank
 
 ## Mailhog benutzen
-* Folgendes muss in die .env datei 
+* Folgendes muss in die .env Datei 
 * `MAIL_MAILER=smtp`
 * `MAIL_HOST=mailhog`
 * `MAIL_PORT=1025`
