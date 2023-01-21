@@ -1,7 +1,7 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
-import '/resources/css/app.css';
+import '../css/app.css';
 
 
 createInertiaApp({

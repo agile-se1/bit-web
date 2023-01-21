@@ -4,12 +4,9 @@ import InfoBlock from "@/components/InfoBlock.vue";
 </script>
 
 
-<template>
+<template class="bg-bit-blue">
 
     <MenuBar />
-    <div class="">
-        <info-block />
 
-    </div>
 </template>
 

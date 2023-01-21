@@ -7,10 +7,17 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/js/app.js', 'resources/css/app.css'],
+            input: ['resources/js/app.js'],
             refresh: true,
         }),
-        vue(),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
+        }),
     ],
     resolve: {
         alias: {
