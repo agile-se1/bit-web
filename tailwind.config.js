@@ -5,9 +5,22 @@ module.exports = {
         "./src/**/*.{js,ts,jsx,tsx,vue}",
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
+        "./resources/**/*.vue",
     ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+    theme: {
+        fontFamily: {
+            sans: ['Rubik'],
+        },
+
+        extend: {
+            scale: {
+                '175': '1.75',
+            },
+            colors: {
+                'bit-blue': '#062266',
+            },
+
+        },
+    },
+    plugins: [],
 }
