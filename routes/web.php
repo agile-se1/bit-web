@@ -23,6 +23,14 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
+});
+
+Route::get('impressum', function () {
+    return Inertia::render('Impressum');
+});
+
 //###Admin
 //Import user by CSV
 Route::get('/admin/createUserByCSV', [AdminAccountController::class, 'createUserByCSV']);

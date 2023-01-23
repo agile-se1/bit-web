@@ -13,7 +13,7 @@ const infoBlocks = {
 </script>
 
 
-<template>
+<template class="font-normal">
     <layout>
         <div class="flex justify-center min-h-fit">
             <InfoBlock :title="infoBlocks.basicInfos.title" :text="infoBlocks.basicInfos.text" url="#" />
