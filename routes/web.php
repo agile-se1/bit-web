@@ -27,8 +27,8 @@ Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 });
 
-Route::get('impressum', function () {
-    return Inertia::render('Impressum');
+Route::get('/impressum', function () {
+    return Inertia::render('Imprint');
 });
 
 //###Admin
