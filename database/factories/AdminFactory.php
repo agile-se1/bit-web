@@ -18,8 +18,8 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'username' => fake()->userName(),
-            'password' => Str::random(10),
+            'username' => "User",
+            'password' => "123456",
             'remember_token' => Str::random(10)
         ];
     }

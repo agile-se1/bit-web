@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\HashAuthController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,13 @@ Route::middleware('auth')->group(function (){
 
 //Fallback route, if the user is not logged in
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
+
+//Admin Sites
+Route::get('/admin/login', [AdminAuthController::class, 'showAdminLogin']);
+Route::post('/admin/login', [AdminAuthController::class, 'adminLogin']);
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/logout', [AdminAuthController::class, 'logout']);
+
 
 //Send Mails
 Route::get('/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);

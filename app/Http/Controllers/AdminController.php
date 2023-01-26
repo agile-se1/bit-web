@@ -8,6 +8,12 @@ use Illuminate\Validation\Validator;
 
 class AdminController extends Controller
 {
+
+    public function index (){
+        return view('admin.dashboard');
+    }
+
+
     public function createUserByCSV(){
         return view('admin.createUserByCSV');
     }
