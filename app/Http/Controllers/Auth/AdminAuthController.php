@@ -36,18 +36,16 @@ class AdminAuthController extends Controller
         //Check if the user exists
         if (empty($admin)) {
             $this->logout();
-            return back()->withErrors('User doesn\'t exist');
+            return back()->withErrors('Admin doesn\'t exist');
         }
 
         //Tries to authenticate
         if(Auth::guard('admin')->loginUsingId($admin->id)){
             //Success
-
-            //dd(Auth::guard('admin')->id());
             return redirect('/admin/dashboard');
         }
 
-        return back()->withErrors('Error');
+        return back()->withErrors('Could not lock in');
     }
 
     public function logout (){

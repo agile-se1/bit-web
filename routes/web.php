@@ -30,7 +30,7 @@ Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
 Route::get('/logout', [HashAuthController::class, 'logout']);
 
 //User sites
-Route::middleware('auth:user')->group(function (){
+Route::middleware('auth')->group(function (){
     //Insert here every route that need user login
     Route::get('/decision',[DecisionController::class, 'index']);
     //Saves the decision
