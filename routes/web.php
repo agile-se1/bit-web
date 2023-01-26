@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HashAuthController;
@@ -24,8 +24,8 @@ Route::get('/', function () {
 
 //###Admin
 //Import user by CSV
-Route::get('/admin/createUserByCSV', [AdminAccountController::class, 'createUserByCSV']);
-Route::post('/admin/createUserByCSV', [AdminAccountController::class, 'storeUserByCSV']);
+Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
+Route::post('/admin/createUserByCSV', [AdminController::class, 'storeUserByCSV']);
 
 //Auth user
 Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
