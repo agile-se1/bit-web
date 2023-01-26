@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return inertia('Home');
-});
+Route::get('/', [StaticSitesController::class, 'showHome']);
+Route::get('/home', [StaticSitesController::class, 'showHome']);
 
 //###Admin
 //Import user by CSV
