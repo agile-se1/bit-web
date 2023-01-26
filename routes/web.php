@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function (){
     Route::put('/decision', [DecisionController::class, 'update']);
 });
 
+//Emails
+Route::get('/admin/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
+
 //Auth Admin
 Route::get('/admin/login', [AdminAuthController::class, 'showAdminLogin']);
 Route::post('/admin/login', [AdminAuthController::class, 'adminLogin']);
@@ -51,7 +54,6 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);
     Route::get('/admin/email/sendBeforeBITMailToAllUsers', [EmailController::class, 'sendBeforeBITMailToAllUsers']);
     Route::get('/admin/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
-    Route::get('/admin/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
 
     //Import user by CSV
     Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
