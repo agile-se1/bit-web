@@ -1,6 +1,7 @@
 <script setup>
 import InfoBlock from "@/components/InfoBlock.vue";
 import Layout from "@/components/Layout.vue";
+import { Carousel } from 'flowbite';
 
 const infoBlocks = {
     basicInfos : {
@@ -15,9 +16,10 @@ const infoBlocks = {
 
 <template class="font-normal">
     <layout>
-        <div class="flex justify-center min-h-fit">
+        <div id="default-carousel" class="flex justify-center min-h-fit" data-carousel="static">
             <InfoBlock :title="infoBlocks.basicInfos.title" :text="infoBlocks.basicInfos.text" url="#" />
         </div>
+
     </layout>
 
 
