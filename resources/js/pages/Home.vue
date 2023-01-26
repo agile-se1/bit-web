@@ -17,7 +17,7 @@ const infoBlocks = {
 <template class="font-normal">
     <layout>
         <div id="default-carousel" class="flex justify-center min-h-fit" data-carousel="static">
-            <InfoBlock :title="infoBlocks.basicInfos.title" :text="infoBlocks.basicInfos.text" url="#" />
+            <InfoBlock :title="infoBlocks.basicInfos.title" :text="infoBlocks.basicInfos.text"/>
         </div>
 
     </layout>
