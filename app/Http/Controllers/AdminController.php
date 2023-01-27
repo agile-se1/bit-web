@@ -99,34 +99,44 @@ class AdminController extends Controller
         $users = User::all();
         $userData = array();
         foreach($users as $user) {
-            $data = array();
-
-            $data['user'] = $user;
-            $data['decisionDate'] = null;
-            $data['generalPresentationDecision'] = null;
-            $data['professionalFieldDecision1'] = null;
-            $data['professionalFieldDecision2'] = null;
-
-            //Fetch all data from the database
-            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $user->id)->first();
-            if($generalPresentationDecision != null){
-                $data['decisionDate'] = $generalPresentationDecision->updated_at;
-                $data['generalPresentationDecision'] = $generalPresentationDecision->id;
-            }
-
-            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
-            if($professionalFieldDecision1 != null){
-                $data['professionalFieldDecision1'] = $professionalFieldDecision1->id;
-            }
-
-            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'desc')->first();
-            if($professionalFieldDecision2 != null){
-                $data['professionalFieldDecision2'] = $professionalFieldDecision2->id;
-            }
-
-            $userData[] = $data;
+            $userData[] = $this->getUserDecisions($user);
         }
 
         return view('admin.indexUser')->with('data', $userData);
+    }
+
+    public function editUser(User $user){
+        $data = $this->getUserDecisions($user);
+
+        return view('admin.editUser')->with('data', $data);
+    }
+
+    //Helper
+    private function getUserDecisions(User $user){
+        $data = array();
+        $data['user'] = $user;
+        $data['decisionDate'] = null;
+        $data['generalPresentationDecision'] = null;
+        $data['professionalFieldDecision1'] = null;
+        $data['professionalFieldDecision2'] = null;
+
+        //Fetch all data from the database
+        $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $user->id)->first();
+        if($generalPresentationDecision != null){
+            $data['decisionDate'] = $generalPresentationDecision->updated_at;
+            $data['generalPresentationDecision'] = $generalPresentationDecision->id;
+        }
+
+        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
+        if($professionalFieldDecision1 != null){
+            $data['professionalFieldDecision1'] = $professionalFieldDecision1->id;
+        }
+
+        $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+        if($professionalFieldDecision2 != null){
+            $data['professionalFieldDecision2'] = $professionalFieldDecision2->id;
+        }
+
+        return $data;
     }
 }
