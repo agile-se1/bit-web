@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneralPresentationDecision;
+use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
 class AdminController extends Controller
@@ -12,7 +15,6 @@ class AdminController extends Controller
     public function index (){
         return view('admin.dashboard');
     }
-
 
     public function createUserByCSV(){
         return view('admin.createUserByCSV');
@@ -91,5 +93,40 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('success', 'User created successfully');
+    }
+
+    public function indexUser(){
+        $users = User::all();
+        $userData = array();
+        foreach($users as $user) {
+            $data = array();
+
+            $data['user'] = $user;
+            $data['decisionDate'] = null;
+            $data['generalPresentationDecision'] = null;
+            $data['professionalFieldDecision1'] = null;
+            $data['professionalFieldDecision2'] = null;
+
+            //Fetch all data from the database
+            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $user->id)->first();
+            if($generalPresentationDecision != null){
+                $data['decisionDate'] = $generalPresentationDecision->updated_at;
+                $data['generalPresentationDecision'] = $generalPresentationDecision->id;
+            }
+
+            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
+            if($professionalFieldDecision1 != null){
+                $data['professionalFieldDecision1'] = $professionalFieldDecision1->id;
+            }
+
+            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+            if($professionalFieldDecision2 != null){
+                $data['professionalFieldDecision2'] = $professionalFieldDecision2->id;
+            }
+
+            $userData[] = $data;
+        }
+
+        return view('admin.indexUser')->with('data', $userData);
     }
 }

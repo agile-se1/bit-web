@@ -58,6 +58,9 @@ Route::middleware('auth:admin')->group(function (){
     //Import user by CSV
     Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
     Route::post('/admin/createUserByCSV', [AdminController::class, 'storeUserByCSV']);
+
+    //User data
+    Route::get('/admin/user', [AdminController::class, 'indexUser']);
 });
 
 //Fallback route, if the user is not logged in
