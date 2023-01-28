@@ -1,5 +1,7 @@
 <h1>User data</h1>
 
+<x-message/>
+
 <table class="table table-sm">
     <thead>
     <tr>

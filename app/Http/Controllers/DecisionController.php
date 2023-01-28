@@ -69,18 +69,34 @@ class DecisionController extends Controller
     {
         $this->requestValidation($request);
 
+
+
+        try {
+            $this->updateUserDecision(Auth::id(), $request->generalPresentation, $request->professionalField1, $request->professionalField2);
+        } catch (\Throwable $e){
+            return back()->withErrors($e->getMessage());
+        }
+
+        return redirect('/decision');
+    }
+
+    //Helper
+    //Validation
+
+    public function updateUserDecision (int $userId, int $generalPresentationInput, int $professionalField1Input, int $professionalField2Input){
         //Get all data from the database and save the new values
+
         try{
             DB::beginTransaction();
 
             //Update the generalPresentationDecision
-            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', Auth::id())->first();
-            $generalPresentationDecision->general_presentation_id = $request->generalPresentation;
+            $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $userId)->first();
+            $generalPresentationDecision->general_presentation_id = $generalPresentationInput;
             $generalPresentationDecision->save();
 
             //Get professionalFieldDecisions from database
-            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', Auth::id())->first();
-            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
+            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $userId)->first();
+            $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $userId)->orderBy('id', 'desc')->first();
 
             //Get professionalFields form database
             $professionalField1 = ProfessionalField::where('id', $professionalFieldDecision1->professional_field_id)->first();
@@ -91,8 +107,8 @@ class DecisionController extends Controller
             $this->changeProfessionalFieldCount($professionalField2->id, false);
 
             //Add the new professioanlFieldDecisions
-            $professionalFieldDecision1->professional_field_id = $request->professionalField1;
-            $professionalFieldDecision2->professional_field_id = $request->professionalField2;
+            $professionalFieldDecision1->professional_field_id = $professionalField1Input;
+            $professionalFieldDecision2->professional_field_id = $professionalField2Input;
 
             //Get new professionalFields from database
             $professionalField1 = ProfessionalField::where('id', $professionalFieldDecision1->professional_field_id)->first();
@@ -106,17 +122,13 @@ class DecisionController extends Controller
             $professionalFieldDecision1->save();
             $professionalFieldDecision2->save();
 
+
             DB::commit();
         } catch (\Throwable $e){
             DB::rollBack();
-            return back()->withErrors('Couldn\'t update the user decision');
+            throw new Exception($e);
         }
-
-        return redirect('/decision');
     }
-
-    //Helper
-    //Validation
     private function requestValidation(Request $request)
     {
         //Get max count for the decision values

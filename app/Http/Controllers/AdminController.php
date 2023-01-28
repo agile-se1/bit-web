@@ -111,6 +111,50 @@ class AdminController extends Controller
         return view('admin.editUser')->with('data', $data);
     }
 
+    public function updateUser(User $user, Request $request){
+        $request->validate([
+            'firstName' => ['required', 'string'],
+            'surname' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'generalPresentationDecision' => ['required', 'integer'],
+            'professionalFieldDecision1' => ['required', 'integer'],
+            'professionalFieldDecision2' => ['required', 'integer'],
+            'generalPresentationDecisionOld' => ['required', 'integer'],
+            'professionalFieldDecision1Old' => ['required', 'integer'],
+            'professionalFieldDecision2Old' => ['required', 'integer'],
+        ]);
+
+        //Check, if UserData is changed
+        if(
+            $user->firstName != $request['firstName'] ||
+            $user->surname != $request['surname'] ||
+            $user->email != $request['email']
+        ) {
+            $user->first_name = $request['firstName'];
+            $user->surname = $request['surname'];
+            $user->email = $request['email'];
+
+            $user->save();
+        }
+
+        //dd($request);
+        //Check if the Decision data is changed
+        if(
+            $request['generalPresentationDecision'] != $request['generalPresentationDecisionOld'] ||
+            $request['professionalFieldDecision1'] != $request['professionalFieldDecision1Old'] ||
+            $request['professionalFieldDecision2'] != $request['professionalFieldDecision2Old']
+        ) {
+
+            try {
+                (new DecisionController)->updateUserDecision($user->id, $request['generalPresentationDecision'], $request['professionalFieldDecision1'], $request['professionalFieldDecision2']);
+            } catch (\Throwable $e){
+                return redirect()->back()->withErrors($e->getMessage());
+            }
+        }
+
+        return redirect('/admin/user')->with('message', 'Erfolgreich geändert');
+    }
+
     //Helper
     private function getUserDecisions(User $user){
         $data = array();
@@ -124,17 +168,17 @@ class AdminController extends Controller
         $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $user->id)->first();
         if($generalPresentationDecision != null){
             $data['decisionDate'] = $generalPresentationDecision->updated_at;
-            $data['generalPresentationDecision'] = $generalPresentationDecision->id;
+            $data['generalPresentationDecision'] = $generalPresentationDecision->general_presentation_id;
         }
 
         $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
         if($professionalFieldDecision1 != null){
-            $data['professionalFieldDecision1'] = $professionalFieldDecision1->id;
+            $data['professionalFieldDecision1'] = $professionalFieldDecision1->professional_field_id;
         }
 
         $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'desc')->first();
         if($professionalFieldDecision2 != null){
-            $data['professionalFieldDecision2'] = $professionalFieldDecision2->id;
+            $data['professionalFieldDecision2'] = $professionalFieldDecision2->professional_field_id;
         }
 
         return $data;
