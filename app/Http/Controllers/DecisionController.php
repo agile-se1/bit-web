@@ -95,7 +95,7 @@ class DecisionController extends Controller
             $generalPresentationDecision->save();
 
             //Get professionalFieldDecisions from database
-            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $userId)->first();
+            $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $userId)->orderBy('id', 'asc')->first();
             $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $userId)->orderBy('id', 'desc')->first();
 
             //Get professionalFields form database

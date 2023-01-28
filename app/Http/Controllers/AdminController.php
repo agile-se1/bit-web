@@ -159,7 +159,9 @@ class AdminController extends Controller
     private function getUserDecisions(User $user){
         $data = array();
         $data['user'] = $user;
-        $data['decisionDate'] = null;
+        $data['generalPresentationDecisionDate'] = null;
+        $data['professionalFieldDecision1Date'] = null;
+        $data['professionalFieldDecision2Date'] = null;
         $data['generalPresentationDecision'] = null;
         $data['professionalFieldDecision1'] = null;
         $data['professionalFieldDecision2'] = null;
@@ -167,17 +169,19 @@ class AdminController extends Controller
         //Fetch all data from the database
         $generalPresentationDecision = GeneralPresentationDecision::where('user_id', $user->id)->first();
         if($generalPresentationDecision != null){
-            $data['decisionDate'] = $generalPresentationDecision->updated_at;
+            $data['generalPresentationDecisionDate'] = $generalPresentationDecision->updated_at;
             $data['generalPresentationDecision'] = $generalPresentationDecision->general_presentation_id;
         }
 
-        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->first();
+        $professionalFieldDecision1 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'asc')->first();
         if($professionalFieldDecision1 != null){
+            $data['professionalFieldDecision1Date'] = $professionalFieldDecision1->updated_at;
             $data['professionalFieldDecision1'] = $professionalFieldDecision1->professional_field_id;
         }
 
         $professionalFieldDecision2 = ProfessionalFieldDecision::where('user_id', $user->id)->orderBy('id', 'desc')->first();
         if($professionalFieldDecision2 != null){
+            $data['professionalFieldDecision2Date'] = $professionalFieldDecision2->updated_at;
             $data['professionalFieldDecision2'] = $professionalFieldDecision2->professional_field_id;
         }
 
