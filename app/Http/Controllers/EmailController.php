@@ -65,7 +65,7 @@ class EmailController extends Controller
     }
 
     //Single Mail Sender
-    private function sendLoginLinkMail(User $user){
+    public function sendLoginLinkMail(User $user){
         Mail::to($user->email)->send(new LoginLinkMail($user));
     }
 

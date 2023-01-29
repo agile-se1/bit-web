@@ -114,6 +114,12 @@ class AdminController extends Controller
         return view('admin.editUser')->with('data', $data);
     }
 
+    public function sendNewLoginLinkToUser(User $user){
+        (new EmailController)->sendLoginLinkMail($user);
+
+        return redirect('/admin/user')->with('message', 'Email send');
+    }
+
     public function deleteUser (User $user){
         try{
             DB::beginTransaction();
