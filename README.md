@@ -16,7 +16,7 @@ Um das Projekt einzurichten und mit der Entwicklung zu beginnen, müssen folgend
 Für die tägliche Entwicklungsarbeit müssen jeweils folgende Schritte durchgeführt werden:
 
 * `sail up -d` ausführen, um Docker-Container mit relevanten Services im Hintergrund zu starten
-* `npm run watch` ausführen, um den Frontend Compiler zu starten. Hot-swapping läuft aktuell leider noch nicht
+* `npm run dev` ausführen, um den Frontend Compiler zu starten. Hot-swapping läuft aktuell leider noch nicht
 
 ## Database aufsetzen
 * `sail artisan migrate:reset` setzt die Datenbank zurück
