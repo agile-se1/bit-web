@@ -63,6 +63,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/user', [AdminController::class, 'indexUser']);
     Route::get('/admin/user/{user}/edit', [AdminController::class, 'editUser']);
     Route::post('/admin/user/{user}/update', [AdminController::class, 'updateUser']);
+    Route::get('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']);
 });
 
 //Fallback route, if the user is not logged in

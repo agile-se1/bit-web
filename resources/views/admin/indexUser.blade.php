@@ -15,6 +15,7 @@
         <th>Berufsfeld 2</th>
         <th>Auswahldatum oder Änderungsdatum</th>
         <th>Ändern</th>
+        <th>Löschen</th>
     </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
                 <td>{{$userData['professionalFieldDecision2']}}</td>
                 <td>{{$userData['professionalFieldDecision2Date']}}</td>
                 <td><a href="/admin/user/{{$userData['user']->id}}/edit">Edit</a></td>
+                <td><a href="/admin/user/{{$userData['user']->id}}/delete">Löschen</a></td>
             </tr>
         @endforeach
     </tbody>

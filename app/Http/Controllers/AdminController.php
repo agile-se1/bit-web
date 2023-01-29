@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneralPresentation;
 use App\Models\GeneralPresentationDecision;
+use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Validator;
 
 class AdminController extends Controller
@@ -109,6 +112,41 @@ class AdminController extends Controller
         $data = $this->getUserDecisions($user);
 
         return view('admin.editUser')->with('data', $data);
+    }
+
+    public function deleteUser (User $user){
+        try{
+            DB::beginTransaction();
+
+            //Get Data from decision
+            $data = $this->getUserDecisions($user);
+
+            if(
+                $data['professionalFieldDecision1'] != null ||
+                $data['professionalFieldDecision2'] != null
+            ){
+                //Delete Decision
+                GeneralPresentationDecision::where('user_id', $user->id)->delete();
+                ProfessionalFieldDecision::where('user_id', $user->id)->delete();
+
+                //Change Participation count
+                $professionalField1 = ProfessionalField::where('id', $data['professionalFieldDecision1'])->first();
+                $professionalField1->current_count--;
+                $professionalField1->save();
+
+                $professionalField2 = ProfessionalField::where('id', $data['professionalFieldDecision2'])->first();
+                $professionalField2->current_count--;
+                $professionalField2->save();
+            }
+
+            $user->delete();
+            DB::commit();
+        } catch (\Throwable $e){
+            DB::rollBack();
+            return back()->withErrors('Couldn\'t delete the user');
+        }
+
+        return redirect('/admin/user')->with('message', 'Successfully deleted');
     }
 
     public function updateUser(User $user, Request $request){
