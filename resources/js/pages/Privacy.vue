@@ -1,8 +1,5 @@
 <template>
     <layout>
-        <div class="flex justify-center pb-4">
-            <p class="text-bit-blue text-3xl font-bold">DSGVO</p>
-        </div>
         <info-block :title="infoBlocks.datenschutz.title" text=""
                     class="mb-4">
             <p>Personenbezogene Daten (nachfolgend zumeist nur „Daten“ genannt) werden von uns nur im Rahmen der
