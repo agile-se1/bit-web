@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div class="flex flex-col justify-between w-full min-h-screen">
         <div
             ref="overlappingDiv"
             class="top-0 min-h-fit sticky z-20"
         >
             <MenuBar/>
         </div>
-        <div id="content" class="min-h-screen relative mt-6">
+        <div id="content" class="mt-6 flex justify-center">
             <slot/>
         </div>
-        <div class="relative">
+        <div class="">
             <Footer />
         </div>
     </div>
