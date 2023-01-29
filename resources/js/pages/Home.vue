@@ -1,11 +1,12 @@
 <script setup>
 import InfoBlock from "@/components/InfoBlock.vue";
 import Layout from "@/components/Layout.vue";
+
 const year = new Date().getFullYear();
 
 const infoBlocks = {
     generalInfos:{
-        title: "Berufsinformationstag " + year,
+        title: `Berufsinformationstag ${year}`,
         text: "Nutze die Gelegenheit, um Einblicke in die Arbeitswelt zu gewinnen und dich bei der Berufsorientierung von Experten beraten zu lassen. Entdecke deine Möglichkeiten und finde heraus, welcher Beruf zu dir passt."
     }
 }

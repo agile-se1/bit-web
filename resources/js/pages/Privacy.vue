@@ -186,13 +186,15 @@
                         Google Maps</a></p>
                 <p>
                     Überdies bietet Google unter
-                    <a class="underline" target="_blank" href="https://adssettings.google.com/authenticated">Advertisement-Center</a>
+                    <a class="underline" target="_blank" rel="noopener noreferrer"
+                       href="https://adssettings.google.com/authenticated">Advertisement-Center</a>
                     und
-                    <a class="underline" target="_blank" href="https://policies.google.com/privacy">Datenschutz</a>
+                    <a class="underline" target="_blank" rel="noopener noreferrer"
+                       href="https://policies.google.com/privacy">Datenschutz</a>
                     weitergehende Informationen an.
-                    <a class="underline" target="_blank"
+                    <a class="underline" target="_blank" rel="noopener noreferrer"
                        href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung</a>
-                    der <a class="underline" target="_blank"
+                    der <a class="underline" target="_blank" rel="noopener noreferrer"
                            href="https://www.ratgeberrecht.eu/datenschutz/datenschutzerklaerung-generator-dsgvo.html">
                     Anwaltskanzlei Weiß & Partner</a>
                 </p>
