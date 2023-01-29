@@ -158,7 +158,7 @@
                     Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, nachfolgend nur „Google“
                     genannt.</p>
                 <p>Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
-                    <a class="underline" target="_blank" rel="noopener"
+                    <a class="underline" target="_blank" rel="noopener noreferrer"
                        href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active</a>
                     garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den
                     USA
@@ -178,10 +178,10 @@
                     Installation der Cookies durch die entsprechenden Einstellungen in Ihrem Internet-Browser zu
                     verhindern. Einzelheiten hierzu finden Sie vorstehend unter dem Punkt „Cookies“. Zudem erfolgt die
                     Nutzung von Google Maps sowie der über Google Maps erlangten Informationen nach den
-                    <a class="underline" target="_blank" rel="noopener" href="http://www.google.de/accounts/TOS">Google-Nutzungsbedingungen</a>&nbsp;<a
-                        class="underline" target="_blank" rel="noopener"
+                    <a class="underline" target="_blank" rel="noopener noreferrer" href="http://www.google.de/accounts/TOS">Google-Nutzungsbedingungen</a>&nbsp;<a
+                        class="underline" target="_blank" rel="noopener noreferrer"
                         href="https://policies.google.com/terms?gl=DE&amp;hl=de"></a>
-                    und den <a class="underline" target="_blank" rel="noopener"
+                    und den <a class="underline" target="_blank" rel="noopener noreferrer"
                                href="http://www.google.com/intl/de_de/help/terms_maps.html">Geschäftsbedingungen für
                         Google Maps</a></p>
                 <p>
