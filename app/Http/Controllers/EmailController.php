@@ -7,6 +7,7 @@ use App\Mail\LoginLinkMail;
 use App\Mail\BeforeBITMail;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,23 +15,30 @@ class EmailController extends Controller
 {
     //Routes
     //Send a mail with a login link to all users
-    public function sendLoginLinkMailToAllUsers (){
+    public function sendLoginLinkMailToAllUsers (): RedirectResponse
+    {
         $users = User::all();
         foreach($users as $user) {
            $this->sendLoginLinkMail($user);
         }
+
+        return redirect()->back()->with('message', 'Emails send');
     }
 
     //Send a mail before the next BIT to remind the user for the date and also about his decision
-    public function sendBeforeBITMailToAllUsers(){
+    public function sendBeforeBITMailToAllUsers(): RedirectResponse
+    {
         $users = User::all();
         foreach($users as $user) {
             $this->sendBeforeBITMail($user);
         }
+
+        return redirect()->back()->with('message', 'Emails send');
     }
 
     //Send a mail to all users, who doesn't make a decision
-    public function sendDecisionReminderMailToAllUsers(){
+    public function sendDecisionReminderMailToAllUsers(): RedirectResponse
+    {
         $users = User::all();
         foreach($users as $user) {
             //Checks if the user already made their decision
@@ -38,6 +46,8 @@ class EmailController extends Controller
                 $this->sendDecisionReminderMail($user);
             }
         }
+
+        return redirect()->back()->with('message', 'Emails send');
     }
 
     //Get new LoginLink by first_name and surname

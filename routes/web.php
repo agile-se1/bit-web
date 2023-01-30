@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\HashAuthController;
+use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,19 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Home');
-});
+//Static sites
+Route::get('/', [StaticSitesController::class, 'showHome']);
+Route::get('/home', [StaticSitesController::class, 'showHome']);
 
-//###Admin
-//Import user by CSV
-Route::get('/admin/createUserByCSV', [AdminAccountController::class, 'createUserByCSV']);
-Route::post('/admin/createUserByCSV', [AdminAccountController::class, 'storeUserByCSV']);
 
-//Auth user
+//Auth User
 Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
 Route::get('/logout', [HashAuthController::class, 'logout']);
 
+//User sites
 Route::middleware('auth')->group(function (){
     //Insert here every route that need user login
     Route::get('/decision',[DecisionController::class, 'index']);
@@ -39,14 +38,30 @@ Route::middleware('auth')->group(function (){
     Route::put('/decision', [DecisionController::class, 'update']);
 });
 
+//Emails
+Route::get('/admin/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
+
+//Auth Admin
+Route::get('/admin/login', [AdminAuthController::class, 'showAdminLogin']);
+Route::post('/admin/login', [AdminAuthController::class, 'adminLogin']);
+Route::get('/admin/logout', [AdminAuthController::class, 'logout']);
+
+//Admin sites
+Route::middleware('auth:admin')->group(function (){
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth:admin');
+
+    //Send Mails
+    Route::get('/admin/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);
+    Route::get('/admin/email/sendBeforeBITMailToAllUsers', [EmailController::class, 'sendBeforeBITMailToAllUsers']);
+    Route::get('/admin/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
+
+    //Import user by CSV
+    Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
+    Route::post('/admin/createUserByCSV', [AdminController::class, 'storeUserByCSV']);
+});
+
 //Fallback route, if the user is not logged in
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
-
-//Send Mails
-Route::get('/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);
-Route::get('/email/sendBeforeBITMailToAllUsers', [EmailController::class, 'sendBeforeBITMailToAllUsers']);
-Route::get('/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
-Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
 
 //Test routes
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
