@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AdminAccount>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin>
  */
-class AdminAccountFactory extends Factory
+class AdminFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,8 @@ class AdminAccountFactory extends Factory
     public function definition()
     {
         return [
-            'username' => fake()->userName(),
-            'password' => Str::random(10),
+            'username' => "User",
+            'password' => "123456",
             'remember_token' => Str::random(10)
         ];
     }

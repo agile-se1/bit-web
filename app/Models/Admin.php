@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class AdminAccount extends Model
+class Admin extends Authenticatable
 {
     use HasFactory;
 
-    ///### Properties
+    //### Attributes
+    protected string $guard = "admin";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +29,7 @@ class AdminAccount extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'password',
         'remember_token'
     ];
 }

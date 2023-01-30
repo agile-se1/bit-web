@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(3)->create();
 
         //Create 1 Admin
-        \App\Models\AdminAccount::factory()->create();
+        \App\Models\Admin::factory()->create();
 
         //Create 3 GeneralPresentation
         \App\Models\GeneralPresentation::factory(3)->create();

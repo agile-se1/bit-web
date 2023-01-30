@@ -6,8 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 
-class AdminAccountController extends Controller
+class AdminController extends Controller
 {
+
+    public function index (){
+        return view('admin.dashboard');
+    }
+
+
     public function createUserByCSV(){
         return view('admin.createUserByCSV');
     }
