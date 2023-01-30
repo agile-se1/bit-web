@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUserManipulationController;
+use App\Http\Controllers\AdminCSVController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
@@ -56,17 +58,17 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
 
     //Import user by CSV
-    Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
-    Route::post('/admin/createUserByCSV', [AdminController::class, 'storeUserByCSV']);
+    Route::get('/admin/createUserByCSV', [AdminCSVController::class, 'createUserByCSV']);
+    Route::post('/admin/createUserByCSV', [AdminCSVController::class, 'storeUserByCSV']);
 
     //User data
-    Route::get('/admin/user', [AdminController::class, 'indexUser']);
-    Route::get('/admin/user/{user}/edit', [AdminController::class, 'editUser']);
-    Route::post('/admin/user/{user}/update', [AdminController::class, 'updateUser']);
-    Route::get('/admin/user/{user}/newLoginLink', [AdminController::class, 'sendNewLoginLinkToUser']);
-    Route::get('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']);
-    Route::get('/admin/user/create', [AdminController::class, 'createUser']);
-    Route::post('/admin/user/store', [AdminController::class, 'storeUser']);
+    Route::get('/admin/user', [AdminUserManipulationController::class, 'index']);
+    Route::get('/admin/user/{user}/edit', [AdminUserManipulationController::class, 'edit']);
+    Route::post('/admin/user/{user}/update', [AdminUserManipulationController::class, 'update']);
+    Route::get('/admin/user/{user}/newLoginLink', [EmailController::class, 'sendNewLoginLinkToUser']);
+    Route::get('/admin/user/{user}/delete', [AdminUserManipulationController::class, 'delete']);
+    Route::get('/admin/user/create', [AdminUserManipulationController::class, 'create']);
+    Route::post('/admin/user/store', [AdminUserManipulationController::class, 'store']);
 
     //Reset Website
     Route::get('/admin/reset', [AdminController::class, 'resetWebsite']);

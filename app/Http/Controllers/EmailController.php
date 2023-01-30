@@ -64,6 +64,12 @@ class EmailController extends Controller
         }
     }
 
+    public function sendNewLoginLinkToUser(User $user){
+        $this->sendLoginLinkMail($user);
+
+        return redirect('/admin/user')->with('message', 'Email send');
+    }
+
     //Single Mail Sender
     public function sendLoginLinkMail(User $user){
         Mail::to($user->email)->send(new LoginLinkMail($user));
