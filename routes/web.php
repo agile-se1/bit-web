@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminUserManipulationController;
-use App\Http\Controllers\AdminCSVController;
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminCSVController;
+use App\Http\Controllers\admin\AdminUserManipulationController;
+use App\Http\Controllers\admin\EmailController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
-use App\Http\Controllers\EmailController;
 use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;

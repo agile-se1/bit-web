@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\DecisionController;
+use App\Http\Controllers\UserController;
 use App\Models\GeneralPresentationDecision;
 use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class AdminUserManipulationController extends Controller

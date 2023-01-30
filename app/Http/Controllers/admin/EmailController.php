@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Mail\BeforeBITMail;
 use App\Mail\DecisionReminderMail;
 use App\Mail\LoginLinkMail;
-use App\Mail\BeforeBITMail;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {

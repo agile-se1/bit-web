@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\GeneralPresentationDecision;
 use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class AdminController extends Controller
