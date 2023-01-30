@@ -164,16 +164,20 @@
                         Erstellung einer Anfahrtsbeschreibung ein. Es handelt sich hierbei um einen Dienst der Google
                         Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, nachfolgend nur „Google“
                         genannt.</p>
-                    <p>Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+                    <p>Durch die Zertifizierung nach dem
                         <a class="underline" target="_blank" rel="noopener noreferrer"
-                           href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active</a>
-                        garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den
+                           href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&amp;status=Active">EU-US-Datenschutzschild
+                            („EU-US Privacy Shield“)</a>
+                        garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in
+                        den
                         USA
                         eingehalten werden. Um die Darstellung bestimmter Schriften in unserem Internetauftritt zu
                         ermöglichen, wird bei Aufruf
-                        unseres Internetauftritts eine Verbindung zu dem Google-Server in den USA aufgebaut. Sofern Sie die
+                        unseres Internetauftritts eine Verbindung zu dem Google-Server in den USA aufgebaut. Sofern Sie
+                        die
                         in unseren Internetauftritt eingebundene Komponente Google Maps aufrufen, speichert
-                        Google über Ihren Internet-Browser ein Cookie auf Ihrem Endgerät. Um unseren Standort anzuzeigen und
+                        Google über Ihren Internet-Browser ein Cookie auf Ihrem Endgerät. Um unseren Standort anzuzeigen
+                        und
                         eine Anfahrtsbeschreibung zu erstellen, werden Ihre Nutzereinstellungen und -daten verarbeitet.
                         Hierbei können wir nicht ausschließen, dass Google Server in den USA einsetzt.</p>
                     <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f) DSGVO. Unser berechtigtes Interesse liegt in der
@@ -199,6 +203,8 @@
                         <a class="underline" target="_blank" rel="noopener noreferrer"
                            href="https://policies.google.com/privacy">Datenschutz</a>
                         weitergehende Informationen an.
+                    </p>
+                    <p class="pt-2">
                         <a class="underline" target="_blank" rel="noopener noreferrer"
                            href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung</a>
                         der <a class="underline" target="_blank" rel="noopener noreferrer"
