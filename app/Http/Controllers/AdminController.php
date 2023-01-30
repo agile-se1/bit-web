@@ -150,16 +150,11 @@ class AdminController extends Controller
     }
 
     public function updateUser(User $user, Request $request){
+
         $request->validate([
             'firstName' => ['required', 'string'],
             'surname' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'generalPresentationDecision' => ['required', 'integer'],
-            'professionalFieldDecision1' => ['required', 'integer'],
-            'professionalFieldDecision2' => ['required', 'integer'],
-            'generalPresentationDecisionOld' => ['required', 'integer'],
-            'professionalFieldDecision1Old' => ['required', 'integer'],
-            'professionalFieldDecision2Old' => ['required', 'integer'],
         ]);
 
         //Check, if UserData is changed
@@ -175,14 +170,12 @@ class AdminController extends Controller
             $user->save();
         }
 
-        //dd($request);
         //Check if the Decision data is changed
         if(
             $request['generalPresentationDecision'] != $request['generalPresentationDecisionOld'] ||
             $request['professionalFieldDecision1'] != $request['professionalFieldDecision1Old'] ||
             $request['professionalFieldDecision2'] != $request['professionalFieldDecision2Old']
         ) {
-
             try {
                 (new DecisionController)->updateUserDecision($user->id, $request['generalPresentationDecision'], $request['professionalFieldDecision1'], $request['professionalFieldDecision2']);
             } catch (\Throwable $e){
