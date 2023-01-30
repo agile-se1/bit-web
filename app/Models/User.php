@@ -7,7 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed $id
+ * @property mixed $first_name
+ * @property mixed $surname
+ * @property mixed $email
+ * @method static create(array $array)
+ * @method static upsert(array $userArray, string[] $array, string[] $array1)
+ * @method static where(array[] $array)
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -46,12 +56,14 @@ class User extends Authenticatable
 
     //### Relationships
     //Relationship with GeneralPresentationDecision
-    public function generalPresentationDecision(){
+    public function generalPresentationDecision(): HasMany
+    {
         return $this->hasMany(GeneralPresentationDecision::class, 'user_id');
     }
 
     //Relationship with ProfessionalFieldDecision
-    public function professionalFieldDecision(){
+    public function professionalFieldDecision(): HasMany
+    {
         return $this->hasMany(ProfessionalFieldDecision::class, 'user_id');
     }
 

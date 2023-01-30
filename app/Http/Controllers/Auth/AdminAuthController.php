@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 use Session;
 
 
@@ -26,6 +27,9 @@ class AdminAuthController extends Controller
         return view('admin.login');
     }
 
+    /**
+     * @throws ValidationException
+     */
     public function adminLogin(Request $request): Redirector|Application|RedirectResponse
     {
         $this->validate($request, [
@@ -34,14 +38,14 @@ class AdminAuthController extends Controller
         ]);
 
         $admin = Admin::where([
-            ['username', $request->username],
-            ['password', $request->password],
+            ['username', $request['username']],
+            ['password', $request['password']],
         ])->first();
 
         //Check if the user exists
         if (empty($admin)) {
             $this->logout();
-            return back()->withErrors('Admin doesn\'t exist');
+            return back()->withErrors('Der Admin-Account existiert nicht.');
         }
 
         //Tries to authenticate
@@ -50,7 +54,7 @@ class AdminAuthController extends Controller
             return redirect('/admin/dashboard');
         }
 
-        return back()->withErrors('Could not lock in');
+        return back()->withErrors('Es konnte sich nicht eingeloggt werden.');
     }
 
     public function logout (): Redirector|Application|RedirectResponse

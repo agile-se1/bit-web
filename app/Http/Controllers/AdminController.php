@@ -6,17 +6,25 @@ use App\Models\GeneralPresentationDecision;
 use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class AdminController extends Controller
 {
 
-    public function index (){
+    public function index (): Factory|View|Application
+    {
         return view('admin.dashboard');
     }
 
-    public function resetWebsite(){
+    public function resetWebsite(): Redirector|RedirectResponse|Application
+    {
         try{
             DB::beginTransaction();
 
@@ -28,11 +36,11 @@ class AdminController extends Controller
             User::query()->delete();
 
             DB::commit();
-        } catch (\Throwable $e){
+        } catch (Throwable){
             DB::rollBack();
-            return redirect()->back()->withErrors('Couldn\'t delete data');
+            return redirect()->back()->withErrors('Die Website konnte nicht zurück gesetzt werden.');
         }
 
-        return redirect('/admin/dashboard')->with('message', 'Data deleted');
+        return redirect('/admin/dashboard')->with('message', 'Die Website wurde zurückgesetzt.');
     }
 }

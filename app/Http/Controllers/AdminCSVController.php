@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Throwable;
+
 class AdminCSVController extends Controller
 {
-    public function createUserByCSV(){
+    public function createUserByCSV(): Factory|View|Application
+    {
         return view('admin.createUserByCSV');
     }
 
-    public function storeUserByCSV(Request $request)
+    public function storeUserByCSV(Request $request): RedirectResponse
     {
         //Validation of file
         $request->validate([
@@ -27,8 +34,8 @@ class AdminCSVController extends Controller
             //Creates $header
             $header = array_shift($rows);
             $header = explode(';', $header);
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors("The CSV format does not match the required format");
+        } catch (Throwable) {
+            return redirect()->back()->withErrors("Die Datei konnte nicht als CSV-Datei umgewandelt werden.");
         }
 
         $userArray = [];
@@ -55,15 +62,15 @@ class AdminCSVController extends Controller
                         $row['email'] = null;
                     }
                 }
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors("A required column is missing.");
+            } catch (Throwable) {
+                return redirect()->back()->withErrors("Die Datei enthält nicht alle benötigten Spalten.");
             }
 
             //Add the hash
             try {
                 $row['hash'] = UserController::createNewHash();
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors("There was a problem with the User Hash. Please try again");
+            } catch (Throwable) {
+                return redirect()->back()->withErrors("Der User-Hash konnte nicht erfolgreich erstellt werden.");
             }
 
             //If there is no email address, it will use the Iserv-Email address
@@ -80,10 +87,10 @@ class AdminCSVController extends Controller
         //Tries to save everything into the database or update the entry
         try {
             User::upsert($userArray, ['email'], ['first_name', 'surname']);
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors("CSV file could not be converted to users. Please look for missing cells.");
+        } catch (Throwable) {
+            return redirect()->back()->withErrors("Die CSV-Datei konnte nicht erfolgreich umgewandelt werden. Überprüfe ob es leere Zellen gibt und versuche es erneut.");
         }
 
-        return redirect()->back()->with('success', 'User created successfully');
+        return redirect()->back()->with('success', 'Die User wurden erfolgreich in der Datenbank gespeichert.');
     }
 }

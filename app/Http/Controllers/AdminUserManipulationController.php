@@ -9,9 +9,17 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Throwable;
+
 class AdminUserManipulationController extends Controller
 {
-    public function index(){
+    public function index(): Factory|View|Application
+    {
         $users = User::all();
         $userData = array();
         foreach($users as $user) {
@@ -21,13 +29,15 @@ class AdminUserManipulationController extends Controller
         return view('admin.indexUser')->with('data', $userData);
     }
 
-    public function edit(User $user){
+    public function edit(User $user): Factory|View|Application
+    {
         $data = $this->getUserDecisions($user);
 
         return view('admin.editUser')->with('data', $data);
     }
 
-    public function delete (User $user){
+    public function delete (User $user): Redirector|RedirectResponse|Application
+    {
         try{
             DB::beginTransaction();
 
@@ -54,16 +64,16 @@ class AdminUserManipulationController extends Controller
 
             $user->delete();
             DB::commit();
-        } catch (\Throwable $e){
+        } catch (Throwable){
             DB::rollBack();
-            return back()->withErrors('Couldn\'t delete the user');
+            return back()->withErrors('Der User konnte nicht gelöscht werden.');
         }
 
-        return redirect('/admin/user')->with('message', 'Successfully deleted');
+        return redirect('/admin/user')->with('message', 'Der User wurde gelöscht.');
     }
 
-    public function update (User $user, Request $request){
-
+    public function update (User $user, Request $request): Redirector|RedirectResponse|Application
+    {
         $request->validate([
             'firstName' => ['required', 'string'],
             'surname' => ['required', 'string'],
@@ -72,7 +82,7 @@ class AdminUserManipulationController extends Controller
 
         //Check, if UserData is changed
         if(
-            $user->firstName != $request['firstName'] ||
+            $user->first_name != $request['firstName'] ||
             $user->surname != $request['surname'] ||
             $user->email != $request['email']
         ) {
@@ -91,19 +101,21 @@ class AdminUserManipulationController extends Controller
         ) {
             try {
                 (new DecisionController)->updateUserDecision($user->id, $request['generalPresentationDecision'], $request['professionalFieldDecision1'], $request['professionalFieldDecision2']);
-            } catch (\Throwable $e){
-                return redirect()->back()->withErrors($e->getMessage());
+            } catch (Throwable){
+                return redirect()->back()->withErrors("Die Auswahl des Users konnte nicht geändert werden.");
             }
         }
 
-        return redirect('/admin/user')->with('message', 'Erfolgreich geändert');
+        return redirect('/admin/user')->with('message', 'Der User wurde erfolgreich geändert.');
     }
 
-    public function create (){
+    public function create (): Factory|View|Application
+    {
         return view('admin.createUser');
     }
 
-    public function store (Request $request){
+    public function store (Request $request): Redirector|RedirectResponse|Application
+    {
         $request->validate([
             'firstName' => ['required', 'string'],
             'surname' => ['required', 'string'],
@@ -117,15 +129,16 @@ class AdminUserManipulationController extends Controller
                 'email' =>  $request['email'],
                 'hash' => UserController::createNewHash()
             ]);
-        } catch (\Exception $e){
-            return redirect()->back()->withErrors($e->getMessage());
+        } catch (Throwable){
+            return redirect()->back()->withErrors("Der User konnte nicht gespeichert werden.");
         }
 
-        return redirect('/admin/dashboard')->with('message', 'User created');
+        return redirect('/admin/dashboard')->with('message', 'Der User wurde erstellt.');
     }
 
     //Helper
-    private function getUserDecisions(User $user){
+    private function getUserDecisions(User $user): array
+    {
         $data = array();
         $data['user'] = $user;
         $data['generalPresentationDecisionDate'] = null;
