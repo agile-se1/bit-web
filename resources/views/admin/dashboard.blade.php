@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 
     <h2>Admin Stuff</h2>
+    <a href="/admin/reset">Reset Website</a> <br/><br/>
     <a href="/admin/logout">Logout</a><br/>
 
 

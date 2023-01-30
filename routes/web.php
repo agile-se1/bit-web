@@ -67,6 +67,9 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']);
     Route::get('/admin/user/create', [AdminController::class, 'createUser']);
     Route::post('/admin/user/store', [AdminController::class, 'storeUser']);
+
+    //Reset Website
+    Route::get('/admin/reset', [AdminController::class, 'resetWebsite']);
 });
 
 //Fallback route, if the user is not logged in
