@@ -197,6 +197,27 @@ class AdminController extends Controller
         return view('admin.createUser');
     }
 
+    public function storeUser(Request $request){
+        $request->validate([
+            'firstName' => ['required', 'string'],
+            'surname' => ['required', 'string'],
+            'email' => ['required', 'email']
+        ]);
+
+        try {
+            User::create([
+                'first_name' => $request['firstName'],
+                'surname' => $request['surname'],
+                'email' =>  $request['email'],
+                'hash' => UserController::createNewHash()
+            ]);
+        } catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+
+        return redirect('/admin/dashboard')->with('message', 'User created');
+    }
+
     public function sendNewLoginLinkToUser(User $user){
         (new EmailController)->sendLoginLinkMail($user);
 

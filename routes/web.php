@@ -66,6 +66,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/user/{user}/newLoginLink', [AdminController::class, 'sendNewLoginLinkToUser']);
     Route::get('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']);
     Route::get('/admin/user/create', [AdminController::class, 'createUser']);
+    Route::post('/admin/user/store', [AdminController::class, 'storeUser']);
 });
 
 //Fallback route, if the user is not logged in
