@@ -5,9 +5,25 @@ module.exports = {
         "./src/**/*.{js,ts,jsx,tsx,vue}",
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
     ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+    theme: {
+        fontFamily: {
+            sans: ['Rubik'],
+        },
+
+        extend: {
+            scale: {
+                '175': '1.75',
+            },
+            colors: {
+                'bit-blue': '#062266',
+            },
+
+        },
+    },
+    plugins: [
+        require('flowbite/plugin')
+    ]
 }
