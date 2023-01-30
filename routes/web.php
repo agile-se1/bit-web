@@ -5,9 +5,9 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +20,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Static sites
-Route::get('/', [StaticSitesController::class, 'showHome']);
-Route::get('/home', [StaticSitesController::class, 'showHome']);
+Route::get('/', function () {
+    return Inertia::render('Home');
+});
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy');
+});
+
+Route::get('/impressum', function () {
+    return Inertia::render('Imprint');
+});
 
 
 //Auth User
