@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Auth;
     <a href="/admin/email/sendDecisionReminderMailToAllUsers">Decision Reminder Mail to all Users</a><br/>
 
     <h2>User</h2>
+    <a href="/admin/user/create">Create new User</a><br/>
     <a href="/admin/user">Index all user</a><br/>
-    <a href="/admin/createUserByCSV">Create User to CSV</a><br/>
+    <a href="/admin/createUserByCSV">Create User from CSV</a><br/>
 
 
     <h2>Admin Stuff</h2>
