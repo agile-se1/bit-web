@@ -33,7 +33,7 @@ class HashAuthController extends Controller
         ])->validate();
 
         //Get the user from the database
-        $user = User::where(['hash', $hash])->first();
+        $user = User::where(['hash' => $hash])->first();
 
         //Check if the user exists
         if (empty($user)) {
