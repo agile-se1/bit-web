@@ -10,7 +10,6 @@ use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,29 +22,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
-Route::get('/home', function () {
-    return Inertia::render('Home');
-});
-Route::get('/privacy', function () {
-    return Inertia::render('Privacy');
-});
-
-Route::get('/impressum', function () {
-    return Inertia::render('Imprint');
-});
-
+//Static sites
+Route::get('/', [StaticSitesController::class, 'showHome']);
+Route::get('/home', [StaticSitesController::class, 'showHome']);
+Route::get('/privacy', [StaticSitesController::class, 'showPrivacy']);
+Route::get('/impressum', [StaticSitesController::class, 'showImpressum']);
 
 //Auth User
 Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
 Route::get('/logout', [HashAuthController::class, 'logout']);
 
 //User sites
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     //Insert here every route that need user login
-    Route::get('/decision',[DecisionController::class, 'index']);
+    Route::get('/decision', [DecisionController::class, 'index']);
     //Saves the decision
     Route::post('/decision', [DecisionController::class, 'store']);
     Route::put('/decision', [DecisionController::class, 'update']);
