@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+
 class UserController extends Controller
 {
     //Helper function
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public static function createNewHash(): string
     {

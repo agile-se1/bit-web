@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminCSVController;
+use App\Http\Controllers\admin\AdminUserManipulationController;
+use App\Http\Controllers\admin\EmailController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\StaticSitesController;
 use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -66,8 +69,20 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/email/sendDecisionReminderMailToAllUsers', [EmailController::class, 'sendDecisionReminderMailToAllUsers']);
 
     //Import user by CSV
-    Route::get('/admin/createUserByCSV', [AdminController::class, 'createUserByCSV']);
-    Route::post('/admin/createUserByCSV', [AdminController::class, 'storeUserByCSV']);
+    Route::get('/admin/createUserByCSV', [AdminCSVController::class, 'createUserByCSV']);
+    Route::post('/admin/createUserByCSV', [AdminCSVController::class, 'storeUserByCSV']);
+
+    //User data
+    Route::get('/admin/user', [AdminUserManipulationController::class, 'index']);
+    Route::get('/admin/user/{user}/edit', [AdminUserManipulationController::class, 'edit']);
+    Route::post('/admin/user/{user}/update', [AdminUserManipulationController::class, 'update']);
+    Route::get('/admin/user/{user}/newLoginLink', [EmailController::class, 'sendNewLoginLinkToUser']);
+    Route::get('/admin/user/{user}/delete', [AdminUserManipulationController::class, 'delete']);
+    Route::get('/admin/user/create', [AdminUserManipulationController::class, 'create']);
+    Route::post('/admin/user/store', [AdminUserManipulationController::class, 'store']);
+
+    //Reset Website
+    Route::get('/admin/reset', [AdminController::class, 'resetWebsite']);
 });
 
 //Fallback route, if the user is not logged in

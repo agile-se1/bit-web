@@ -1,24 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use Throwable;
 
-class AdminController extends Controller
+class AdminCSVController extends Controller
 {
-
-    public function index (){
-        return view('admin.dashboard');
-    }
-
-
-    public function createUserByCSV(){
+    public function createUserByCSV(): Factory|View|Application
+    {
         return view('admin.createUserByCSV');
     }
 
-    public function storeUserByCSV(Request $request){
+    public function storeUserByCSV(Request $request): RedirectResponse
+    {
         //Validation of file
         $request->validate([
             'file' => 'required|mimes:csv,txt'
@@ -33,47 +35,47 @@ class AdminController extends Controller
             //Creates $header
             $header = array_shift($rows);
             $header = explode(';', $header);
-        } catch (\Exception $e){
-            return redirect()->back()->withErrors("The CSV format does not match the required format");
+        } catch (Throwable) {
+            return redirect()->back()->withErrors("Die Datei konnte nicht als CSV-Datei umgewandelt werden.");
         }
 
         $userArray = [];
         //Loops throw each $rows and creates a new user (only data) for each $row
-        foreach ($rows as $rowString){
+        foreach ($rows as $rowString) {
             //Combines $row with $header
             $row = explode(';', $rowString);
             $row = array_combine($header, $row);
 
             //Validation
-            try{
-                if(trim($row['first_name']) == ""){
+            try {
+                if (trim($row['first_name']) == "") {
                     $row['first_name'] = null;
                 }
-                if(trim($row['surname']) == ""){
+                if (trim($row['surname']) == "") {
                     $row['surname'] = null;
                 }
 
-                if(key_exists('email', $row)){
-                    if(trim($row['email']) == ""){
+                if (key_exists('email', $row)) {
+                    if (trim($row['email']) == "") {
                         $row['email'] = null;
                     }
                     if (!filter_var($row['email'], FILTER_VALIDATE_EMAIL)) {
                         $row['email'] = null;
                     }
                 }
-            } catch (\Exception $e){
-                return redirect()->back()->withErrors("A required column is missing.");
+            } catch (Throwable) {
+                return redirect()->back()->withErrors("Die Datei enthält nicht alle benötigten Spalten.");
             }
 
             //Add the hash
             try {
                 $row['hash'] = UserController::createNewHash();
-            } catch (\Exception $e){
-                return redirect()->back()->withErrors("There was a problem with the User Hash. Please try again");
+            } catch (Throwable) {
+                return redirect()->back()->withErrors("Der User-Hash konnte nicht erfolgreich erstellt werden.");
             }
 
             //If there is no email address, it will use the Iserv-Email address
-            if(!key_exists('email', $row) || is_null($row['email'])){
+            if (!key_exists('email', $row) || is_null($row['email'])) {
                 //Add the email address Format: max.mustermann@gym-mellendorf.de
                 $row['email'] = $row['first_name'] . "." . $row['surname'] . "@gym-mellendorf.de";
                 $row['email'] = strtolower($row['email']);
@@ -84,12 +86,12 @@ class AdminController extends Controller
         }
 
         //Tries to save everything into the database or update the entry
-        try{
+        try {
             User::upsert($userArray, ['email'], ['first_name', 'surname']);
-        } catch (\Exception $e){
-            return redirect()->back()->withErrors("CSV file could not be converted to users. Please look for missing cells.");
+        } catch (Throwable) {
+            return redirect()->back()->withErrors("Die CSV-Datei konnte nicht erfolgreich umgewandelt werden. Überprüfe ob es leere Zellen gibt und versuche es erneut.");
         }
 
-        return redirect()->back()->with('success', 'User created successfully');
+        return redirect()->back()->with('success', 'Die User wurden erfolgreich in der Datenbank gespeichert.');
     }
 }

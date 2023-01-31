@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+/**
+ * @method static where(string $string, mixed $professionalFieldDecision1)
+ * @method static orderBy(string $string)
+ * @property mixed $current_count
+ * @property mixed $max_count
+ */
 class ProfessionalField extends Model
 {
     use HasFactory;
@@ -39,7 +47,8 @@ class ProfessionalField extends Model
 
     //### Relationships
     //Relationship with ProfessionalFieldDecision
-    public function professionalFieldDecision(){
+    public function professionalFieldDecision(): HasMany
+    {
         return $this->hasMany(ProfessionalFieldDecision::class, 'professional_field_id');
     }
 }
