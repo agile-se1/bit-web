@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class StaticSitesController extends Controller
 {
-    public function showHome(): Factory|View|Application
+    public function showHome(): Response
     {
-        return view('sites.home');
+        return Inertia::render('Home');
+    }
+
+    public function showPrivacy(): Response
+    {
+        return Inertia::render('Privacy');
+    }
+
+    public function showImpressum(): Response
+    {
+        return Inertia::render('Impressum');
     }
 }
