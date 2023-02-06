@@ -1,7 +1,5 @@
 <script setup>
-import {Link} from "@inertiajs/inertia-vue3";
-
-</script>
+import {Link} from "@inertiajs/inertia-vue3";</script>
 
 <template>
     <nav class="bg-white px-2 sm:px-4 py-2.5 w-full top-0 left-0 drop-shadow-2xl font-normal">
@@ -18,7 +16,10 @@ import {Link} from "@inertiajs/inertia-vue3";
                         <Link href="#" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Informationen</Link>
                     </li>
                     <li>
-                        <Link href="#" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Berufsfeldwahl</Link>
+                        <Link href="/berufsfeldwahl"
+                              class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
+                            Berufsfeldwahl
+                        </Link>
                     </li>
                     <li>
                         <Link href="#" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Referenten</Link>
