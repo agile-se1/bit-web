@@ -71,6 +71,9 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/admin/user/create', [AdminUserManipulationController::class, 'create']);
     Route::post('/admin/user/store', [AdminUserManipulationController::class, 'store']);
 
+    //Show emails
+    Route::get('/admin/showLoginEmail', [EmailController::class, 'showLoginEmail']);
+
     //Reset Website
     Route::get('/admin/reset', [AdminController::class, 'resetWebsite']);
 });
