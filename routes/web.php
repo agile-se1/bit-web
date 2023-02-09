@@ -27,7 +27,6 @@ Route::get('/', [StaticSitesController::class, 'showHome']);
 Route::get('/home', [StaticSitesController::class, 'showHome']);
 Route::get('/privacy', [StaticSitesController::class, 'showPrivacy']);
 Route::get('/impressum', [StaticSitesController::class, 'showImpressum']);
-Route::get('/berufsfeldwahl', [StaticSitesController::class, 'showProfessionalFieldDecision']);
 
 
 //Auth User
@@ -38,6 +37,7 @@ Route::get('/logout', [HashAuthController::class, 'logout']);
 Route::middleware('auth')->group(function () {
     //Insert here every route that need user login
     Route::get('/decision', [DecisionController::class, 'index']);
+    Route::get('/professionalFields', [DecisionController::class, 'showDecisionPage']);
     //Saves the decision
     Route::post('/decision', [DecisionController::class, 'store']);
     Route::put('/decision', [DecisionController::class, 'update']);

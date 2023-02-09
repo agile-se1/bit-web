@@ -7,19 +7,26 @@ use App\Models\GeneralPresentationDecision;
 use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Throwable;
 
 class DecisionController extends Controller
 {
+    public function __construct(
+        private readonly ResponseFactory $responseFactory,
+    )
+    {
+    }
+
     public function index(): Factory|View|Application
     {
         return view('decision.decision', [
@@ -28,15 +35,24 @@ class DecisionController extends Controller
         ]);
     }
 
+    public function showDecisionPage(): Response
+    {
+        return $this->responseFactory->render('ProfessionalFieldDecision', [
+            'professional_fields' => ProfessionalField::orderBy('id')->get(),
+            'general_presentations' => GeneralPresentation::orderBy('id')->get()
+
+        ]);
+    }
+
     public function store(Request $request): Redirector|Application|RedirectResponse
     {
         $this->requestValidation($request);
 
         //Checks if the user already made a decision
-        if(
+        if (
             !is_null(GeneralPresentationDecision::where('user_id', Auth::id())->first()) ||
             !is_null(ProfessionalFieldDecision::where('user_id', Auth::id())->first())
-        ){
+        ) {
             return back()->withErrors('Du hast bereits eine Auswahl getroffen.');
         }
 
