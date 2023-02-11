@@ -1,11 +1,11 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
     <layout>
         <Wizard
             :customTabs="[
         {id: 0, title: 'Vortrag'},
         {id: 1, title: 'Berufsfeld'},
         {id: 2, title: 'Bestätigen',}]"
-            :next-button="disableNextButton ? {text: 'Weiter', hideIcon: 'true', disabled: true} : {text: 'Weiter', hideIcon: 'true'}"
+            :next-button="nextButton"
             :key="key"
             :back-button="{
         text: 'Zurück',
@@ -18,9 +18,10 @@
 
             <template v-if="currentTabIndex === 0">
                 <div v-for="presentation in general_presentations"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <input type="radio" :id="presentation.id" :value="presentation.id" name="presentation"
-                           @click="presentationSelection">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
+                     @click="validate">
+                    <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
+                           @click="selectPresentation">
                     <label :for="presentation.id">
                         {{ presentation.name }}
                     </label>
@@ -32,7 +33,8 @@
 
             <template v-if="currentTabIndex === 1">
                 <div v-for="field in professional_fields"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
+                     @click="validate">
                     <input type="checkbox" :id="field.id" :value="field.id" name="field">
                     <label :for="field.id">
                         {{ field.name }}
@@ -54,14 +56,7 @@
                     </button>
                 </div>
             </template>
-
-            <template #next>
-                <button :style="{background: 'blue', borderRadius: '6px',padding:'0.5rem'}">
-                    Test Next Button
-                </button>
-            </template>
         </Wizard>
-
     </Layout>
 
 </template>
@@ -71,56 +66,82 @@ import Wizard from 'form-wizard-vue3'
 import 'form-wizard-vue3/dist/form-wizard-vue3.css'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Layout from "@/components/Layout.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     professional_fields: Array,
     general_presentations: Array,
 });
 
-let selectedFields = [];
 let key = 0;
 
 //Config of the Wizard
 let currentTabIndex = 0;
 
-let selectedPresentation = null;
+let selectedPresentation = ref(null);
+
+let selectedFields = ref([]);
+
+
+const nextButton = ref({
+    text: 'Weiter',
+    hideIcon: 'true',
+    disabled: true
+});
+
+function enableNextButton() {
+    nextButton.value.disabled = false;
+}
 
 function disableNextButton() {
-    return ((currentTabIndex === 0 && !(selectedPresentation === null)) || (currentTabIndex === 1 && !(selectedFields.length < 2)));
+    nextButton.value.disabled = true;
 }
 
-function presentationSelection() {
-    console.log('presentationSelection');
-    const presentationId = document.querySelector('input[name="presentation"]:checked');
-    selectedPresentation = props.general_presentations.find(presentation => presentation.id === parseInt(presentationId.value));
-    disableNextButton();
+function validate() {
+    console.log('validate')
+    if (currentTabIndex.value === 0) {
+        validatePresentation();
+    }
+    if (currentTabIndex.value === 1) {
+        validateFields();
+    }
 }
 
 
-function select(id) {
-    console.log('select');
-    const child = document.getElementById(id);
-    child.checked = true;
+function validatePresentation() {
+    if (selectedPresentation.value === null) {
+        disableNextButton();
+    } else {
+        enableNextButton();
+    }
+    console.log('validatePresentation');
+}
+
+function validateFields() {
+    if (!(selectedFields.value.length === 2)) {
+        disableNextButton();
+    } else {
+        enableNextButton();
+    }
+    console.log('validateFields');
+}
+
+function selectPresentation() {
+    selectedPresentation.value = document.querySelector('input[name="presentation"]:checked').value;
+    console.log(selectedPresentation.value);
+    validatePresentation();
+}
+
+function selectFields() {
+    console.log(document.querySelectorAll('input[name="field"]:checked'));
+    console.log(selectedFields.value);
+    validateFields();
 }
 
 
 function onChangeCurrentTab(index, oldIndex) {
     console.log(index, oldIndex);
     currentTabIndex = index;
-
-    if (oldIndex === 0) {
-        const presentationId = document.querySelector('input[name="presentation"]:checked');
-        selectedFields.push(props.general_presentations.find(presentation => presentation.id === 1));
-        console.log(props.general_presentations.find(presentation => presentation.id === 1).id)
-    } else if (oldIndex === 1) {
-        selectedFields.push(props.professional_fields.find(field => field.id === parseInt(document.querySelector('input[name="field"]:checked'))));
-    }
-    console.log(selectedFields)
-}
-
-function beforeChangeTab(index, oldIndex) {
-    console.log(index, oldIndex);
-    return true;
 }
 
 function wizardCompleted() {
@@ -342,7 +363,7 @@ function wizardCompleted() {
 
 .fw-btn-disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+    pointer-events: none;
 }
 
 
