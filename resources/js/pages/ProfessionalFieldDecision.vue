@@ -35,9 +35,10 @@
                 <div v-for="field in professional_fields"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
-                    <input type="checkbox" :id="field.id" :value="field" name="field"
+                    <input type="checkbox" :id="field.id" :value="field" name="field" :disabled="!isAvailable(field)"
+                           :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
-                    <label :for="field.id">
+                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}">
                         {{ field.name }}
                     </label>
                     <button class="ml-2">
@@ -126,6 +127,10 @@ function validateFields() {
     } else {
         enableNextButton();
     }
+}
+
+function isAvailable(field) {
+    return (field.current_count < field.max_count);
 }
 
 function onChangeCurrentTab(index, oldIndex) {
