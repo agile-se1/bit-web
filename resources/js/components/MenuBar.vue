@@ -4,7 +4,7 @@ import {Link} from "@inertiajs/inertia-vue3";</script>
 <template>
     <nav class="bg-white px-2 sm:px-4 py-2.5 w-full top-0 left-0 drop-shadow-2xl font-normal">
         <div class="container flex flex-wrap items-center justify-around mx-auto py-2">
-            <a href="#" class="flex items-center justify-start">
+            <a href="/" class="flex items-center justify-start">
                 <img src='../../assets/logo.png' class="mr-3 sm:h-9 scale-175" alt="Logo">
             </a>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
