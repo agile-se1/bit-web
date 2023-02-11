@@ -6,7 +6,6 @@
         {id: 1, title: 'Berufsfeld'},
         {id: 2, title: 'Bestätigen',}]"
             :next-button="nextButton"
-            :key="key"
             :back-button="{
         text: 'Zurück',
         hideIcon: 'true'}"
@@ -82,9 +81,7 @@ const props = defineProps({
     general_presentations: Array,
 });
 
-let key = 0;
 
-//Config of the Wizard
 let currentTabIndex = ref(0);
 
 let selectedPresentation = ref(null);
@@ -107,7 +104,6 @@ function disableNextButton() {
 }
 
 function validate() {
-    console.log('validate')
     if (currentTabIndex.value === 0 || currentTabIndex === 0) {
         validatePresentation();
     } else if (currentTabIndex.value === 1 || currentTabIndex === 1) {
@@ -131,7 +127,6 @@ function validateFields() {
         enableNextButton();
     }
 }
-
 
 function onChangeCurrentTab(index, oldIndex) {
     console.log(index, oldIndex);
