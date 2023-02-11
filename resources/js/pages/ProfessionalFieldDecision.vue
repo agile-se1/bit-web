@@ -15,13 +15,13 @@
         icon: 'check'}"
             @change="onChangeCurrentTab" @complete:wizard="wizardCompleted"
             class="min-w-full">
-
             <template v-if="currentTabIndex === 0">
+                <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>eine</strong> der Präsentationen aus.</p>
                 <div v-for="presentation in general_presentations"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
-                           @click="selectPresentation">
+                           @change="validate" v-model="selectedPresentation">
                     <label :for="presentation.id">
                         {{ presentation.name }}
                     </label>
@@ -32,10 +32,12 @@
             </template>
 
             <template v-if="currentTabIndex === 1">
+                <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>zwei</strong> der Berufsfelder aus.</p>
                 <div v-for="field in professional_fields"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
-                    <input type="checkbox" :id="field.id" :value="field.id" name="field">
+                    <input type="checkbox" :id="field.id" :value="field" name="field"
+                           @change="validate" v-model="selectedFields">
                     <label :for="field.id">
                         {{ field.name }}
                     </label>
@@ -46,11 +48,18 @@
             </template>
 
             <template v-if="currentTabIndex === 2">
-                <div v-for="item in selectedFields"
+                <p class="text-2xl text-center mb-4">Deine Auswahl:</p>
+                <div
+                    class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                    <p>{{ selectedPresentation.name }}</p>
+                    <button class="ml-2">
+                        <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                    </button>
+                </div>
+
+                <div v-for="field in selectedFields.values()"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <label :for="item.id">
-                        {{ item.name }}
-                    </label>
+                    <p>{{ field.name }}</p>
                     <button class="ml-2">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
@@ -76,7 +85,7 @@ const props = defineProps({
 let key = 0;
 
 //Config of the Wizard
-let currentTabIndex = 0;
+let currentTabIndex = ref(0);
 
 let selectedPresentation = ref(null);
 
@@ -99,10 +108,9 @@ function disableNextButton() {
 
 function validate() {
     console.log('validate')
-    if (currentTabIndex.value === 0) {
+    if (currentTabIndex.value === 0 || currentTabIndex === 0) {
         validatePresentation();
-    }
-    if (currentTabIndex.value === 1) {
+    } else if (currentTabIndex.value === 1 || currentTabIndex === 1) {
         validateFields();
     }
 }
@@ -114,7 +122,6 @@ function validatePresentation() {
     } else {
         enableNextButton();
     }
-    console.log('validatePresentation');
 }
 
 function validateFields() {
@@ -123,29 +130,27 @@ function validateFields() {
     } else {
         enableNextButton();
     }
-    console.log('validateFields');
-}
-
-function selectPresentation() {
-    selectedPresentation.value = document.querySelector('input[name="presentation"]:checked').value;
-    console.log(selectedPresentation.value);
-    validatePresentation();
-}
-
-function selectFields() {
-    console.log(document.querySelectorAll('input[name="field"]:checked'));
-    console.log(selectedFields.value);
-    validateFields();
 }
 
 
 function onChangeCurrentTab(index, oldIndex) {
     console.log(index, oldIndex);
     currentTabIndex = index;
+    validate();
+
+    if (index === 2) {
+        console.log(selectedFields.value)
+        console.log(selectedFields)
+        console.log(selectedFields.value.values())
+    }
 }
 
 function wizardCompleted() {
-    console.log(props.professional_fields);
+    //TODO: Save the data to the database @Chris-Backend
+    //I'am not sure how to do it to satisfy your requirements
+    console.log('Wizard completed');
+    console.log(selectedPresentation.value);
+    console.log(selectedFields.value);
 }
 
 
