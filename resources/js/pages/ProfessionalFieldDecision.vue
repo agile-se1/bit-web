@@ -311,6 +311,10 @@ function showModal(item) {
     overflow-y: scroll;
 }
 
+i {
+    font-style: normal;
+}
+
 .fw-vertical {
     flex-direction: row;
     min-height: 600px;
