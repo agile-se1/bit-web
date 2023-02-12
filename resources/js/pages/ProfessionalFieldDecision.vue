@@ -35,9 +35,10 @@
                 <div v-for="field in professional_fields"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
-                    <input type="checkbox" :id="field.id" :value="field" name="field" :disabled="!isAvailable(field)"
+                    <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
                            :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
+                    <div v-show="!isAvailable(field)"></div>
                     <label :for="field.id" :class="{'line-through': !isAvailable(field)}">
                         {{ field.name }}
                     </label>
