@@ -8,6 +8,8 @@ use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -25,7 +27,15 @@ class DecisionController extends Controller
     {
     }
 
-    public function index(): Response
+    public function index(): Factory|View|Application
+    {
+        return view('decision.decision', [
+            'professionalFields' => ProfessionalField::orderBy('id')->get(),
+            'generalPresentations' => GeneralPresentation::orderBy('id')->get()
+        ]);
+    }
+
+    public function showDecisionPage(): Response
     {
         return $this->responseFactory->render('ProfessionalFieldDecision', [
             'professional_fields' => ProfessionalField::orderBy('id')->get(),
@@ -33,8 +43,6 @@ class DecisionController extends Controller
 
         ]);
     }
-
-
 
     public function store(Request $request): Redirector|Application|RedirectResponse
     {
