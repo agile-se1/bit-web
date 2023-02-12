@@ -24,7 +24,7 @@
                     <label :for="presentation.id">
                         {{ presentation.name }}
                     </label>
-                    <button class="ml-2">
+                    <button class="ml-2" :value="presentation" @click="showModal(presentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
@@ -41,7 +41,7 @@
                     <label :for="field.id" :class="{'line-through': !isAvailable(field)}">
                         {{ field.name }}
                     </label>
-                    <button class="ml-2">
+                    <button class="ml-2" :value="field" @click="showModal(field)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
@@ -51,22 +51,26 @@
                 <p class="text-2xl text-center mb-4">Deine Auswahl:</p>
                 <div
                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                    <div></div>
                     <p>{{ selectedPresentation.name }}</p>
-                    <button class="ml-2">
+                    <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
 
                 <div v-for="field in selectedFields.values()"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                    <div></div>
                     <p>{{ field.name }}</p>
-                    <button class="ml-2">
+                    <button class="ml-2" :value="field" @click="showModal(field)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
             </template>
         </Wizard>
     </Layout>
+
+    <BitModal v-model="show" :title="modalTitle" :text="modalText" @confirm="hideModal"></BitModal>
 
 </template>
 
@@ -76,6 +80,7 @@ import 'form-wizard-vue3/dist/form-wizard-vue3.css'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Layout from "@/components/Layout.vue";
 import {ref} from "vue";
+import BitModal from "@/components/BitModal.vue";
 
 const props = defineProps({
     professional_fields: Array,
@@ -153,6 +158,23 @@ function wizardCompleted() {
     console.log(selectedFields.value);
 }
 
+//Modal functions
+const show = ref(false)
+
+function hideModal() {
+    show.value = false
+    modalTitle.value = '';
+    modalText.value = '';
+}
+
+let modalTitle = ref('');
+let modalText = ref('');
+
+function showModal(item) {
+    modalTitle.value = item.name;
+    modalText.value = item.description;
+    show.value = true
+}
 
 </script>
 <style>
