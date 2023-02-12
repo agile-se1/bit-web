@@ -22,8 +22,4 @@ class StaticSitesController extends Controller
         return Inertia::render('Impressum');
     }
 
-    public function showProfessionalFieldDecision(): Response
-    {
-        return Inertia::render('ProfessionalFieldDecision');
-    }
 }

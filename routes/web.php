@@ -37,7 +37,6 @@ Route::get('/logout', [HashAuthController::class, 'logout']);
 Route::middleware('auth')->group(function () {
     //Insert here every route that need user login
     Route::get('/decision', [DecisionController::class, 'index']);
-    Route::get('/professionalFields', [DecisionController::class, 'showDecisionPage']);
     //Saves the decision
     Route::post('/decision', [DecisionController::class, 'store']);
     Route::put('/decision', [DecisionController::class, 'update']);
