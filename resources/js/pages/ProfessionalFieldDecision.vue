@@ -16,7 +16,7 @@
             class="min-w-full">
             <template v-if="currentTabIndex === 0">
                 <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>eine</strong> der Präsentationen aus.</p>
-                <div v-for="presentation in general_presentations"
+                <div v-for="presentation in general_presentations" :key="presentation.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
@@ -32,7 +32,7 @@
 
             <template v-if="currentTabIndex === 1">
                 <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>zwei</strong> der Berufsfelder aus.</p>
-                <div v-for="field in professional_fields"
+                <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
@@ -59,7 +59,7 @@
                     </button>
                 </div>
 
-                <div v-for="field in selectedFields.values()"
+                <div v-for="field in selectedFields.values()" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                     <div></div>
                     <p>{{ field.name }}</p>
@@ -139,16 +139,9 @@ function isAvailable(field) {
     return (field.current_count < field.max_count);
 }
 
-function onChangeCurrentTab(index, oldIndex) {
-    console.log(index, oldIndex);
+function onChangeCurrentTab(index) {
     currentTabIndex = index;
     validate();
-
-    if (index === 2) {
-        console.log(selectedFields.value)
-        console.log(selectedFields)
-        console.log(selectedFields.value.values())
-    }
 }
 
 function wizardCompleted() {
