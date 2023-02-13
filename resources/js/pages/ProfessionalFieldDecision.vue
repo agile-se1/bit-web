@@ -15,7 +15,7 @@
             @change="onChangeCurrentTab" @complete:wizard="wizardCompleted"
             class="min-w-full">
             <template v-if="currentTabIndex === 0">
-                <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>eine</strong> der Präsentationen aus.</p>
+                <p class="text-2xl text-center mb-4">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus.</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
@@ -31,7 +31,7 @@
             </template>
 
             <template v-if="currentTabIndex === 1">
-                <p class="text-2xl text-center mb-4">Suche Dir bitte <strong>zwei</strong> der Berufsfelder aus.</p>
+                <p class="text-2xl text-center mb-4">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus.</p>
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
@@ -49,19 +49,19 @@
             </template>
 
             <template v-if="currentTabIndex === 2">
-                <p class="text-2xl text-center mb-4">Deine Auswahl:</p>
+                <p class="text-2xl text-center mb-4">Ihre Auswahl:</p>
                 <div
-                    class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <div></div>
+                    class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                    <p>Präsentation:</p>
                     <p>{{ selectedPresentation.name }}</p>
                     <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
 
-                <div v-for="field in selectedFields.values()" :key="field.id"
+                <div v-for="(field, index) in selectedFields.values()" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <div></div>
+                    <p>Berufsfeld {{ index + 1 }}:</p>
                     <p>{{ field.name }}</p>
                     <button class="ml-2" :value="field" @click="showModal(field)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
@@ -71,8 +71,30 @@
         </Wizard>
     </Layout>
 
-    <BitModal v-model="show" :title="modalTitle" :text="modalText" @confirm="hideModal"></BitModal>
+    <BitModal v-model="infoModal.show" :title="infoModal.title" :text="infoModal.text"
+              :confirm-button-text="infoModal.confirmButtonText" @confirm="hideInfoModal"></BitModal>
+    <BitModal v-model="confirmModal.show" :title="confirmModal.title"
+              :confirm-button-text="confirmModal.confirmButtonText" @confirm="Inertia.get('/')">
+        <template #content>
+            <div
+                class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ selectedPresentation.name }}</p>
+                <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
 
+            <div v-for="field in selectedFields.values()" :key="field.id"
+                 class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ field.name }}</p>
+                <button class="ml-2" :value="field" @click="showModal(field)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
+        </template>
+    </BitModal>
 </template>
 
 <script setup>
@@ -82,6 +104,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Layout from "@/components/Layout.vue";
 import {ref} from "vue";
 import BitModal from "@/components/BitModal.vue";
+import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps({
     professional_fields: Array,
@@ -145,29 +168,40 @@ function onChangeCurrentTab(index) {
 }
 
 function wizardCompleted() {
-    //TODO: Save the data to the database @Chris-Backend
-    //I'am not sure how to do it to satisfy your requirements
-    console.log('Wizard completed');
-    console.log(selectedPresentation.value);
-    console.log(selectedFields.value);
+    Inertia.post('/decision', {
+        generalPresentation: selectedPresentation.value.id,
+        professionalField1: selectedFields.value[0].id,
+        professionalField2: selectedFields.value[1].id
+    });
+    confirmModal.value.show = true;
 }
 
 //Modal functions
-const show = ref(false)
 
-function hideModal() {
-    show.value = false
-    modalTitle.value = '';
-    modalText.value = '';
+function hideInfoModal() {
+    infoModal.value.show = false
+    infoModal.value.title = '';
+    infoModal.value.text = '';
 }
 
-let modalTitle = ref('');
-let modalText = ref('');
+let infoModal = ref({
+    show: false,
+    title: '',
+    text: '',
+    confirmButtonText: 'Schließen'
+})
+
+let confirmModal = ref({
+    show: false,
+    title: 'Ihre Auswahl',
+    confirmButtonText: 'Zurück zur Startseite'
+})
+
 
 function showModal(item) {
-    modalTitle.value = item.name;
-    modalText.value = item.description;
-    show.value = true
+    infoModal.value.title = item.name;
+    infoModal.value.text = item.description;
+    infoModal.value.show = true
 }
 
 </script>

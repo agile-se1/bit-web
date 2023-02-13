@@ -10,9 +10,9 @@
         <p class="text-gray-700 dark:text-gray-300">
             {{ text }}
         </p>
-        <slot/>
+        <slot name="content"/>
         <button class="mt-1 ml-auto px-2 border rounded-lg" @click="emit('confirm')">
-            Schließen
+            {{ confirmButtonText }}
         </button>
     </VueFinalModal>
 </template>
@@ -26,6 +26,9 @@ defineProps({
         required: true
     },
     text: {
+        type: String
+    },
+    confirmButtonText: {
         type: String,
         required: true
     }
