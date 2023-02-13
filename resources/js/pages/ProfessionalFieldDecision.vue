@@ -15,11 +15,12 @@
             @change="onChangeCurrentTab" @complete:wizard="wizardCompleted"
             class="min-w-full">
             <template v-if="currentTabIndex === 0">
-                <p class="text-2xl text-center mb-4">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus.</p>
+                <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
+                           class="checked:bg-bit-blue"
                            @change="validate" v-model="selectedPresentation">
                     <label :for="presentation.id">
                         {{ presentation.name }}
@@ -31,11 +32,12 @@
             </template>
 
             <template v-if="currentTabIndex === 1">
-                <p class="text-2xl text-center mb-4">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus.</p>
+                <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
                      @click="validate">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
+                           class="checked:bg-bit-blue"
                            :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
                     <div v-show="!isAvailable(field)"></div>
@@ -49,10 +51,10 @@
             </template>
 
             <template v-if="currentTabIndex === 2">
-                <p class="text-2xl text-center mb-4">Ihre Auswahl:</p>
+                <p class="text-2xl text-center mb-4">Ihre Auswahl</p>
                 <div
                     class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <p>Präsentation:</p>
+                    <div></div>
                     <p>{{ selectedPresentation.name }}</p>
                     <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
@@ -61,7 +63,7 @@
 
                 <div v-for="(field, index) in selectedFields.values()" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
-                    <p>Berufsfeld {{ index + 1 }}:</p>
+                    <div></div>
                     <p>{{ field.name }}</p>
                     <button class="ml-2" :value="field" @click="showModal(field)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
@@ -193,7 +195,7 @@ let infoModal = ref({
 
 let confirmModal = ref({
     show: false,
-    title: 'Ihre Auswahl',
+    title: 'Ihre Auswahl:',
     confirmButtonText: 'Zurück zur Startseite'
 })
 
@@ -262,7 +264,7 @@ function showModal(item) {
 }
 
 .form-wizard-vue .fw-body-list .fw-list-progress-active {
-    background: linear-gradient(90deg, #08f -3.12%, #a033ff 48.22%, #ff5c87 105.52%);
+    background: radial-gradient(circle, rgba(7, 33, 102, 1) 35%, rgba(151, 172, 228, 1) 100%);
 }
 
 .form-wizard-vue .fw-body-list li:last-child .fw-list-progress {
@@ -310,12 +312,17 @@ function showModal(item) {
 }
 
 .form-wizard-vue .fw-step-active {
-    background: linear-gradient(90deg, #4a3aff 0%, #6d3aff 100%);
+    background: #062266 !important;
+    color: #fff;
+}
+
+.fw-list-wrapper-icon .fw-step-active {
+    background: #062266 !important;
     color: #fff;
 }
 
 .form-wizard-vue .fw-step-checked {
-    border: 2px solid #4a3aff 9 e;
+    border: 2px solid #072166;
 }
 
 .fw-overflow-scroll .fw-body-list:hover {
@@ -325,13 +332,13 @@ function showModal(item) {
 .fw-overflow-scroll .fw-body-list::-webkit-scrollbar {
     width: 3px;
     height: 3px;
-    background-color: linear-gradient(90deg, #4a3aff 0%, #6d3aff 100%);
+    background-color: radial-gradient(circle, rgba(7, 33, 102, 1) 35%, rgba(151, 172, 228, 1) 100%);
 }
 
 .fw-overflow-scroll .fw-body-list::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    background-color: linear-gradient(90deg, #4a3aff 0%, #6d3aff 100%);
+    background-color: radial-gradient(circle, rgba(7, 33, 102, 1) 35%, rgba(151, 172, 228, 1) 100%);
 }
 
 .fw-overflow-scroll .fw-body-list::-webkit-scrollbar-thumb {
@@ -386,7 +393,7 @@ i {
 }
 
 .fw-vertical .fw-body-list li .fw-list-progress-active {
-    background: linear-gradient(90deg, #08f -3.12%, #a033ff 48.22%, #ff5c87 105.52%);
+    background: radial-gradient(circle, rgba(7, 33, 102, 1) 35%, rgba(151, 172, 228, 1) 100%);
 }
 
 .fw-vertical .fw-footer {
@@ -396,7 +403,7 @@ i {
 .fw-btn {
     display: flex;
     align-items: center;
-    background: linear-gradient(90deg, #4a3aff 0%, #6d3aff 100%);
+    background: #072166;
     cursor: pointer;
     padding: 0.7rem 1.5rem;
     min-width: unset;
