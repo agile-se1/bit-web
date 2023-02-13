@@ -21,4 +21,5 @@ class StaticSitesController extends Controller
     {
         return Inertia::render('Impressum');
     }
+
 }

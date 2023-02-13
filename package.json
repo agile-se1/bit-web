@@ -11,18 +11,25 @@
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.4.20",
+        "sass": "^1.58.0",
         "tailwindcss": "^3.2.4",
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.2.1",
+        "@fortawesome/free-brands-svg-icons": "^6.2.1",
+        "@fortawesome/free-regular-svg-icons": "^6.2.1",
+        "@fortawesome/free-solid-svg-icons": "^6.2.1",
+        "@fortawesome/vue-fontawesome": "^3.0.3",
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@vitejs/plugin-vue": "^4.0.0",
         "@vue/compiler-sfc": "^3.2.45",
         "flowbite": "^1.6.3",
+        "form-wizard-vue3": "^1.1.0",
         "rollup": "^3.7.5",
         "vue": "^3.2.36",
-        "vue-loader": "^17.0.1",
-        "vue3-material": "^1.0.8"
+        "vue-final-modal": "^4.0.3",
+        "vue-loader": "^17.0.1"
     }
 }

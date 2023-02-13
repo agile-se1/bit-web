@@ -28,6 +28,7 @@ Route::get('/home', [StaticSitesController::class, 'showHome']);
 Route::get('/privacy', [StaticSitesController::class, 'showPrivacy']);
 Route::get('/impressum', [StaticSitesController::class, 'showImpressum']);
 
+
 //Auth User
 Route::get('/login/{hash}', [HashAuthController::class, 'hashLogin']);
 Route::get('/logout', [HashAuthController::class, 'logout']);
