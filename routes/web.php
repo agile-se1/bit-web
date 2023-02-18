@@ -42,16 +42,21 @@ Route::middleware('auth')->group(function () {
     Route::put('/decision', [DecisionController::class, 'update']);
 });
 
-//Emails
-Route::get('/admin/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
 
 //Auth Admin
-Route::get('/admin/login', [AdminAuthController::class, 'showAdminLogin']);
-Route::post('/admin/login', [AdminAuthController::class, 'adminLogin']);
-Route::get('/admin/logout', [AdminAuthController::class, 'logout']);
+Route::name('admin')->prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showAdminLogin']);
+    Route::post('/login', [AdminAuthController::class, 'adminLogin']);
+    Route::get('/logout', [AdminAuthController::class, 'logout']);
+
+    //Emails
+    Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
+
+});
+
 
 //Admin sites
-Route::middleware('auth:admin')->group(function (){
+Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth:admin');
 
     //Send Mails

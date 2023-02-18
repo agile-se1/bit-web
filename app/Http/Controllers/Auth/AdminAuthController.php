@@ -4,27 +4,31 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Session;
 
 
 class AdminAuthController extends Controller
 {
-    public function __construct(){
+    public function __construct(
+        private ResponseFactory $responseFactory,
+    )
+    {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
+
     }
 
-    public function showAdminLogin(): Factory|View|Application
+    public function showAdminLogin(): Response
     {
-        return view('admin.login');
+        return $this->responseFactory->render('AdminLogin');
     }
 
     /**
