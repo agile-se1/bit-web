@@ -2,6 +2,13 @@
     <Layout>
         <div class="flex flex-col items-center h-full">
             <p class="text-bit-blue text-4xl mb-10 font-bold">Nutzerverwaltung</p>
+            <div class="flex justify-end min-w-full">
+                <button class="bg-bit-blue text-white rounded p-2 mb-2">
+                    Nutzer hinzufügen
+                    <font-awesome-icon icon="fa-solid fa-user-plus" class="ml-2"/>
+                </button>
+            </div>
+
             <Vue3EasyDataTable
                 :headers="tableHeaders"
                 :items="users"
