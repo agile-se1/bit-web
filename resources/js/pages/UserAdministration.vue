@@ -17,10 +17,15 @@
                 <template #item-actions="item">
                     <div class="flex flex-row gap-2">
                         <button class="p-2" @click="showModal(item)">
-                            <font-awesome-icon icon="fa-solid fa-pen-to-square" class="text-bit-blue"/>
+                            <font-awesome-icon title="Nutzer bearbeiten" icon="fa-solid fa-pen-to-square"
+                                               class="text-bit-blue"/>
+                        </button>
+                        <button class="p-2" @click="newMail(item)">
+                            <font-awesome-icon title="Neuen Login-Link senden" icon="fa-solid fa-paper-plane"
+                                               class="text-bit-blue"/>
                         </button>
                         <button class="p-2" @click="deleteUser(item)">
-                            <font-awesome-icon icon="fa-solid fa-trash" class="text-red-700"/>
+                            <font-awesome-icon title="Nutzer löschen" icon="fa-solid fa-trash" class="text-red-700"/>
                         </button>
                     </div>
                 </template>
@@ -32,6 +37,13 @@
                 <template #content>
                     <p>Wollen Sie den folgenden Nutzer wirklich löschen?</p>
                     <p class="font-bold">{{ userToDelete.user.first_name }} {{ userToDelete.user.surname }}</p>
+                </template>
+            </BitConfirmModal>
+            <BitConfirmModal v-model="showNewLinkModal" title="Wirklich senden?" confirm-button-text="Senden"
+                             @confirm="confirmNewMail">
+                <template #content>
+                    <p>Wollen Sie dem folgendem Nutzer einen neuen Login-Link senden?</p>
+                    <p class="font-bold">{{ userToNewMail.user.first_name }} {{ userToNewMail.user.surname }}</p>
                 </template>
             </BitConfirmModal>
         </div>
@@ -63,16 +75,27 @@ let modalValue = ref({
 
 let showEditModal = ref(false);
 let showDeleteModal = ref(false);
+let showNewLinkModal = ref(false);
 
 let userToDelete = ref({});
+let userToNewMail = ref({});
+
 let deleteUser = (item: any) => {
     userToDelete.value = item;
     showDeleteModal.value = true;
 }
 
+let newMail = (item: any) => {
+    userToNewMail.value = item;
+    showNewLinkModal.value = true;
+}
+
 function confirmDelete() {
-    console.log(userToDelete.value);
     Inertia.get(`/admin/user/${userToDelete.value.user.id}/delete`,);
+}
+
+function confirmNewMail() {
+    Inertia.get(`/admin/user/${userToNewMail.value.user.id}/newLoginLink`,);
 }
 
 
