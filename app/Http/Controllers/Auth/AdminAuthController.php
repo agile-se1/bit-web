@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
     /**
      * @throws ValidationException
      */
-    public function adminLogin(Request $request): Redirector|Application|RedirectResponse
+    public function adminLogin(Request $request): Response|RedirectResponse
     {
         $this->validate($request, [
             'username' => ['required'],
@@ -55,7 +55,7 @@ class AdminAuthController extends Controller
         //Tries to authenticate
         if(Auth::guard('admin')->loginUsingId($admin->id)){
             //Success
-            return redirect('/admin/dashboard');
+            return $this->responseFactory->render('AdminDashboard');
         }
 
         return back()->withErrors('Es konnte sich nicht eingeloggt werden.');

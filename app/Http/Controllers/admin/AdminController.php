@@ -8,24 +8,29 @@ use App\Models\ProfessionalField;
 use App\Models\ProfessionalFieldDecision;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Throwable;
 
 class AdminController extends Controller
 {
-
-    public function index (): Factory|View|Application
+    public function __construct(
+        private ResponseFactory $responseFactory,
+    )
     {
-        return view('admin.dashboard');
+    }
+
+    public function index(): Response
+    {
+        return $this->responseFactory->render('AdminDashboard');
     }
 
     public function resetWebsite(): Redirector|RedirectResponse|Application
     {
-        try{
+        try {
             DB::beginTransaction();
 
             ProfessionalField::query()->update(['current_count' => 0]);
