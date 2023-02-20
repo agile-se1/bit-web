@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <div class="flex flex-col items-center justify-between h-full">
+        <div class="flex flex-col items-center h-full">
             <p class="text-bit-blue text-4xl mb-10 font-bold">Nutzerverwaltung</p>
             <Vue3EasyDataTable
                 :headers="tableHeaders"
@@ -16,7 +16,7 @@
                 </template>
                 <template #item-actions="item">
                     <div class="flex flex-row gap-2">
-                        <button class="p-2">
+                        <button class="p-2" @click="showModal(item)">
                             <font-awesome-icon icon="fa-solid fa-pen-to-square" class="text-bit-blue"/>
                         </button>
                         <button class="p-2">
@@ -25,8 +25,9 @@
                     </div>
                 </template>
             </Vue3EasyDataTable>
+            <BitEditUserModal v-model="showEditModal" @confirm="showEditModal = false"
+                              :item="modalValue"/>
         </div>
-
 
     </Layout>
 </template>
@@ -35,8 +36,28 @@
 import Layout from "../components/Layout.vue";
 import Vue3EasyDataTable, {Header} from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import {defineProps} from "vue";
+import {defineProps, ref} from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import BitEditUserModal from "../components/BitEditUserModal.vue";
+
+let modalValue = ref({
+    user: {
+        id: 0,
+        first_name: '',
+        surname: '',
+        email: ''
+    },
+    generalPresentationDecision: '',
+    professionalFieldDecision1: '',
+    professionalFieldDecision2: '',
+})
+
+let showEditModal = ref(false);
+
+function showModal(item: any) {
+    modalValue = item;
+    showEditModal.value = true;
+}
 
 
 const props = defineProps({
