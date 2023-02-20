@@ -19,7 +19,7 @@
                         <button class="p-2" @click="showModal(item)">
                             <font-awesome-icon icon="fa-solid fa-pen-to-square" class="text-bit-blue"/>
                         </button>
-                        <button class="p-2">
+                        <button class="p-2" @click="deleteUser(item)">
                             <font-awesome-icon icon="fa-solid fa-trash" class="text-red-700"/>
                         </button>
                     </div>
@@ -27,6 +27,13 @@
             </Vue3EasyDataTable>
             <BitEditUserModal v-model="showEditModal" @confirm="showEditModal = false"
                               :item="modalValue"/>
+            <BitConfirmModal v-model="showDeleteModal" title="Wirklich löschen?" confirm-button-text="Löschen"
+                             @confirm="confirmDelete">
+                <template #content>
+                    <p>Wollen Sie den folgenden Nutzer wirklich löschen?</p>
+                    <p class="font-bold">{{ userToDelete.user.first_name }} {{ userToDelete.user.surname }}</p>
+                </template>
+            </BitConfirmModal>
         </div>
 
     </Layout>
@@ -39,6 +46,8 @@ import 'vue3-easy-data-table/dist/style.css';
 import {defineProps, ref} from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import BitEditUserModal from "../components/BitEditUserModal.vue";
+import BitConfirmModal from "../components/BitConfirmModal.vue";
+import {Inertia} from "@inertiajs/inertia";
 
 let modalValue = ref({
     user: {
@@ -53,6 +62,19 @@ let modalValue = ref({
 })
 
 let showEditModal = ref(false);
+let showDeleteModal = ref(false);
+
+let userToDelete = ref({});
+let deleteUser = (item: any) => {
+    userToDelete.value = item;
+    showDeleteModal.value = true;
+}
+
+function confirmDelete() {
+    console.log(userToDelete.value);
+    Inertia.get(`/admin/user/${userToDelete.value.user.id}/delete`,);
+}
+
 
 function showModal(item: any) {
     modalValue = item;
@@ -61,7 +83,7 @@ function showModal(item: any) {
 
 
 const props = defineProps({
-        users: {
+    users: {
             type: Array,
             required: true
         }
@@ -86,8 +108,8 @@ function formatDate(date: Date) {
 
 const tableHeaders: Header[] = [
     {text: 'ID', value: 'user.id', sortable: true},
-    {text: 'Vorname', value: 'user.first_name', sortable: true},
-    {text: 'Nachname', value: 'user.surname', sortable: true},
+    {text: 'Vorname', value: 'user.first_name', sortable: true, width: 200},
+    {text: 'Nachname', value: 'user.surname', sortable: true, width: 200},
     {text: 'Email', value: 'user.email'},
     {text: 'Präsentation', value: 'generalPresentationDecision', sortable: true},
     {text: 'Berufsfelder', value: 'professionalFields', sortable: true},
