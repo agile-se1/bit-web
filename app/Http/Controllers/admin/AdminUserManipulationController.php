@@ -16,19 +16,27 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Throwable;
 
 class AdminUserManipulationController extends Controller
 {
-    public function index(): Factory|View|Application
+    public function __construct(
+        private ResponseFactory $responseFactory,
+    )
+    {
+    }
+
+    public function index(): Response
     {
         $users = User::all();
         $userData = array();
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $userData[] = $this->getUserDecisions($user);
         }
 
-        return view('admin.indexUser')->with('data', $userData);
+        return $this->responseFactory->render('UserAdministration', ['users' => $userData]);
     }
 
     public function edit(User $user): Factory|View|Application
