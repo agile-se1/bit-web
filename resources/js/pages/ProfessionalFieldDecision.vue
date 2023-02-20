@@ -105,7 +105,7 @@ import 'form-wizard-vue3/dist/form-wizard-vue3.css'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Layout from "@/components/Layout.vue";
 import {ref} from "vue";
-import BitModal from "@/components/BitModal.vue";
+import BitModal from "@/components/BitConfirmModal.vue";
 import {Inertia} from "@inertiajs/inertia";
 
 const props = defineProps({
