@@ -6,7 +6,7 @@
         >
             <MenuBar/>
         </div>
-        <div id="content" class="mt-6 flex justify-center">
+        <div id="content" class="mt-10 flex justify-center flex-grow">
             <slot/>
         </div>
         <div class="">
@@ -17,6 +17,4 @@
 
 <script setup>
 import MenuBar from "@/components/MenuBar.vue";
-import Footer from "@/components/Footer.vue";
-
-</script>
+import Footer from "@/components/Footer.vue";</script>
