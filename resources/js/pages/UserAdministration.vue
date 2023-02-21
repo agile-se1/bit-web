@@ -122,7 +122,7 @@ function confirmNewMail() {
 
 
 function showModal(item: any) {
-    modalValue = item;
+    modalValue.value = item;
     showEditModal.value = true;
 }
 
