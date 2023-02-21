@@ -38,16 +38,16 @@
                 </template>
             </Vue3EasyDataTable>
             <BitEditUserModal v-model="showEditModal" @confirm="showEditModal = false"
-                              :item="modalValue"/>
+                              :item="modalValue" @cancel="showEditModal = false"/>
             <BitConfirmModal v-model="showDeleteModal" title="Wirklich löschen?" confirm-button-text="Löschen"
-                             @confirm="confirmDelete">
+                             @confirm="confirmDelete" @cancel="showDeleteModal = false">
                 <template #content>
                     <p>Wollen Sie den folgenden Nutzer wirklich löschen?</p>
                     <p class="font-bold">{{ userToDelete.user.first_name }} {{ userToDelete.user.surname }}</p>
                 </template>
             </BitConfirmModal>
             <BitConfirmModal v-model="showNewLinkModal" title="Wirklich senden?" confirm-button-text="Senden"
-                             @confirm="confirmNewMail">
+                             @confirm="confirmNewMail" @cancel="showNewLinkModal = false">
                 <template #content>
                     <p>Wollen Sie dem folgendem Nutzer einen neuen Login-Link senden?</p>
                     <p class="font-bold">{{ userToNewMail.user.first_name }} {{ userToNewMail.user.surname }}</p>
