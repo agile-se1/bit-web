@@ -25,9 +25,6 @@ let username = ref("");
 let password = ref("");
 
 function login() {
-    console.log("login");
-    console.log(username.value);
-    console.log(password.value)
     Inertia.post('/admin/login', {
         username: username.value,
         password: password.value
