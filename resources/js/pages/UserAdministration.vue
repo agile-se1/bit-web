@@ -14,12 +14,15 @@
                 :items="users"
                 :theme-color="'#062266'"
                 alternating
-                buttons-pagination>
+                buttons-pagination
+                class="mb-6 rounded-lg border overflow-hidden">
                 <template #item-generalPresentationDecisionDate="item">
                     {{ formatDate(item.generalPresentationDecisionDate) }}
                 </template>
                 <template #item-professionalFields="item">
-                    {{ [item.professionalFieldDecision1, item.professionalFieldDecision2].join(', ') }}
+                    {{
+                        item.professionalFieldDecision1 != null ? [item.professionalFieldDecision1, item.professionalFieldDecision2].join(', ') : ''
+                    }}
                 </template>
                 <template #item-actions="item">
                     <div class="flex flex-row gap-2">
