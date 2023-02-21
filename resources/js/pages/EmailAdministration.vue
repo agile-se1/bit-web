@@ -1,7 +1,7 @@
 <template>
     <Layout>
-        <div class="flex flex-col items-center h-full">
-            <p class="text-bit-blue text-4xl mb-10 font-bold">Email-Verwaltung</p>
+        <div class="flex flex-col items-center justify-between w-full">
+            <p class="text-bit-blue text-4xl font-bold">Email-Verwaltung</p>
             <div class="flex flex-wrap justify-between gap-10">
                 <div
                     class="w-full hover:bg-gray-100 max-h-fit max-w-fit border-gray-200 border rounded p-4 flex-1 cursor-pointer ml-10">
@@ -34,6 +34,12 @@
                     </div>
                 </div>
             </div>
+            <div class="w-full flex justify-start">
+                <Link href="/admin/dashboard" class="bg-bit-blue text-white rounded p-2 mb-2 ml-10">
+                    <font-awesome-icon icon="fa-solid fa-arrow-left" class="ml-2"/>
+                    Zurück zum Dashboard
+                </Link>
+            </div>
             <BitConfirmModal title="Link zum Anmelden versenden?" confirm-button-text="Senden"
                              text="Sind Sie sicher, dass Sie den Link zum Anmelden an alle Nutzer versenden möchten?"
                              @confirm="sendLinkToAllUsers" @cancel="showAnmeldeLinkModal = false"
@@ -55,6 +61,8 @@ import Layout from "@/components/Layout.vue";
 import BitConfirmModal from "@/components/BitConfirmModal.vue";
 import {ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {Link} from "@inertiajs/inertia-vue3";
 
 let showAnmeldeLinkModal = ref(false);
 let showReminderModal = ref(false);

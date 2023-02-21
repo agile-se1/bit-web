@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Inertia\Response;
@@ -61,11 +59,11 @@ class AdminAuthController extends Controller
         return back()->withErrors('Es konnte sich nicht eingeloggt werden.');
     }
 
-    public function logout (): Redirector|Application|RedirectResponse
+    public function logout(): Response
     {
         Session::flush();
         Auth::logout();
 
-        return redirect('/admin/login');
+        return $this->responseFactory->render('AdminLogin');
     }
 }

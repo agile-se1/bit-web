@@ -1,7 +1,7 @@
 <template>
     <Layout>
-        <div class="flex flex-col items-center justify-between h-full">
-            <p class="text-bit-blue text-4xl mb-10 font-bold">Admin-Dashboard</p>
+        <div class="flex flex-col items-center justify-between w-full">
+            <p class="text-bit-blue text-4xl font-bold">Admin-Dashboard</p>
             <div class="flex flex-wrap justify-between gap-10">
                 <div class="w-full hover:bg-gray-100 max-h-fit max-w-fit border-gray-200 border rounded p-4">
                     <Link href="/admin/user">
@@ -41,6 +41,13 @@
 
 
             </div>
+            <div class="w-full flex justify-start">
+                <Link href="/admin/logout" class="bg-bit-blue text-white rounded p-2 mb-2 ml-10">
+                    <font-awesome-icon icon="fa-solid fa-right-from-bracket" class="ml-2"/>
+                    Ausloggen
+                </Link>
+            </div>
+
         </div>
         <BitConfirmModal title="BIT-Seite zurücksetzten?" confirm-button-text="Zurücksetzen"
                          text="Möchten Sie die BIT-Seite wirklich zurücksetzen? Alle Daten werden gelöscht und können nicht wiederhergestellt werden."

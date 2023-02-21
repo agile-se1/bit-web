@@ -8,6 +8,7 @@ import {
     faCircleInfo,
     faPaperPlane,
     faPenToSquare,
+    faRightFromBracket,
     faTrash,
     faUserPlus,
     faXmark,
@@ -21,7 +22,8 @@ library.add(
     faPaperPlane,
     faUserPlus,
     faXmark,
-    faArrowLeft
+    faArrowLeft,
+    faRightFromBracket
 );
 
 
