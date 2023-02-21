@@ -1,13 +1,15 @@
 <template>
     <Layout>
-        <div class="grid border-gray-200 border border-solid rounded p-5">
-            <p class="text-2xl text-bit-blue">Admin Login</p>
+        <div class="flex flex-col justify-around">
+            <div class="grid border-gray-200 border border-solid rounded p-5">
+                <p class="text-2xl text-bit-blue">Admin Login</p>
 
-            <input class="p-2 my-2 rounded" v-model="username" type="text" placeholder="Benutzername">
-            <input class="p-2 my-2 rounded" v-model="password" type="password" placeholder="Passwort">
-            <button class="bg-bit-blue text-white rounded p-2 my-2" type="submit"
-                    @click="login">Login
-            </button>
+                <input class="p-2 my-2 rounded" v-model="username" type="text" placeholder="Benutzername">
+                <input class="p-2 my-2 rounded" v-model="password" type="password" placeholder="Passwort">
+                <button class="bg-bit-blue text-white rounded p-2 my-2" type="submit"
+                        @click="login">Login
+                </button>
+            </div>
         </div>
     </Layout>
 

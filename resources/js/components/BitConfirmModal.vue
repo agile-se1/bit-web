@@ -2,7 +2,7 @@
     <VueFinalModal
         class="flex justify-center items-center"
         content-class="flex flex-col max-w-xl mx-4 p-4 bg-white border rounded-lg space-y-2"
-        @update:model-value="val => emit('update:modelValue', val)"
+        @update:model-value="val => emit('update:modelValue', val)" :click-to-close="clickToClose"
     >
         <h1 class="text-xl">
             {{ title }}
@@ -31,7 +31,12 @@ defineProps({
     confirmButtonText: {
         type: String,
         required: true
-    }
+    },
+    clickToClose: {
+        type: Boolean,
+        default: true
+    },
+
 });
 
 const emit = defineEmits<{

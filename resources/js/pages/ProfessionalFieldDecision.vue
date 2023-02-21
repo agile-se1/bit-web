@@ -75,7 +75,7 @@
 
     <BitModal v-model="infoModal.show" :title="infoModal.title" :text="infoModal.text"
               :confirm-button-text="infoModal.confirmButtonText" @confirm="hideInfoModal"></BitModal>
-    <BitModal v-model="confirmModal.show" :title="confirmModal.title"
+    <BitModal v-model="confirmModal.show" :title="confirmModal.title" :clickToClose="false"
               :confirm-button-text="confirmModal.confirmButtonText" @confirm="Inertia.get('/')">
         <template #content>
             <div
