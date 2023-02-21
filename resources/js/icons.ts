@@ -10,6 +10,7 @@ import {
     faPenToSquare,
     faRightFromBracket,
     faTrash,
+    faUpload,
     faUserPlus,
     faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +24,8 @@ library.add(
     faUserPlus,
     faXmark,
     faArrowLeft,
-    faRightFromBracket
+    faRightFromBracket,
+    faUpload
 );
 
 

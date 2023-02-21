@@ -7,7 +7,7 @@
                     <font-awesome-icon icon="fa-solid fa-arrow-left" class="ml-2"/>
                     Zurück
                 </Link>
-                <button class="bg-bit-blue text-white rounded p-2 mb-2">
+                <button @click="showUserCreationModal = true" class="bg-bit-blue text-white rounded p-2 mb-2">
                     Nutzer hinzufügen
                     <font-awesome-icon icon="fa-solid fa-user-plus" class="ml-2"/>
                 </button>
@@ -61,6 +61,9 @@
                     <p class="font-bold">{{ userToNewMail.user.first_name }} {{ userToNewMail.user.surname }}</p>
                 </template>
             </BitConfirmModal>
+            <BitUserCreationModal v-model="showUserCreationModal"
+                                  @confirm="showUserCreationModal = false"
+                                  @cancel="showUserCreationModal = false"/>
         </div>
 
     </Layout>
@@ -74,6 +77,7 @@ import {defineProps, ref} from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import BitEditUserModal from "../components/BitEditUserModal.vue";
 import BitConfirmModal from "../components/BitConfirmModal.vue";
+import BitUserCreationModal from "../components/BitUserCreationModal.vue";
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from "@inertiajs/inertia-vue3";
 
@@ -93,6 +97,7 @@ let modalValue = ref({
 let showEditModal = ref(false);
 let showDeleteModal = ref(false);
 let showNewLinkModal = ref(false);
+let showUserCreationModal = ref(false);
 
 let userToDelete = ref({});
 let userToNewMail = ref({});
