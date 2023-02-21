@@ -70,19 +70,19 @@ let showInfoMailModal = ref(false);
 
 function sendLinkToAllUsers() {
     Inertia.get('/admin/email/sendLoginLinkMailToAllUsers');
-    showAnmeldeLinkModal = false;
+    showAnmeldeLinkModal.value = false;
     alert("Emails wurden versendet");
 }
 
 function sendReminderMail() {
     Inertia.get('/admin/email/sendDecisionReminderMailToAllUsers');
-    showReminderModal = false;
+    showReminderModal.value = false;
     alert("Emails wurden versendet");
 }
 
 function sendInfoMail() {
     Inertia.get('/admin/email/sendBeforeBITMailToAllUsers');
-    showInfoMailModal = false;
+    showInfoMailModal.value = false;
     alert("Emails wurden versendet");
 }
 

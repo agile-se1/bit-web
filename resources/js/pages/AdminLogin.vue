@@ -21,8 +21,8 @@ import {ref} from "vue";
 import Layout from "@/components/Layout.vue";
 import {Inertia} from "@inertiajs/inertia";
 
-let username = ref("");
-let password = ref("");
+const username = ref("");
+const password = ref("");
 
 function login() {
     Inertia.post('/admin/login', {
