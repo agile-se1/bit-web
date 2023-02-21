@@ -2,11 +2,16 @@
     <Layout>
         <div class="flex flex-col items-center h-full">
             <p class="text-bit-blue text-4xl mb-10 font-bold">Nutzerverwaltung</p>
-            <div class="flex justify-end min-w-full">
+            <div class="flex justify-between min-w-full">
+                <Link href="/admin/dashboard" class="bg-bit-blue text-white rounded p-2 mb-2">
+                    <font-awesome-icon icon="fa-solid fa-arrow-left" class="ml-2"/>
+                    Zurück
+                </Link>
                 <button class="bg-bit-blue text-white rounded p-2 mb-2">
                     Nutzer hinzufügen
                     <font-awesome-icon icon="fa-solid fa-user-plus" class="ml-2"/>
                 </button>
+
             </div>
 
             <Vue3EasyDataTable
@@ -70,6 +75,8 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import BitEditUserModal from "../components/BitEditUserModal.vue";
 import BitConfirmModal from "../components/BitConfirmModal.vue";
 import {Inertia} from "@inertiajs/inertia";
+import {Link} from "@inertiajs/inertia-vue3";
+
 
 let modalValue = ref({
     user: {

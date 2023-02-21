@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 // Icon Imports
 import {
+    faArrowLeft,
     faCircleInfo,
     faPaperPlane,
     faPenToSquare,
@@ -19,7 +20,8 @@ library.add(
     faTrash,
     faPaperPlane,
     faUserPlus,
-    faXmark
+    faXmark,
+    faArrowLeft
 );
 
 
