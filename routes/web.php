@@ -58,6 +58,7 @@ Route::name('admin')->prefix('admin')->group(function () {
 //Admin sites
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth:admin');
+    Route::get('/admin/emails', [EmailController::class, 'index']);
 
     //Send Mails
     Route::get('/admin/email/sendLoginLinkMailToAllUsers', [EmailController::class, 'sendLoginLinkMailToAllUsers']);

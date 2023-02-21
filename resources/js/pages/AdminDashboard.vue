@@ -17,7 +17,7 @@
 
 
                 <div class="hover:bg-gray-100 max-h-fit max-w-fit border-gray-200 border rounded p-4">
-                    <Link>
+                    <Link href="/admin/emails">
                         <p class="text-white bg-bit-blue rounded text-2xl p-2 my-2 text-center">Emails</p>
                         <p class="text-gray-800 mt-2">Funktionen:</p>
                         <ul class="list-disc pl-4">
