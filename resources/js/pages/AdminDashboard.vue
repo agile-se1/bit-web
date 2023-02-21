@@ -29,19 +29,22 @@
                 </div>
 
 
-                <div class="hover:bg-gray-100 max-h-fit max-w-fit border-gray-200 border rounded p-4">
-                    <Link>
+                <div class="hover:bg-gray-100 max-h-fit max-w-fit border-gray-200 border rounded p-4 cursor-pointer">
+                    <div @click="showResetModal = true">
                         <p class="text-white bg-red-700 rounded text-2xl p-2 my-2 text-center">Gefahrenzone</p>
                         <p class="text-gray-800 mt-2">Funktionen:</p>
                         <ul class="list-disc pl-4">
                             <li class="text-gray-700">BIT-Seite zurücksetzen</li>
                         </ul>
-                    </Link>
+                    </div>
                 </div>
 
 
             </div>
         </div>
+        <BitConfirmModal title="BIT-Seite zurücksetzten?" confirm-button-text="Zurücksetzen"
+                         text="Möchten Sie die BIT-Seite wirklich zurücksetzen? Alle Daten werden gelöscht und können nicht wiederhergestellt werden."
+                         v-model="showResetModal" @confirm="resetBIT" @cancel="showResetModal = false" type="danger"/>
 
     </Layout>
 
@@ -52,4 +55,16 @@
 <script setup>
 
 import Layout from "@/components/Layout.vue";
-import {Link} from "@inertiajs/inertia-vue3";</script>
+import {Link} from "@inertiajs/inertia-vue3";
+import {ref} from "vue";
+import BitConfirmModal from "@/components/BitConfirmModal.vue";
+import {Inertia} from "@inertiajs/inertia";
+
+let showResetModal = ref(false);
+
+function resetBIT() {
+    Inertia.get('/admin/reset');
+    alert('BIT-Seite wurde zurückgesetzt!')
+}
+
+</script>

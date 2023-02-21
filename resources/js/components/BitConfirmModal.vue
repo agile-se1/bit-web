@@ -14,7 +14,8 @@
             {{ text }}
         </p>
         <slot name="content"/>
-        <button class="mt-1 ml-auto px-2 border rounded-lg" @click="emit('confirm')">
+        <button class="mt-1 ml-auto px-2 border rounded-lg" :class="{'bg-red-700 text-white' : isDanger}"
+                @click="emit('confirm')">
             {{ confirmButtonText }}
         </button>
     </VueFinalModal>
@@ -43,6 +44,9 @@ defineProps({
     closeButton: {
         type: Boolean,
         default: true
+    },
+    type: {
+        type: String,
     }
 
 });
@@ -53,5 +57,9 @@ const emit = defineEmits<{
     (e: 'cancel'): void
 }>()
 
+
+function isDanger() {
+    return this.type === 'danger';
+}
 
 </script>
