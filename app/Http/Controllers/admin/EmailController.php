@@ -16,13 +16,22 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
+    public function showEmail(): LoginLinkMail
+    {
+        $user = User::all()->first();
+
+        //$mail = LoginLinkMail::find($user);
+
+        return new LoginLinkMail($user);
+    }
+
     //Routes
     //Send a mail with a login link to all users
-    public function sendLoginLinkMailToAllUsers (): RedirectResponse
+    public function sendLoginLinkMailToAllUsers(): RedirectResponse
     {
         $users = User::all();
-        foreach($users as $user) {
-           $this->sendLoginLinkMail($user);
+        foreach ($users as $user) {
+            $this->sendLoginLinkMail($user);
         }
 
         return redirect()->back()->with('message', 'E-Mails wurden gesendet.');
