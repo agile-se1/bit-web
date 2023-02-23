@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    <Layout type="admin">
         <div class="flex flex-col items-center h-full">
             <p class="text-bit-blue text-4xl mb-10 font-bold">Nutzerverwaltung</p>
             <div class="flex justify-between min-w-full">

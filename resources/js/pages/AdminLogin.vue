@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    <Layout type="admin">
         <div class="flex flex-col justify-around">
             <div class="grid border-gray-200 border border-solid rounded p-5 w-72">
                 <p class="text-2xl text-bit-blue">Admin Login</p>

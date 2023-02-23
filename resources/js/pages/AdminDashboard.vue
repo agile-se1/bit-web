@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    <Layout type="admin">
         <div class="flex flex-col items-center justify-between w-full">
             <p class="text-bit-blue text-4xl font-bold">Admin-Dashboard</p>
             <div class="flex flex-wrap justify-between gap-10">

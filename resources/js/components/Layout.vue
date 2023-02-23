@@ -4,7 +4,8 @@
             ref="overlappingDiv"
             class="top-0 min-h-fit sticky z-20"
         >
-            <MenuBar/>
+            <MenuBar v-if="type==='default'"/>
+            <AdminMenuBar v-else-if="type==='admin'"/>
         </div>
         <div id="content" class="mt-10 flex justify-center flex-grow">
             <slot/>
@@ -17,4 +18,14 @@
 
 <script setup>
 import MenuBar from "@/components/MenuBar.vue";
-import Footer from "@/components/Footer.vue";</script>
+import Footer from "@/components/Footer.vue";
+import AdminMenuBar from "@/components/AdminMenuBar.vue";
+
+defineProps({
+    type: {
+        type: String,
+        default: 'default'
+    }
+})
+
+</script>
