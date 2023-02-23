@@ -47,7 +47,7 @@ class AdminAuthController extends Controller
         //Check if the user exists
         if (empty($admin)) {
             $this->logout();
-            return back()->withErrors('Der Admin-Account existiert nicht.');
+            redirect()->back()->withErrors('Der Admin-Account existiert nicht.');
         }
 
         //Tries to authenticate
@@ -59,11 +59,10 @@ class AdminAuthController extends Controller
         return back()->withErrors('Es konnte sich nicht eingeloggt werden.');
     }
 
-    public function logout(): Response
+    public function logout(): RedirectResponse
     {
         Session::flush();
         Auth::logout();
-
-        return $this->responseFactory->render('AdminLogin');
+        return redirect()->to('/admin/login');
     }
 }
