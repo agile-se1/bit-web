@@ -124,7 +124,7 @@ class AdminUserManipulationController extends Controller
         return view('admin.createUser');
     }
 
-    public function store (Request $request): Redirector|RedirectResponse|Application
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'firstName' => ['required', 'string'],
@@ -143,7 +143,7 @@ class AdminUserManipulationController extends Controller
             return redirect()->back()->withErrors("Der User konnte nicht gespeichert werden.");
         }
 
-        return redirect('/admin/dashboard')->with('message', 'Der User wurde erstellt.');
+        return redirect('/admin/user')->with('message', 'Der User wurde erstellt.');
     }
 
     //Helper

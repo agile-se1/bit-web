@@ -26,6 +26,7 @@ class AdminCSVController extends Controller
             'file' => 'required|mimes:csv,txt'
         ]);
 
+
         //Reads files and saves rows in array
         try {
             $file = $request->file('file');
@@ -36,7 +37,7 @@ class AdminCSVController extends Controller
             $header = array_shift($rows);
             $header = explode(';', $header);
         } catch (Throwable) {
-            return redirect()->back()->withErrors("Die Datei konnte nicht als CSV-Datei umgewandelt werden.");
+            return redirect("/admin/user")->with("errors", "Die Datei konnte nicht als CSV-Datei umgewandelt werden.");
         }
 
         $userArray = [];

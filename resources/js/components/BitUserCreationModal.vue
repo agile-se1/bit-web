@@ -5,7 +5,7 @@
         @update:model-value="val => emit('update:modelValue', val)">
         <div class="flex justify-between items-center">
             <p class="font-bold">Nutzer erstellen:</p>
-            <button @click="emit('cancel')">
+            <button @click="cancel">
                 <font-awesome-icon icon="fa-solid fa-xmark" class="text-bit-blue hover:text-red-700"/>
             </button>
         </div>
@@ -13,7 +13,7 @@
         <form @submit.prevent="submitForm">
             <div class="flex flex-col">
                 <label for="name">Vorname:</label>
-                <input type="text" id="name" v-model="form.name">
+                <input type="text" id="name" v-model="form.firstName">
             </div>
             <div class="flex flex-col">
                 <label for="surname">Nachname:</label>
@@ -32,12 +32,9 @@
                 <label class="block text-bit-blue" for="csv">CSV-Datei:</label>
                 <input
                     class="mb-2 block w-full text-sm text-bit-blue border border-gray-200 rounded cursor-pointer bg-gray-50"
-                    type="file" id="csv"
-                    @input="file.csv = $event.target.files[0]">
+                    type="file" id="file" name="file" accept=".csv,.txt"
+                    @input="file.file = $event.target.files[0]">
             </div>
-            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-                {{ form.progress.percentage }}%
-            </progress>
             <button type="submit" class="mt-1 ml-auto px-2 mr-2 border rounded-lg">
                 Hochladen!
             </button>
@@ -63,14 +60,22 @@ function submitForm() {
     emit('confirm');
 }
 
+function cancel() {
+    form.firstName = null;
+    form.surname = null;
+    form.email = null;
+    file.csv = null;
+    emit('cancel');
+}
+
 const form = useForm({
-    name: null,
+    firstName: null,
     surname: null,
     email: null,
 })
 
 const file = useForm({
-    csv: null,
+    file: null,
 })
 
 const emit = defineEmits<{

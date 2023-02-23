@@ -13,7 +13,10 @@
                 </button>
 
             </div>
-
+            <p v-if="props.errors.firstName" class="text-red-700">{{ props.errors.firstName }}</p>
+            <p v-if="props.errors.surname" class="text-red-700">{{ props.errors.surname }}</p>
+            <p v-if="props.errors.email" class="text-red-700">{{ props.errors.email }}</p>
+            <p v-if="props.errors.file" class="text-red-700">{{ props.errors.file }}</p>
             <Vue3EasyDataTable
                 :headers="tableHeaders"
                 :items="users"
@@ -81,7 +84,6 @@ import BitUserCreationModal from "../components/BitUserCreationModal.vue";
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from "@inertiajs/inertia-vue3";
 
-
 let modalValue = ref({
     user: {
         id: 0,
@@ -128,11 +130,14 @@ function showModal(item: any) {
 
 
 const props = defineProps({
-    users: {
+        users: {
             type: Array,
             required: true
+        },
+        errors: {
+            type: Object,
         }
-    }
+    },
 );
 
 function pad(num: string, size: number): string {
