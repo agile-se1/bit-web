@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -35,7 +34,7 @@ class DecisionReminderMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Bitte wähle dein Berufsfeld aus',
+            subject: 'Sie haben noch keine Auswahl getroffen',
         );
     }
 
@@ -51,7 +50,8 @@ class DecisionReminderMail extends Mailable
             text: 'emails.decisionReminderMail-text',
             with: [
                 'link' => "http://localhost/login/" . $this->user->hash,
-                'user' => $this->user,
+                'first_name' => $this->user->first_name,
+                'last_name' => $this->user->surname,
             ]
         );
     }
