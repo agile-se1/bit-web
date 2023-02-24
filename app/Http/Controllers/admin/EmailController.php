@@ -16,15 +16,6 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function showEmail(): BeforeBITMail
-    {
-        $user = User::all()->first();
-
-        //$mail = LoginLinkMail::find($user);
-
-        return new BeforeBITMail($user);
-    }
-
     //Routes
     //Send a mail with a login link to all users
     public function sendLoginLinkMailToAllUsers(): RedirectResponse
