@@ -27,6 +27,7 @@ Route::get('/', [StaticSitesController::class, 'showHome']);
 Route::get('/home', [StaticSitesController::class, 'showHome']);
 Route::get('/privacy', [StaticSitesController::class, 'showPrivacy']);
 Route::get('/impressum', [StaticSitesController::class, 'showImpressum']);
+Route::get('/referentenInfo', [StaticSitesController::class, 'showReferentenInfo']);
 
 
 //Auth User
