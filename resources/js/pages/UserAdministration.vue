@@ -124,7 +124,10 @@ function confirmNewMail() {
 
 
 function showModal(item: any) {
-    modalValue.value = item;
+    modalValue.value.user = item.user;
+    modalValue.value.generalPresentationDecision = item.generalPresentationDecision;
+    modalValue.value.professionalFieldDecision1 = item.professionalFieldDecision1;
+    modalValue.value.professionalFieldDecision2 = item.professionalFieldDecision2;
     showEditModal.value = true;
 }
 

@@ -13,15 +13,15 @@
         <form @submit.prevent="submitForm">
             <div class="flex flex-col">
                 <label for="name">Vorname:</label>
-                <input type="text" id="name" v-model="form.firstName">
+                <input type="text" id="name" v-model="form.firstName" required>
             </div>
             <div class="flex flex-col">
                 <label for="surname">Nachname:</label>
-                <input type="text" id="surname" v-model="form.surname">
+                <input type="text" id="surname" v-model="form.surname" required>
             </div>
             <div class="flex flex-col">
                 <label for="email">E-Mail:</label>
-                <input type="text" id="email" v-model="form.email">
+                <input type="text" id="email" v-model="form.email" required>
             </div>
             <button type="submit" class="mt-1 ml-auto px-2 mr-2 border rounded-lg">
                 Speichern!
@@ -33,7 +33,7 @@
                 <input
                     class="mb-2 block w-full text-sm text-bit-blue border border-gray-200 rounded cursor-pointer bg-gray-50"
                     type="file" id="file" name="file" accept=".csv,.txt"
-                    @input="file.file = $event.target.files[0]">
+                    @input="file.file = $event.target.files[0]" required>
             </div>
             <button type="submit" class="mt-1 ml-auto px-2 mr-2 border rounded-lg">
                 Hochladen!
@@ -57,6 +57,7 @@ function submitFile() {
 
 function submitForm() {
     form.post('/admin/user/store');
+    form.reset();
     emit('confirm');
 }
 

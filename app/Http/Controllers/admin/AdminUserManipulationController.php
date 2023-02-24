@@ -102,7 +102,6 @@ class AdminUserManipulationController extends Controller
 
             $user->save();
         }
-
         //Check if the Decision data is changed
         if(
             $request['generalPresentationDecision'] != $request['generalPresentationDecisionOld'] ||
