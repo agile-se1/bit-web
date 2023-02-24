@@ -79,13 +79,13 @@ function submitChange() {
 
 const emit = defineEmits({
     'update:modelValue': (modelValue) => {
-        // implementation of the 'update:modelValue' event
+        return true
     },
     'confirm': () => {
-        // implementation of the 'confirm' event
+        return true
     },
     'cancel': () => {
-        // implementation of the 'cancel' event
+        return true
     }
 });
 
