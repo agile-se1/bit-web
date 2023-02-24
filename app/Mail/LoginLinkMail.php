@@ -34,7 +34,7 @@ class LoginLinkMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Dein persönlicher Login-Link',
+            subject: 'Wählen Sie ihr Berufsfeld aus',
         );
     }
 
@@ -51,6 +51,7 @@ class LoginLinkMail extends Mailable
             with: [
                 'link' => "http://localhost/login/" . $this->user->hash,
                 'first_name' => $this->user->first_name,
+                'last_name' => $this->user->surname,
             ]
         );
     }

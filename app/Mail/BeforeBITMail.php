@@ -43,7 +43,7 @@ class BeforeBITMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Hey, der nächste Berufsinformationstag steht vor der Tür',
+            subject: 'Der nächste BIT steht vor der Tür',
         );
     }
 
@@ -56,7 +56,11 @@ class BeforeBITMail extends Mailable
     {
             return new Content(
                 html: 'emails.reminderEmailForNextBITMail',
-                text: 'emails.reminderEmailForNextBITMail-text'
+                text: 'emails.reminderEmailForNextBITMail-text',
+                with: [
+                    'first_name' => $this->user->first_name,
+                    'last_name' => $this->user->surname,
+                ]
             );
     }
 

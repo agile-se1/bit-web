@@ -90,3 +90,4 @@ Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->
 Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
 Route::get('/testLoginLinks', [TestSitesController::class, 'testLoginLinks']);
 
+
