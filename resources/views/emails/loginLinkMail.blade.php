@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Login Link</title>
+    <title>Sie haben noch keine Auswahl getroffen</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
@@ -45,7 +45,6 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
 
