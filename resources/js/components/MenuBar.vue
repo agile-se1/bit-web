@@ -16,12 +16,6 @@ import {Link} from "@inertiajs/inertia-vue3";</script>
                         <Link href="#" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Informationen</Link>
                     </li>
                     <li>
-                        <Link href="/decision"
-                              class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
-                            Berufsfeldwahl
-                        </Link>
-                    </li>
-                    <li>
                         <Link href="/referentenInfo"
                               class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
                             Referenten
