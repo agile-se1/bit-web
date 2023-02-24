@@ -1,5 +1,5 @@
 Guten Tag {{ $first_name }} {{ $last_name }},
-Nächste Woche findet der BIT statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl zusammengefasst.
+Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl zusammengefasst.
 
 @if(isset($generalPresentation, $professionalField1, $professionalField2))
     Allgemeiner Vortrag: {{ $generalPresentation->name }}

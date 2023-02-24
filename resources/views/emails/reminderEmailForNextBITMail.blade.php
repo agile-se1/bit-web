@@ -13,7 +13,8 @@
         <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }},</p>
         <div class="flex-col justify-between">
             <div>
-                <p>Nächste Woche findet der BIT statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl
+                <p>Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch
+                    einmal ihre Auswahl
                     zusammengefasst.</p>
                 <br/>
 
