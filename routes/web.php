@@ -52,7 +52,6 @@ Route::name('admin')->prefix('admin')->group(function () {
 
     //Emails
     Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
-
 });
 
 
