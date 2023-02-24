@@ -1,20 +1,14 @@
-Deine Berufsfelder, {{$user->first_name}}
+Guten Tag {{ $first_name }} {{ $last_name }},
+Nächste Woche findet der BIT statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl zusammengefasst.
 
-@if(isset($professionalField1))
-    {{$professionalField1->name}}
+@if(isset($generalPresentation, $professionalField1, $professionalField2))
+    Allgemeiner Vortrag: {{ $generalPresentation->name }}
+    Berufsfeld: {{ $professionalField1->name }}
+    Berufsfeld: {{ $professionalField2->name }}
+
 @else
-    Kein Berufsfeld gewählt
+    Sie haben keine Auswahl getroffen und wurden entsprechend zugeteilt.
 @endif
 
-@if(isset($professionalField2))
-    {{$professionalField2->name}}
-@else
-    Kein Berufsfeld gewählt
-@endif
-
-
-@if(isset($generalPresentation))
-    {{$generalPresentation->name}}
-@else
-    Kein Vortrag gewählt
-@endif
+Mit freundlichen Grüßen
+Alexandra Matthaei

@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function showEmail(): DecisionReminderMail
+    public function showEmail(): BeforeBITMail
     {
         $user = User::all()->first();
 
         //$mail = LoginLinkMail::find($user);
 
-        return new DecisionReminderMail($user);
+        return new BeforeBITMail($user);
     }
 
     //Routes
