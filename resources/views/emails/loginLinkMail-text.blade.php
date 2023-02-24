@@ -1,4 +1,4 @@
-Hallo {{ $first_name }},
+Hallo {{ $first_name }} {{ $last_name }},
 Die Berufsfeldwahl ist nun freigeschaltet. Bitte öffnenen Sie diesen Link ( {{ $link }} ), um eine Auswahl zu treffen.
 
 Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:
