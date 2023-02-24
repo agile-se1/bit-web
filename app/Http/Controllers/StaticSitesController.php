@@ -22,4 +22,9 @@ class StaticSitesController extends Controller
         return Inertia::render('Impressum');
     }
 
+    public function showReferentenInfo(): Response
+    {
+        return Inertia::render('ReferentenInfo');
+    }
+
 }
