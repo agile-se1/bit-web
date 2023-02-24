@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
 //Auth Admin
 Route::name('admin')->prefix('admin')->group(function () {
+    Route::get('/', [AdminAuthController::class, 'showAdminLogin']);
     Route::get('/login', [AdminAuthController::class, 'showAdminLogin']);
     Route::post('/login', [AdminAuthController::class, 'adminLogin']);
     Route::get('/logout', [AdminAuthController::class, 'logout']);
