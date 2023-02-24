@@ -30,6 +30,7 @@
         "rollup": "^3.7.5",
         "vue": "^3.2.36",
         "vue-final-modal": "^4.0.3",
-        "vue-loader": "^17.0.1"
+        "vue-loader": "^17.0.1",
+        "vue3-easy-data-table": "^1.5.34"
     }
 }

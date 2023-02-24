@@ -16,19 +16,27 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Throwable;
 
 class AdminUserManipulationController extends Controller
 {
-    public function index(): Factory|View|Application
+    public function __construct(
+        private ResponseFactory $responseFactory,
+    )
+    {
+    }
+
+    public function index(): Response
     {
         $users = User::all();
         $userData = array();
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $userData[] = $this->getUserDecisions($user);
         }
 
-        return view('admin.indexUser')->with('data', $userData);
+        return $this->responseFactory->render('UserAdministration', ['users' => $userData]);
     }
 
     public function edit(User $user): Factory|View|Application
@@ -94,7 +102,6 @@ class AdminUserManipulationController extends Controller
 
             $user->save();
         }
-
         //Check if the Decision data is changed
         if(
             $request['generalPresentationDecision'] != $request['generalPresentationDecisionOld'] ||
@@ -116,7 +123,7 @@ class AdminUserManipulationController extends Controller
         return view('admin.createUser');
     }
 
-    public function store (Request $request): Redirector|RedirectResponse|Application
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'firstName' => ['required', 'string'],
@@ -135,7 +142,7 @@ class AdminUserManipulationController extends Controller
             return redirect()->back()->withErrors("Der User konnte nicht gespeichert werden.");
         }
 
-        return redirect('/admin/dashboard')->with('message', 'Der User wurde erstellt.');
+        return redirect('/admin/user')->with('message', 'Der User wurde erstellt.');
     }
 
     //Helper

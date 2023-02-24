@@ -3,11 +3,29 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 
 // Icon Imports
-import {faCircleInfo,} from "@fortawesome/free-solid-svg-icons";
+import {
+    faArrowLeft,
+    faCircleInfo,
+    faPaperPlane,
+    faPenToSquare,
+    faRightFromBracket,
+    faTrash,
+    faUpload,
+    faUserPlus,
+    faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Add Icons to Library
 library.add(
     faCircleInfo,
+    faPenToSquare,
+    faTrash,
+    faPaperPlane,
+    faUserPlus,
+    faXmark,
+    faArrowLeft,
+    faRightFromBracket,
+    faUpload
 );
 
 
