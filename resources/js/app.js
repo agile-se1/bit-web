@@ -9,8 +9,8 @@ import 'vue-final-modal/style.css';
 createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(
-            `./Pages/${name}.vue`,
-            import.meta.glob("./Pages/**/*.vue")
+            `./pages/${name}.vue`,
+            import.meta.glob("./pages/**/*.vue")
         ),
     setup({el, app, props, plugin}) {
         return createApp({render: () => h(app, props)})
