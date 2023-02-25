@@ -75,7 +75,8 @@
 
         <!-- If the user has already decided -->
         <div v-if="already_decided">
-            <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. Das ist Ihre Auswahl</p>
+            <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
+            <p>Präsentation:</p>
             <div
                 class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
@@ -84,6 +85,7 @@
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
+            <p>Berufsfelder:</p>
 
             <div v-for="(field, index) in props.decisions.professional_fields" :key="field.id"
                  class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
