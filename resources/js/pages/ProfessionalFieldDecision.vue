@@ -1,6 +1,7 @@
 <template>
     <layout>
         <Wizard
+            v-if="!already_decided"
             :customTabs="[
         {id: 0, title: 'Vortrag'},
         {id: 1, title: 'Berufsfeld'},
@@ -13,7 +14,7 @@
         text: 'Absenden',
         icon: 'check'}"
             @change="onChangeCurrentTab" @complete:wizard="wizardCompleted"
-            class="min-w-full">
+            class="min-w-full my-1/2">
             <template v-if="currentTabIndex === 0">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
@@ -71,8 +72,32 @@
                 </div>
             </template>
         </Wizard>
+
+        <!-- If the user has already decided -->
+        <div v-if="already_decided">
+            <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. Das ist Ihre Auswahl</p>
+            <div
+                class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ props.decisions.general_presentation.name }}</p>
+                <button class="ml-2" :value="props.decisions.general_presentation" @click="showModal(props.decisions.general_presentation)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
+
+            <div v-for="(field, index) in props.decisions.professional_fields" :key="field.id"
+                 class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ field.name }}</p>
+                <button class="ml-2" :value="field" @click="showModal(field)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
+
+        </div>
     </Layout>
 
+    <!-- Modals -->
     <BitModal v-model="infoModal.show" :title="infoModal.title" :text="infoModal.text"
               :confirm-button-text="infoModal.confirmButtonText" @confirm="hideInfoModal"
               @close="hideInfoModal"></BitModal>
@@ -80,14 +105,14 @@
               :confirm-button-text="confirmModal.confirmButtonText" @confirm="Inertia.get('/')">
         <template #content>
             <div
-                class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
                 <p>{{ selectedPresentation.name }}</p>
                 <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-
+            <div></div>
             <div v-for="field in selectedFields.values()" :key="field.id"
                  class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
@@ -112,6 +137,8 @@ import {Inertia} from "@inertiajs/inertia";
 const props = defineProps({
     professional_fields: Array,
     general_presentations: Array,
+    already_decided: Boolean,
+    decisions: Object
 });
 
 

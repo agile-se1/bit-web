@@ -27,11 +27,39 @@ class DecisionController extends Controller
 
     public function index(): Response
     {
-        return $this->responseFactory->render('ProfessionalFieldDecision', [
-            'professional_fields' => ProfessionalField::orderBy('id')->get(),
-            'general_presentations' => GeneralPresentation::orderBy('id')->get()
+        if (GeneralPresentationDecision::where('user_id', Auth::id())->first() == null) {
+            return $this->responseFactory->render('ProfessionalFieldDecision', [
+                'professional_fields' => ProfessionalField::orderBy('id')->get(),
+                'general_presentations' => GeneralPresentation::orderBy('id')->get(),
+                'already_decided' => false,
+                'decisions' => null,
 
-        ]);
+            ]);
+        } else {
+            return $this->responseFactory->render('ProfessionalFieldDecision', [
+                'professional_fields' => ProfessionalField::orderBy('id')->get(),
+                'general_presentations' => GeneralPresentation::orderBy('id')->get(),
+                'already_decided' => true,
+                'decisions' => [
+                    'general_presentation' => $this->getPresentationById(GeneralPresentationDecision::where('user_id', Auth::id())->first()->general_presentation_id),
+                    'professional_fields' => [
+                        $this->getProfessionalFieldById(ProfessionalFieldDecision::where('user_id', Auth::id())->first()->professional_field_id),
+                        $this->getProfessionalFieldById(ProfessionalFieldDecision::where('user_id', Auth::id())->skip(1)->first()->professional_field_id)
+                    ]
+                ],
+            ]);
+        }
+
+    }
+
+    function getProfessionalFieldById($id): ProfessionalField
+    {
+        return ProfessionalField::orderBy('id')->get()->where('id', $id)->first();
+    }
+
+    function getPresentationById($id): GeneralPresentation
+    {
+        return GeneralPresentation::orderBy('id')->get()->where('id', $id)->first();
     }
 
 
