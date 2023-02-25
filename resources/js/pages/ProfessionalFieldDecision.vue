@@ -259,6 +259,8 @@ function showModal(item) {
 .form-wizard-vue {
     display: flex;
     flex-direction: column;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 .form-wizard-vue .fw-body-list {
