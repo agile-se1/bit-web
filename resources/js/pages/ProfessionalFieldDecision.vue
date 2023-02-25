@@ -1,7 +1,7 @@
 <template>
     <layout>
         <Wizard
-            v-if="already_decided"
+            v-if="!already_decided"
             :customTabs="[
         {id: 0, title: 'Vortrag'},
         {id: 1, title: 'Berufsfeld'},
@@ -71,7 +71,7 @@
         </Wizard>
 
         <!-- If the user has already decided -->
-        <div v-if="!already_decided">
+        <div v-if="already_decided">
             <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
             <p>Präsentation:</p>
             <div
