@@ -1,7 +1,7 @@
 <template>
     <layout>
         <Wizard
-            v-if="!already_decided"
+            v-if="already_decided"
             :customTabs="[
         {id: 0, title: 'Vortrag'},
         {id: 1, title: 'Berufsfeld'},
@@ -14,18 +14,15 @@
         text: 'Absenden',
         icon: 'check'}"
             @change="onChangeCurrentTab" @complete:wizard="wizardCompleted"
-            class="min-w-full my-1/2">
+            class="min-w-full">
             <template v-if="currentTabIndex === 0">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="validate">
+                     @click="selectPresentation(presentation.id)">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
-                           class="checked:bg-bit-blue"
-                           @change="validate" v-model="selectedPresentation">
-                    <label :for="presentation.id">
-                        {{ presentation.name }}
-                    </label>
+                           class="checked:bg-bit-blue" @change="validate" v-model="selectedPresentation">
+                    <label :for="presentation.id">{{ presentation.name }}</label>
                     <button class="ml-2" :value="presentation" @click="showModal(presentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
@@ -36,7 +33,7 @@
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="validate">
+                     @click="selectField(field.id)">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
                            class="checked:bg-bit-blue"
                            :class="{invisible: !isAvailable(field)}"
@@ -74,7 +71,7 @@
         </Wizard>
 
         <!-- If the user has already decided -->
-        <div v-if="already_decided">
+        <div v-if="!already_decided">
             <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
             <p>Präsentation:</p>
             <div
@@ -208,6 +205,15 @@ function wizardCompleted() {
     confirmModal.value.show = true;
 }
 
+function selectPresentation(id) {
+    const radio = document.getElementById(id);
+    radio.click();
+}
+
+function selectField(id) {
+    const checkbox = document.getElementById(id);
+    checkbox.click();
+}
 //Modal functions
 
 function hideInfoModal() {
