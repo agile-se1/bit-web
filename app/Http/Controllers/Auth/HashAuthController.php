@@ -38,17 +38,17 @@ class HashAuthController extends Controller
         //Check if the user exists
         if (empty($user)) {
             $this->logout();
-            return back()->withErrors('Es konnte kein User gefunden werden.');
+            return back()->withErrors('Es wurde kein passender Benutzer gefunden.');
         }
 
         //Tries to authenticate
         if(Auth::loginUsingId($user->id)){
             //Success
-            return redirect('/showAuthData');
+            return redirect('/decision');
         }
 
         $this->logout();
-        return back()->withErrors('Couldn\'t authenticate');
+        return back()->withErrors('Der Benutzer konnte nicht verifiziert werden');
     }
 
     public function logout (): Redirector|Application|RedirectResponse
@@ -56,7 +56,7 @@ class HashAuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return redirect('/showAuthData');
+        return redirect('/home');
     }
 
     public function showNoticeToLogin (): Factory|View|Application

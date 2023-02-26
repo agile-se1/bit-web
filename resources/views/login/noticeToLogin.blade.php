@@ -1,2 +1,2 @@
-<h1>You need to login to see that site</h1>
-<p>Use the link in the email</p>
+<h1>Sie sind nicht eingeloggt</h1>
+<p>Um diesen Bereich zu besuchen, müssen Sie sich einloggen</p>

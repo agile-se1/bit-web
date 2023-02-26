@@ -44,7 +44,7 @@ class DecisionController extends Controller
             !is_null(GeneralPresentationDecision::where('user_id', Auth::id())->first()) ||
             !is_null(ProfessionalFieldDecision::where('user_id', Auth::id())->first())
         ) {
-            return back()->withErrors('Du hast bereits eine Auswahl getroffen.');
+            return back()->withErrors('Sie haben bereits eine Auswahl getroffen.');
         }
 
         //Save everything in the database

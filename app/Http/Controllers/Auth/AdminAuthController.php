@@ -56,7 +56,7 @@ class AdminAuthController extends Controller
             return $this->responseFactory->render('AdminDashboard');
         }
 
-        return back()->withErrors('Es konnte sich nicht eingeloggt werden.');
+        return back()->withErrors('Sie konnten sich nicht verifizieren.');
     }
 
     public function logout(): RedirectResponse

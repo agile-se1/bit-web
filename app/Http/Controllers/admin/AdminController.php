@@ -46,6 +46,6 @@ class AdminController extends Controller
             return redirect()->back()->withErrors('Die Website konnte nicht zurück gesetzt werden.');
         }
 
-        return redirect('/admin/dashboard')->with('message', 'Die Website wurde zurückgesetzt.');
+        return redirect('/admin/dashboard')->with('message', 'Die Website wurde zurück gesetzt.');
     }
 }
