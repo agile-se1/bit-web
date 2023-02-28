@@ -52,12 +52,12 @@ class DecisionController extends Controller
 
     }
 
-    function getProfessionalFieldById($id): ProfessionalField
+    public function getProfessionalFieldById($id): ProfessionalField
     {
         return ProfessionalField::orderBy('id')->get()->where('id', $id)->first();
     }
 
-    function getPresentationById($id): GeneralPresentation
+    public function getPresentationById($id): GeneralPresentation
     {
         return GeneralPresentation::orderBy('id')->get()->where('id', $id)->first();
     }
