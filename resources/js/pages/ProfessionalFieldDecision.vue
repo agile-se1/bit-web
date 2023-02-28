@@ -1,6 +1,7 @@
 <template>
     <layout>
         <Wizard
+            v-if="!already_decided"
             :customTabs="[
         {id: 0, title: 'Vortrag'},
         {id: 1, title: 'Berufsfeld'},
@@ -18,13 +19,10 @@
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="validate">
+                     @click="selectPresentation(presentation.id)">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
-                           class="checked:bg-bit-blue"
-                           @change="validate" v-model="selectedPresentation">
-                    <label :for="presentation.id">
-                        {{ presentation.name }}
-                    </label>
+                           class="checked:bg-bit-blue" @change="validate" v-model="selectedPresentation">
+                    <label :for="presentation.id">{{ presentation.name }}</label>
                     <button class="ml-2" :value="presentation" @click="showModal(presentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
@@ -35,7 +33,7 @@
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="validate">
+                     @click="selectField(field.id)">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
                            class="checked:bg-bit-blue"
                            :class="{invisible: !isAvailable(field)}"
@@ -71,8 +69,34 @@
                 </div>
             </template>
         </Wizard>
+
+        <!-- If the user has already decided -->
+        <div v-if="already_decided">
+            <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
+            <p>Präsentation:</p>
+            <div
+                class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ props.decisions.general_presentation.name }}</p>
+                <button class="ml-2" :value="props.decisions.general_presentation" @click="showModal(props.decisions.general_presentation)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
+            <p>Berufsfelder:</p>
+
+            <div v-for="(field, index) in props.decisions.professional_fields" :key="field.id"
+                 class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                <div></div>
+                <p>{{ field.name }}</p>
+                <button class="ml-2" :value="field" @click="showModal(field)">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
+                </button>
+            </div>
+
+        </div>
     </Layout>
 
+    <!-- Modals -->
     <BitModal v-model="infoModal.show" :title="infoModal.title" :text="infoModal.text"
               :confirm-button-text="infoModal.confirmButtonText" @confirm="hideInfoModal"
               @close="hideInfoModal"></BitModal>
@@ -80,14 +104,14 @@
               :confirm-button-text="confirmModal.confirmButtonText" @confirm="Inertia.get('/')">
         <template #content>
             <div
-                class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
                 <p>{{ selectedPresentation.name }}</p>
                 <button class="ml-2" :value="selectedPresentation" @click="showModal(selectedPresentation)">
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-
+            <div></div>
             <div v-for="field in selectedFields.values()" :key="field.id"
                  class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
@@ -112,6 +136,8 @@ import {Inertia} from "@inertiajs/inertia";
 const props = defineProps({
     professional_fields: Array,
     general_presentations: Array,
+    already_decided: Boolean,
+    decisions: Object
 });
 
 
@@ -179,6 +205,15 @@ function wizardCompleted() {
     confirmModal.value.show = true;
 }
 
+function selectPresentation(id) {
+    const radio = document.getElementById(id);
+    radio.click();
+}
+
+function selectField(id) {
+    const checkbox = document.getElementById(id);
+    checkbox.click();
+}
 //Modal functions
 
 function hideInfoModal() {
@@ -224,6 +259,8 @@ function showModal(item) {
 .form-wizard-vue {
     display: flex;
     flex-direction: column;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 .form-wizard-vue .fw-body-list {

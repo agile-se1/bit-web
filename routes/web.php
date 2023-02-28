@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\HashAuthController;
 use App\Http\Controllers\DecisionController;
 use App\Http\Controllers\StaticSitesController;
+use App\Http\Controllers\TestSitesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,5 +86,8 @@ Route::middleware('auth:admin')->group(function () {
 //Fallback route, if the user is not logged in
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
 
+//Test routes
+Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
+Route::get('/testLoginLinks', [TestSitesController::class, 'testLoginLinks']);
 
 
