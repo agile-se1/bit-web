@@ -32,4 +32,9 @@ class StaticSitesController extends Controller
         return Inertia::render('InfoPage');
     }
 
+    public function showArrival(): Response
+    {
+        return Inertia::render('Arrival');
+    }
+
 }

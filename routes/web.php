@@ -29,6 +29,7 @@ Route::get('/privacy', [StaticSitesController::class, 'showPrivacy']);
 Route::get('/impressum', [StaticSitesController::class, 'showImpressum']);
 Route::get('/referentenInfo', [StaticSitesController::class, 'showReferentenInfo']);
 Route::get('/info', [StaticSitesController::class, 'showInfoPage']);
+Route::get('/arrival', StaticSitesController::class, 'showArrival');
 
 
 //Auth User
