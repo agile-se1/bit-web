@@ -22,7 +22,7 @@ import {Link} from "@inertiajs/inertia-vue3";</script>
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Anfahrt</Link>
+                        <Link href="/arrival" class="text-2xl block py-2 pl-3 pr-4 text-bit-blue rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Anfahrt</Link>
                     </li>
                 </ul>
             </div>

@@ -51,9 +51,13 @@ class AdminAuthController extends Controller
         }
 
         //Tries to authenticate
-        if(Auth::guard('admin')->loginUsingId($admin->id)){
-            //Success
-            return $this->responseFactory->render('AdminDashboard');
+        try {
+            if(Auth::guard('admin')->loginUsingId($admin->id)){
+                //Success
+                return $this->responseFactory->render('AdminDashboard');
+            }
+        } catch (\Throwable $e){
+            return back()->withErrors('Sie konnten sich nicht verifizieren.');
         }
 
         return back()->withErrors('Sie konnten sich nicht verifizieren.');
