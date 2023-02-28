@@ -49,7 +49,7 @@ class DecisionReminderMail extends Mailable
             html: 'emails.decisionReminderMail',
             text: 'emails.decisionReminderMail-text',
             with: [
-                'link' => "http://localhost/login/" . $this->user->hash,
+                'link' => env("APP_URL", "") . "/login/" . $this->user->hash,
                 'first_name' => $this->user->first_name,
                 'last_name' => $this->user->surname,
             ]
