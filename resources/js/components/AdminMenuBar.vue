@@ -21,13 +21,13 @@ const toggle = () => open.value = !open.value
         </div>
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
             <div class="text-sm sm:flex-grow">
-                <Link href="/" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-white mr-4">
+                <Link href="/" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-gray-600 text-xl mr-4">
                     Home
                 </Link>
-                <Link href="/admin/user" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-white mr-4">
+                <Link href="/admin/user" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-gray-600 text-xl mr-4">
                     Nutzerverwaltung
                 </Link>
-                <Link href="/admin/emails" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-white">
+                <Link href="/admin/emails" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-gray-600 text-xl">
                     Emails
                 </Link>
             </div>
