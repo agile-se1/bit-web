@@ -18,7 +18,8 @@
             <template v-if="currentTabIndex === 0">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
+                @mousedown="selectPresentation(presentation.id)">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
                            class="checked:bg-bit-blue mr-2" @change="validate" v-model="selectedPresentation">
                     <label class="text-center" :for="presentation.id">{{ presentation.name }}</label>
@@ -32,14 +33,14 @@
             <template v-if="currentTabIndex === 1">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="selectField(field.id)">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
+                     @mousedown="selectField(field.id)">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
                            class="checked:bg-bit-blue mr-2"
                            :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
                     <div v-show="!isAvailable(field)"></div>
-                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}" class="text-center">
+                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}" class="text-center cursor-pointer" @click="selectField(field.id)">
                         {{ field.name }}
                     </label>
                     <button class="ml-2" :value="field" @click="showModal(field)">
@@ -71,9 +72,10 @@
         </Wizard>
 
         <!-- If the user has already decided -->
-        <div v-if="already_decided">
+        <div class="form-wizard-vue">
+        <div v-if="already_decided" class="fw-body-content">
             <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
-            <p>Präsentation:</p>
+            <p class="ml-2">Präsentation:</p>
             <div
                 class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
@@ -82,7 +84,7 @@
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-            <p>Berufsfelder:</p>
+            <p class="ml-2">Berufsfelder:</p>
 
             <div v-for="(field, index) in props.decisions.professional_fields" :key="field.id"
                  class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
@@ -92,7 +94,7 @@
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-
+        </div>
         </div>
     </Layout>
 
@@ -204,10 +206,14 @@ function wizardCompleted() {
     });
     confirmModal.value.show = true;
 }
+function selectPresentation(id) {
+    const radio = document.getElementById(id);
+    radio.click();
+}
 
 function selectField(id) {
     const checkbox = document.getElementById(id);
-    checkbox.checked = !checkbox.checked;
+    checkbox.click()
 }
 //Modal functions
 
