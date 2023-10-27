@@ -18,7 +18,7 @@
 
             <div class="flex justify-around mt-5 mx-32">
                 <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_3.png" alt="Foto von Alexandra Matthaei"
+                    <img src="/img_3.png" alt="Foto von Alexandra Matthaei"
                          class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
                     <label class="text-center text-bit-blue">
                         Alexandra Matthaei <br>
@@ -26,7 +26,7 @@
                     </label>
                 </div>
                 <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_4.png" alt="Foto von Karen Drews"
+                    <img src="/img_4.png" alt="Foto von Karen Drews"
                          class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
                     <label class="text-center text-bit-blue">
                         Karen Drews <br>
@@ -34,7 +34,7 @@
                     </label>
                 </div>
                 <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_5.png" alt="Foto von Jutta Holtmann"
+                    <img src="/img_5.png" alt="Foto von Jutta Holtmann"
                          class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
                     <label class="text-center text-bit-blue">
                         Jutta Holtmann <br>
