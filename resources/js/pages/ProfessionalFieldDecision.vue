@@ -149,6 +149,19 @@ let selectedPresentation = ref(null);
 
 let selectedFields = ref([]);
 
+let infoModal = ref({
+    show: false,
+    title: '',
+    text: '',
+    confirmButtonText: 'Schließen'
+})
+
+let confirmModal = ref({
+    show: false,
+    title: 'Ihre Auswahl:',
+    confirmButtonText: 'Zurück zur Startseite'
+})
+
 
 const nextButton = ref({
     text: 'Weiter',
@@ -222,19 +235,6 @@ function hideInfoModal() {
     infoModal.value.title = '';
     infoModal.value.text = '';
 }
-
-let infoModal = ref({
-    show: false,
-    title: '',
-    text: '',
-    confirmButtonText: 'Schließen'
-})
-
-let confirmModal = ref({
-    show: false,
-    title: 'Ihre Auswahl:',
-    confirmButtonText: 'Zurück zur Startseite'
-})
 
 
 function showModal(item) {
