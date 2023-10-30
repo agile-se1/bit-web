@@ -30,7 +30,7 @@ const toggle = () => open.value = !open.value
                         Referenten
                     </Link>
                     <Link href="/arrival" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-bit-blue hover:text-gray-600 text-xl">
-                        Anfahrt
+                        Organisatorisches
                     </Link>
                 </div>
 
