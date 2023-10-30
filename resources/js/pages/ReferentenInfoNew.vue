@@ -21,7 +21,7 @@
                             <li>Präsentation zweier Branchen</li>
                             <li>Networking & offener Austausch</li>
                         </ul>
-                        <Link href="#orga"
+                        <Link href="/arrival"
                               class="bg-bit-blue text-white p-2 px-5 max-w-fit rounded tracking-wide self-center md:self-start">
                             Zeitplan
                         </Link>
@@ -64,14 +64,44 @@
                         </p>
                     </div>
                     <div class="">
+                        <!-- TODO: Mail Adresse anpassen -->
                         <a href="mailto:*mailAdresseEinfügen*?subject=Referent für den BIT"
                            class="bg-bit-blue text-white text-xl md:text-2xl p-2 rounded">Jetzt als Referent
                             anmelden!</a>
                     </div>
                 </section>
+                <section class="md:row-start-4 md:col-start-1 md:col-span-2 flex flex-col">
+                    <p class="text-bit-blue text-xl md:text-2xl font-semibold">Tipps für Ihren Vortrag</p>
+                    <p>
+                        Wir bitten in jeder Referentengruppe einen „Moderator“, nach dem Eintreffen der SchülerInnen eine
+                        kurze Begrüßung und die Abfrage der Namen zu übernehmen und auch die Zeit im Auge zu
+                        behalten.<br><br>
 
+                        Dann folgt eine kurze Vorstellung der einzelnen Referenten mit Informationen zu ihrem beruflichen
+                        Werdegang. Grundsätzlich geht es beim BIT nicht nur um die Darstellung des Studiums bzw. der
+                        Ausbildung, sondern vielmehr um die ganz persönlichen und authentischen Erfahrungen unserer
+                        Referenten:</p>
+                    <ul class="list-disc p-1 ml-4">
+                        <li>Warum und mit welchen Vorstellungen haben Sie Ihr Studium / Ihre Ausbildung begonnen?</li>
 
+                        <li>Ist es heute noch der Beruf, den Sie sich ausgesucht / erträumt hatten (Wunsch und
+                            Wirklichkeit)?
+                        </li>
 
+                        <li>Haben Sie zwischendurch „Richtungswechsel“ vorgenommen?</li>
+
+                        <li>Welche Entwicklungsmöglichkeiten bestehen, bzw. was kann man alles mit Ihrem Studienfach / Ihrer
+                            Ausbildung als Grundlage „anfangen“, welche anderen Fachbereiche werden tangiert?
+                        </li>
+                    </ul>
+                    <p>
+                        Natürlich können Sie auch einen ganz anderen Einstieg wählen. Die Hauptsache ist es, dass Sie mit
+                        den Schüler*innen in ein angeregtes Gespräch kommen. <br><br>
+
+                        Im Anschluss an die Vorstellungsrunde sollte genügend Zeit für Fragen bleiben - einige
+                        Schülergruppen sind diesbezüglich sehr rege und interessiert!
+                    </p>
+                </section>
             </div>
         </div>
     </Layout>
