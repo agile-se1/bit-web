@@ -145,18 +145,18 @@ const props = defineProps({
 
 let currentTabIndex = ref(0);
 
-let selectedPresentation = ref(null);
+const selectedPresentation = ref(null);
 
-let selectedFields = ref([]);
+const selectedFields = ref([]);
 
-let infoModal = ref({
+const infoModal = ref({
     show: false,
     title: '',
     text: '',
     confirmButtonText: 'Schließen'
 })
 
-let confirmModal = ref({
+const confirmModal = ref({
     show: false,
     title: 'Ihre Auswahl:',
     confirmButtonText: 'Zurück zur Startseite'

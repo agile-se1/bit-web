@@ -4,7 +4,10 @@ import {ref} from "vue";
 
 const open = ref(false)
 
-const toggle = () => open.value = !open.value
+const toggle = () => {
+    open.value = !open.value;
+    return open.value;
+};
 </script>
 <template>
     <nav class="flex items-center justify-between flex-wrap bg-white p-6 drop-shadow-2xl">

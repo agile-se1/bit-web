@@ -3,7 +3,7 @@
         <div class="w-full max-w-screen-xl mx-auto p-2 ">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="flex shrink">
-                    <a href="https://www.ffgm.schule/index.php/start.html" target="_blank" class="flex items-center mb-4 sm:mb-0">
+                    <a href="https://www.ffgm.schule/index.php/start.html" target="_blank" rel="noopener noreferrer" class="flex items-center mb-4 sm:mb-0">
                         <img src="/logo.png" class="h-8 mr-3" alt="Förderverein Logo" />
                     </a>
                 </div>
