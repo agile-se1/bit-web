@@ -14,7 +14,7 @@
         <div class="flex-col justify-between">
             <div>
                 <p>Wir haben gesehen, dass Sie noch keine Auswahl für den Berufsinformationstag getroffen haben. Damit
-                    Sie nicht zufällig zu geteilt werden, wählen Sie doch gleiche Ihre Berufsfelder aus.</p>
+                    Sie nicht zufällig zu geteilt werden, wählen Sie doch gleich Ihre Berufsfelder aus.</p>
                 <br/>
                 <div style="text-align: center;">
                     <a class="text-white font-bold py-2 px-4 rounded bg-bit-blue hover:shadow" href="{{ $link }}">

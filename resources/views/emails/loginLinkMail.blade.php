@@ -10,12 +10,12 @@
 <br/>
 <div class="p-6 mx-auto bg-white border border-gray-200 rounded-lg flex shadow max-w-3xl">
     <div class="">
-        <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }},</p>
+        <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }}!</p>
         <div class="flex-col justify-between">
             <div>
-                <p>Die Berufsfeldwahl ist nun freigeschaltet. Nutzen Sie diese Gelegenheit, um Einblicke in die
-                    Arbeitswelt zu gewinnen und sich von Experten beraten zu lassen. Bitte klicken Sie auf den Knopf, um
-                    eine Auswahl zu treffen.</p>
+                <p>Die Berufsfeldwahl für den BIT ist nun freigeschaltet. Nutzen Sie diese Gelegenheit, um Einblicke in
+                    die Arbeitswelt zu gewinnen und sich von Experten beraten zu lassen. Bitte klicken Sie auf den
+                    Knopf, um eine Auswahl zu treffen.</p>
                 <br/>
                 <div style="text-align: center;">
                     <a class="text-white font-bold py-2 px-4 rounded bg-bit-blue hover:shadow" href="{{ $link }}">
@@ -25,7 +25,7 @@
                 <br/>
 
                 <p><b>Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:</b></p>
-                <p>1. Klicken Sie auf den Knopf, der Sie zur Bereufsfeldwahlseite weiterleitet</p>
+                <p>1. Klicken Sie auf den Knopf, der Sie zur Berufsfeldwahlseite weiterleitet</p>
                 <p>2. Wählen Sie einen allgemeinen Vortrag und zwei Berufsfelder aus</p>
                 <p>3. Bestätigen Sie ihre Wahl</p>
                 <br>
