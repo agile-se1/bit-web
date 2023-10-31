@@ -19,22 +19,22 @@
             </div>
 
             <div class="flex flex-col md:flex-row gap-y-2 justify-around mt-5 mx-32">
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="/img_3.png" alt="Foto von Alexandra Matthaei" class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+                <div class="flex flex-col p-2">
+                    <img src="/img_3.png" alt="Foto von Alexandra Matthaei" class="max-h-60 pb-2 object-contain">
                     <label class="text-center text-bit-blue">
                         Alexandra Matthaei <br>
                         Aktuelle Organisatorin des BIT
                     </label>
                 </div>
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="/img_4.png" alt="Foto von Karen Drews" class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+                <div class="flex flex-col p-2">
+                    <img src="/img_4.png" alt="Foto von Karen Drews" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Karen Drews <br>
                         Gründerin des BIT
                     </label>
                 </div>
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="/img_5.png" alt="Foto von Jutta Holtmann" class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+                <div class="flex flex-col p-2">
+                    <img src="/img_5.png" alt="Foto von Jutta Holtmann" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Jutta Holtmann <br>
                         Gründerin des BIT
@@ -44,12 +44,12 @@
 
             <div class="w-full flex flex-col mt-10">
                 <div class="p-4 mx-32">
-                    <p class="text-bit-blue  font-semibold text-xl">Als Referenten für diese Veranstaltung
+                    <p class="text-bit-blue text-left font-semibold text-xl">Als Referenten für diese Veranstaltung
                         wurden Eltern, Fördervereinsmitglieder und vor allem Ehemalige des Gymnasiums Mellendorf
                         angesprochen. Dies motivierte die beiden engagierten Gründer*innen zur weiteren Planung der
                         Veranstaltung, deren Ziele damals wie heute in erster Linie sein sollen:
                     </p>
-                    <ul class="list-disc text-bit-blue list-inside">
+                    <ul class="list-disc text-bit-blue list-inside text-left">
                         <li>
                             Zusammenführung des 12. Jahrgangs mit Eltern, Ehemaligen, Firmen aus der Wedemark oder
                             der Region, die in unterschiedlichen Berufen arbeiten
