@@ -20,6 +20,7 @@ defineProps({
             <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">{{ title }}</p>
             <div class="text-gray-700">
                 <p>{{ text }}</p>
+                <slot name="below-text"></slot>
             </div>
         </div>
         <div class="md:w-1/2 mt-4 md:mt-0">
