@@ -263,7 +263,7 @@ function showModal(item) {
 }
 
 @media (min-width: 640px) {
-    .form-wizard-vue {
+    .fw-body {
         padding-left: 20%;
         padding-right: 20%;
     }
