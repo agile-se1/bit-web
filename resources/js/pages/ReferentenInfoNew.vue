@@ -3,7 +3,6 @@
         <div class="flex-col flex">
             <div class="text-center mb-5">
                 <p class="text-bit-blue text-2xl font-bold md:font-normal md:text-6xl">Infos für Referenten</p>
-                <p class="text-bit-blue text-lg md:text-2xl">...oder alle die es noch werden wollen</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 text-bit-blue mx-4 md:mx-32 mt-10 gap-6 gap-y-6 mb-8 ">
                 <section class="flex-col flex justify-start md:row-start-1 md:col-span-2">
@@ -17,8 +16,10 @@
                         <p class="text-bit-blue text-xl md:text-2xl font-semibold">Was passiert beim BIT?</p>
                         <p class="text-bit-blue text-lg md:text-xl">Der BIT besteht aus drei Modulen:</p>
                         <ul class="list-decimal list-inside mb-4">
-                            <li>Allgemeine Präsentationen</li>
-                            <li>Präsentation zweier Branchen</li>
+                            <li>Allgemeine Vorträge zum Universitätsstudium, zu Ausbildungsberufen und dualem bzw.
+                                trialem Studium
+                            </li>
+                            <li>Workshops zu zwei im Vorfeld gewählten Berufsfeldern</li>
                             <li>Networking & offener Austausch</li>
                         </ul>
                         <Link href="/arrival"
@@ -28,31 +29,38 @@
 
                 </section>
                 <section class="md:col-start-2 md:row-start-2">
-                    <p class="text-bit-blue text-lg md:text-xl tracking-wide">Allgemeine Präsentationen</p>
+                    <p class="text-bit-blue text-lg md:text-xl tracking-wide">Allgemeine Vorträge</p>
                     <p>
-                        Den Schülern werden verschiedene Wege vorgestellt, die sie nach dem Abitur gehen könnten.
-                        Dabei werden Möglichkeiten wie die Duale Ausbildung oder ein Studium aber nur allgemein
-                        vorgestellt und es wird nicht in detailliert über spezielle Ausbildungen oder Studiengänge gesprochen.
+                        Den Schüler*innen werden verschiedene Wege vorgestellt, die sie nach dem Abitur gehen können.
+                        Die Schüler*innen entscheiden sich, ob sie allgemeine Informationen zum Universitätsstudium oder
+                        zu Ausbildungsberufen in der Industrie oder im Handwerk erhalten möchten. Vertreter der
+                        Leibniz-Universität Hannover, der Industrie- und Handelskammer sowie der Handwerkskammer stehen
+                        den Schüler*innen Rede und Antwort. So werden unter anderem die Möglichkeiten eines Dualen
+                        Studiums sowie eines Trialen Studiums im Handwerk vorgestellt.
                     </p>
 
-                    <p class="text-bit-blue text-lg md:text-xl mt-3 tracking-wide">Branchenspezifische Vorträge</p>
+                    <p class="text-bit-blue text-lg md:text-xl mt-3 tracking-wide">Workshops zweier Berufsfelder</p>
                     <p>
-                        Die Referenten präsentieren sich in zwei Gruppen, die jeweils 30 Minuten lang die
-                        Schüler*innen informieren. Die Referenten haben die Möglichkeit, sich in der ersten Gruppe
-                        vorzustellen und anschließend Fragen zu beantworten. In der zweiten Gruppe können die Referenten dann noch einmal Fragen beantworten und sich mit den Schüler*innen austauschen.
+                        Die Schüler*innen des 12. Jahrgangs haben im Vorfeld des BITs jeweils zwei aus dreizehn
+                        Berufsfeldern gewählt, die sie am meisten interessieren. Die Workshops der Berufsfelder dauern
+                        jeweils 75 Minuten. Zu Beginn der Workshops stellen sich die Referent*innen sowie ihre einzelnen
+                        Berufe vor und stehen anschließend den Schüler*innen für Fragen zur Verfügung. Anschließend
+                        wechseln die Schüler*innen zu ihrem zweiten Workshop (ihrem zweiten gewählten Berufsfeld) und
+                        die Referent*innen begrüßen in ihrem Workshop eine neue Gruppe von Schüler*innen. Insofern ist
+                        es wichtig, dass Sie als Referentin bzw. Referent den Raum ihres Workshops bitte nicht
+                        verlassen, da in der Regel nach einer kurzen Kaffeepause eine zweite Gruppe von Schüler*innen
+                        ihren Workshop besuchen wird.
                     </p>
 
                     <p class="text-bit-blue text-lg md:text-xl mt-3 tracking-wide">Networking & offener Austausch</p>
                     <p>
-                        In der letzten Stunde des BITs haben die Schüler*innen die Möglichkeit, sich mit den
-                        Referenten auszutauschen und sich über die verschiedenen Berufsfelder zu informieren. Die
-                        Referenten können sich in dieser Zeit auch mit den Schüler*innen austauschen und
-                        gegebenenfalls Kontakte knüpfen oder offene Fragen klären.
+                        Im Anschluß an den BIT haben die Schüler*innen, im Rahmen eines kleinen Mittagsimbisses, die
+                        Möglichkeit mit den Referent*innen in einen lockeren Austausch zu kommen und noch offene Fragen
+                        bilateral besprechen zu können sowie erste Kontakte zu knüpfen.
                     </p>
                 </section>
                 <section class="md:row-start-3 md:col-start-1 md:col-span-2 my-4 flex flex-col items-center">
                     <div>
-                        <p class="text-bit-blue text-xl md:text-2xl font-semibold">Warum sollten Sie als Referent beim BIT mitwirken?</p>
                         <p class="mb-4">
                             Viele Schüler*innen haben noch keinen Plan, wie ihr Weg nach dem Abitur weitergehen soll.
                             Vielmehr
@@ -63,9 +71,9 @@
                             einzigartige Einblicke in Ihr Berufsleben zu bieten.
                         </p>
                     </div>
-                    <div class="">
-                        <!-- TODO: Mail Adresse anpassen -->
-                        <a href="mailto:*mailAdresseEinfügen*?subject=Referent für den BIT"
+                    <div>
+
+                        <a href="mailto:alexandra.matthaei@ffgm.de?subject=Referent für den BIT"
                            class="bg-bit-blue text-white text-xl md:text-2xl p-2 rounded">Jetzt als Referent
                             anmelden!</a>
                     </div>
@@ -111,6 +119,4 @@
 <script setup>
 import Layout from "@/components/Layout.vue";
 import {Link} from "@inertiajs/inertia-vue3";
-
-
 </script>
