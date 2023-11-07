@@ -1,8 +1,10 @@
 <template>
     <layout>
-        <info-block :title="infoBlocks.datenschutz.title" text=""
-                    class="mb-4">
-            <template #below-text>
+        <div class="flex p-6 mx-2 bg-white border border-gray-200 rounded-lg shadow max-h-fit
+       hover:bg-gray-50 mb-6">
+            <div class="flex-col justify-between content-center">
+                <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Datenschutzerklärung</p>
+
                 <p>Personenbezogene Daten (nachfolgend zumeist nur „Daten“ genannt) werden von uns nur im Rahmen der
                     Erforderlichkeit sowie zum Zwecke der Bereitstellung eines funktionsfähigen und nutzerfreundlichen
                     Internetauftritts, inklusive seiner Inhalte und der dort angebotenen Leistungen, verarbeitet. Gemäß
@@ -212,21 +214,14 @@
                         Anwaltskanzlei Weiß & Partner</a>
                     </p>
                 </section>
-            </template>
-        </info-block>
+            </div>
+        </div>
     </layout>
 
 </template>
 
 <script setup>
 import Layout from "@/components/Layout.vue";
-import InfoBlock from "@/components/InfoBlock.vue";
-
-const infoBlocks = {
-    datenschutz: {
-        title: "Datenschutzerklärung",
-    }
-}
 </script>
 
 

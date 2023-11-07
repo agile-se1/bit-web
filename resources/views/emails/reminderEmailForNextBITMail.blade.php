@@ -10,7 +10,7 @@
 <br/>
 <div class="p-6 mx-auto bg-white border border-gray-200 rounded-lg flex shadow max-w-3xl">
     <div class="">
-        <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }},</p>
+        <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }}!</p>
         <div class="flex-col justify-between">
             <div>
                 <p>Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch
@@ -49,7 +49,7 @@
 
                 <br/>
 
-                <p>Ich freue mich Sie in Persona zu treffen</p>
+                <p>Ich freue mich Sie in Persona zu treffen.</p>
                 <br/>
                 <p>Mit freundlichen Grüßen</p>
                 <p>Alexandra Matthaei</p>

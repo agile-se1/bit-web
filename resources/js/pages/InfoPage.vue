@@ -1,12 +1,14 @@
+
+
 <template>
     <Layout>
-        <div class="flex flex-col">
-            <p class="text-bit-blue text-6xl text-center font-bold">Der BIT am Gymnasium Mellendorf</p>
+        <div class="flex flex-col text-justify break-after-auto md:text-left">
 
-            <div class="bg-bit-blue w-full flex flex-col mt-5">
+            <p class="bg-bit-blue text-white md:text-6xl text-xl mx-2 p-4 text-center font-semibold">Der BIT am Gymnasium Mellendorf</p>
+            <div class="text-bit-blue w-full flex flex-col mt-5">
                 <div class="p-4 mx-32">
-                    <p class="text-white text-center font-semibold text-3xl">Wie alles begann:</p>
-                    <p class="text-center text-white">
+                    <p class="text-bit-blue text-center font-semibold md:text-3xl text-lg">Wie alles begann:</p>
+                    <p class=" text-bit-blue text-sm md:text-lg leading-relaxed">
                         Aufgrund des großen Wunsches zahlreicher Schüler und Eltern, dem Thema Berufsinformation am
                         Gymnasium Mellendorf einen höheren Stellenwert einzuräumen, organisierten Karen Drews (Erste
                         Vorsitzende des FFGM) und Jutta Holtmann (damals SER-Vorstand) im Jahr 2008 den ersten
@@ -16,26 +18,23 @@
                 </div>
             </div>
 
-            <div class="flex justify-around mt-5 mx-32">
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_3.png" alt="Foto von Alexandra Matthaei"
-                         class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+            <div class="flex flex-col md:flex-row gap-y-2 justify-around mt-5 mx-32">
+                <div class="flex flex-col p-2">
+                    <img src="/img_3.png" alt="Foto von Alexandra Matthaei" class="max-h-60 pb-2 object-contain">
                     <label class="text-center text-bit-blue">
                         Alexandra Matthaei <br>
                         Aktuelle Organisatorin des BIT
                     </label>
                 </div>
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_4.png" alt="Foto von Karen Drews"
-                         class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+                <div class="flex flex-col p-2">
+                    <img src="/img_4.png" alt="Foto von Karen Drews" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Karen Drews <br>
                         Gründerin des BIT
                     </label>
                 </div>
-                <div class="flex flex-col bg-blue-200 p-2 rounded">
-                    <img src="../../assets/img_5.png" alt="Foto von Jutta Holtmann"
-                         class="max-h-60 rounded border-8 border-bit-blue shadow-lg">
+                <div class="flex flex-col p-2">
+                    <img src="/img_5.png" alt="Foto von Jutta Holtmann" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Jutta Holtmann <br>
                         Gründerin des BIT
@@ -45,15 +44,14 @@
 
             <div class="w-full flex flex-col mt-10">
                 <div class="p-4 mx-32">
-                    <p class="text-bit-blue text-center font-semibold text-xl">Als Referenten für diese Veranstaltung
-                        wurden Eltern, Fördervereinsmitglieder und vor allem ehemalige des Gymnasiums Mellendorf
+                    <p class="text-bit-blue text-left font-semibold text-xl">Als Referenten für diese Veranstaltung
+                        wurden Eltern, Fördervereinsmitglieder und vor allem Ehemalige des Gymnasiums Mellendorf
                         angesprochen. Dies motivierte die beiden engagierten Gründer*innen zur weiteren Planung der
                         Veranstaltung, deren Ziele damals wie heute in erster Linie sein sollen:
-
                     </p>
-                    <ul class="list-disc text-bit-blue list-inside">
+                    <ul class="list-disc text-bit-blue list-inside text-left">
                         <li>
-                            Zusammenführung unseres 12. Jahrgangs mit Eltern, Ehemaligen, Firmen aus der Wedemark oder
+                            Zusammenführung des 12. Jahrgangs mit Eltern, Ehemaligen, Firmen aus der Wedemark oder
                             der Region, die in unterschiedlichen Berufen arbeiten
                         </li>
                         <li>
@@ -67,83 +65,84 @@
                 </div>
             </div>
 
-            <div class=" flex flex-col mt-10">
+            <!-- Adjust the following section and styles for responsiveness -->
+            <div class="flex flex-col mt-10">
                 <div class="p-4 mx-32 flex flex-col items-center">
                     <p class="text-bit-blue text-center font-semibold text-2xl mb-2">Übersicht der Berufsfelder: </p>
                     <div class="max-w-fit">
-                        <ul class="list-disc text-bit-blue columns-2 list-inside">
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
+                        <ul class=" text-bit-blue md:columns-2 text-left md:text-justify">
+                            <li class="border-blue-200 border-2  p-2 max-w-fit my-2">
                                 Polizei / Zoll
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Bundeswehr / zivile Luftfahrt
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Bundeswehr / Luftfahrt
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Gestaltung / Kunst / Design
+                            <li class="border-blue-200 border-2  rounded p-2  max-w-fit my-2">
+                                Theater / Musik / Gestaltung
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Medizin / Pflege / Therapie
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Medizin / Psychologie / Pharmazie
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Medien / Mediengestaltung / Politik
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Medien / Mediengestaltung
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
                                 Architektur
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Sport / Freizeit
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Maschinenbau / Elektrotechnik
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Eventmanagement / Tourismus
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Sportmanagement / Eventmanagement von Musikgroßveranstaltungen
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Jura / Steuerberatung / Logistik
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Eventmanagement / Tourismus / Hotel
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Naturwissenschaften / Technik
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Jura / Steuerberatung / Logistik /Wirtschaftswissenschaften
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Soziales / Pädagogik / Erziehung
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Chemie / Biologie / Geowissenschaften
                             </li>
-                            <li class="bg-blue-200 rounded-full px-2 max-w-fit my-1">
-                                Maschinenbau / Elektrotechnik / Informatik
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Lehramt / Sozialpädagogik / Sozialwissenschaften
+                            </li>
+                            <li class="border-blue-200 border-2  rounded p-2 max-w-fit my-2">
+                                Mathe / Informatik
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col text-bit-blue my-5">
-                <p class="text-bit-blue text-center font-semibold text-3xl">Ablauf</p>
-                <div class="text-bit-blue rounded mx-32 py-2">
+            <p class="text-bit-blue text-center font-semibold text-3xl mt-5" id="timetable">Ablauf</p>
+            <ul class="flex flex-col text-bit-blue my-2 mb-8 p-4">
+                <li class="text-bit-blue rounded mx-32 py-2">
                     <p> Nach einer Begrüßung und dem „allgemeinen Teil“, in dem die Schüler*innen zeitgleich je nach
                         Interesse Informationen zum Universitätsstudium, zum dualen Studium (Industrie- und
-                        Handelskammer) sowie zu Ausbildungsmöglichkeiten im Handwerk (Handwerkskammer) erhalten, findet
+                        Handelskammer) oder zu Ausbildungsmöglichkeiten im Handwerk, sowie dem trialen Studium (Handwerkskammer) erhalten, findet
                         eine Kaffeepause statt.
                     </p>
-                </div>
-                <div class="text-bit-blue rounded mx-32 py-2">
+                </li>
+                <li class="text-bit-blue rounded mx-32 py-2">
                     <p> Anschließend versammeln sich die Schülergruppen je nach Wahl in den entsprechenden
-                        Berufsfeldgruppen und nach ca. einer Stunde wechseln die Schüler*innen ihres zweiten Wunsches.
+                        Berufsfeldgruppen und nach ca. einer Stunde wechseln die Schüler*innen zum Workshops ihres zweiten Wunsches.
                         Den Schüler*innen stehen hervorragende Referenten Rede und Antwort; vielfach sind es junge
                         Menschen am Anfang der Berufstätigkeit bzw. in Ausbildung, deren Ausführungen von langjährige
                         Berufstätigen mit großer Erfahrung ergänzt werden – oder auch umgekehrt, kurz Informationen aus
                         vielerlei Perspektiven werden weitergegeben.
                     </p>
-                </div>
-                <div class="text-bit-blue rounded mx-32 py-2">
+                </li>
+                <li class="text-bit-blue rounded mx-32 py-2">
                     <p>
-                        Ein Mittagsimbiss mit vielen netten und anregenden Gesprächen zwischen den Referenten,
-                        Schüler*innen, Eltern und Lehrern bildet den Abschluss des Vormittags.
+                        Ein Mittagsimbiss mit vielen netten und anregenden Gesprächen zwischen den Referentinnen, Referenten sowie Schüler*innen bildet den Abschluss des Vormittags.
                     </p>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
-
     </Layout>
-
 </template>
 
 <script setup>
-
 import Layout from "@/components/Layout.vue";
 </script>
+

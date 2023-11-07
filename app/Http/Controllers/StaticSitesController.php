@@ -24,7 +24,7 @@ class StaticSitesController extends Controller
 
     public function showReferentenInfo(): Response
     {
-        return Inertia::render('ReferentenInfo');
+        return Inertia::render('ReferentenInfoNew');
     }
 
     public function showInfoPage(): Response

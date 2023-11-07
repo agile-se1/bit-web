@@ -18,28 +18,29 @@
             <template v-if="currentTabIndex === 0">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>eine</strong> der Präsentationen aus</p>
                 <div v-for="presentation in general_presentations" :key="presentation.id"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="selectPresentation(presentation.id)">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
+                @mousedown="selectPresentation(presentation.id)">
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
-                           class="checked:bg-bit-blue" @change="validate" v-model="selectedPresentation">
-                    <label :for="presentation.id">{{ presentation.name }}</label>
+                           class="checked:bg-bit-blue mr-2" @change="validate" v-model="selectedPresentation">
+                    <label class="text-center" :for="presentation.id">{{ presentation.name }}</label>
                     <button class="ml-2" :value="presentation" @click="showModal(presentation)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
             </template>
 
+
             <template v-if="currentTabIndex === 1">
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
-                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between"
-                     @click="selectField(field.id)">
+                     class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
+                     @mousedown="selectField(field.id)">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
-                           class="checked:bg-bit-blue"
+                           class="checked:bg-bit-blue mr-2"
                            :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
                     <div v-show="!isAvailable(field)"></div>
-                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}">
+                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}" class="text-center cursor-pointer" @click="selectField(field.id)">
                         {{ field.name }}
                     </label>
                     <button class="ml-2" :value="field" @click="showModal(field)">
@@ -71,9 +72,10 @@
         </Wizard>
 
         <!-- If the user has already decided -->
-        <div v-if="already_decided">
+        <div class="form-wizard-vue">
+        <div v-if="already_decided" class="fw-body-content">
             <p class="text-2xl text-center mb-4">Sie haben bereits gewählt. <br>Das ist Ihre Auswahl:</p>
-            <p>Präsentation:</p>
+            <p class="ml-2">Präsentation:</p>
             <div
                 class="p-4 m-2 mb-10 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
                 <div></div>
@@ -82,7 +84,7 @@
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-            <p>Berufsfelder:</p>
+            <p class="ml-2">Berufsfelder:</p>
 
             <div v-for="(field, index) in props.decisions.professional_fields" :key="field.id"
                  class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between">
@@ -92,7 +94,7 @@
                     <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                 </button>
             </div>
-
+        </div>
         </div>
     </Layout>
 
@@ -143,9 +145,22 @@ const props = defineProps({
 
 let currentTabIndex = ref(0);
 
-let selectedPresentation = ref(null);
+const selectedPresentation = ref(null);
 
-let selectedFields = ref([]);
+const selectedFields = ref([]);
+
+const infoModal = ref({
+    show: false,
+    title: '',
+    text: '',
+    confirmButtonText: 'Schließen'
+})
+
+const confirmModal = ref({
+    show: false,
+    title: 'Ihre Auswahl:',
+    confirmButtonText: 'Zurück zur Startseite'
+})
 
 
 const nextButton = ref({
@@ -204,7 +219,6 @@ function wizardCompleted() {
     });
     confirmModal.value.show = true;
 }
-
 function selectPresentation(id) {
     const radio = document.getElementById(id);
     radio.click();
@@ -212,7 +226,7 @@ function selectPresentation(id) {
 
 function selectField(id) {
     const checkbox = document.getElementById(id);
-    checkbox.click();
+    checkbox.click()
 }
 //Modal functions
 
@@ -221,19 +235,6 @@ function hideInfoModal() {
     infoModal.value.title = '';
     infoModal.value.text = '';
 }
-
-let infoModal = ref({
-    show: false,
-    title: '',
-    text: '',
-    confirmButtonText: 'Schließen'
-})
-
-let confirmModal = ref({
-    show: false,
-    title: 'Ihre Auswahl:',
-    confirmButtonText: 'Zurück zur Startseite'
-})
 
 
 function showModal(item) {
@@ -259,8 +260,13 @@ function showModal(item) {
 .form-wizard-vue {
     display: flex;
     flex-direction: column;
-    padding-left: 20%;
-    padding-right: 20%;
+}
+
+@media (min-width: 640px) {
+    .fw-body {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
 }
 
 .form-wizard-vue .fw-body-list {
@@ -302,7 +308,7 @@ function showModal(item) {
 }
 
 .form-wizard-vue .fw-body-list .fw-list-progress-active {
-    background: radial-gradient(circle, rgba(7, 33, 102, 1) 35%, rgba(151, 172, 228, 1) 100%);
+    background: #062266;
 }
 
 .form-wizard-vue .fw-body-list li:last-child .fw-list-progress {
