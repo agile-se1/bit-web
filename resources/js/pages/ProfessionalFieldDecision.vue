@@ -34,7 +34,7 @@
                 <p class="text-2xl text-center mb-14">Suchen Sie bitte <strong>zwei</strong> der Berufsfelder aus</p>
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
-                     @mousedown="selectField(field.id)">
+                     @mousedown="selectField(field)">
                     <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
                            class="checked:bg-bit-blue mr-2"
                            :class="{invisible: !isAvailable(field)}"
@@ -224,9 +224,11 @@ function selectPresentation(id) {
     radio.click();
 }
 
-function selectField(id) {
-    const checkbox = document.getElementById(id);
-    checkbox.click()
+function selectField(field) {
+    if (isAvailable(field)) {
+        const checkbox = document.getElementById(field.id);
+        checkbox.click();
+    }
 }
 //Modal functions
 
