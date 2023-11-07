@@ -32,10 +32,10 @@
                 <p>Viel Erfolg bei der Auswahl</p>
                 <br/>
                 <p>Mit freundlichen Grüßen</p>
-                <p>Alexandra Matthaei</p>
+                <p>Alexandra Matthaei und Diana Janicki</p>
                 <br/>
                 <p class="text-gray-600">Sollten Sie noch Fragen haben, können Sie an <a
-                        href="mailto:info@gm-bit.de" class="text-bit-blue">info@gm-bit.de</a> eine Email schicken,</p>
+                        href="mailto:alexandra.matthaei@ffgm.de" class="text-bit-blue">alexandra.matthaei@ffgm.de</a> eine Email schicken,</p>
                 <p class="text-gray-600">Sollte der Knopf nicht funktionieren. Können Sie auch diesen Link in Ihren
                     Browser eingeben:</p>
                 <div style="text-align: center;">

@@ -13,7 +13,7 @@
         <p class="mb-2 text-2xl font-bold tracking-tight text-bit-blue">Guten Tag {{$first_name}} {{ $last_name }}!</p>
         <div class="flex-col justify-between">
             <div>
-                <p>Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch
+                <p>Kommende Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch
                     einmal ihre Auswahl
                     zusammengefasst.</p>
                 <br/>
@@ -49,13 +49,13 @@
 
                 <br/>
 
-                <p>Ich freue mich Sie in Persona zu treffen.</p>
+                <p>Wir hoffen wieder auf eine interessante und informative Veranstaltung und freuen uns, Sie nächste Woche begrüßen zu können.</p>
                 <br/>
                 <p>Mit freundlichen Grüßen</p>
-                <p>Alexandra Matthaei</p>
+                <p>Alexandra Matthaei und Diana Janicki</p>
                 <br/>
                 <p class="text-gray-600">Sollten Sie noch Fragen haben, können Sie an <a
-                        href="mailto:info@gm-bit.de" class="text-bit-blue">info@gm-bit.de</a> eine Email schicken.</p>
+                        href="mailto:alexandra.matthaei@ffgm.de" class="text-bit-blue">alexandra.matthaei@ffgm.de</a> eine Email schicken.</p>
             </div>
         </div>
     </div>
