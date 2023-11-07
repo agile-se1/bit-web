@@ -1,5 +1,5 @@
-Guten Tag {{ $first_name }} {{ $last_name }},
-Wir haben gesehen, dass Sie noch keine Auswahl für den Berufsinformationstag getroffen haben. Damit Sie nicht zufällig zu geteilt werden, wählen Sie doch gleiche Ihre Berufsfelder aus.
+Guten Tag {{ $first_name }} {{ $last_name }}!
+Wir haben gesehen, dass Sie noch keine Auswahl für den Berufsinformationstag getroffen haben. Damit Sie den Berufsfeldern nicht zufällig zu geteilt werden, wählen Sie am besten gleich Ihre Berufsfelder aus.
 Bitte öffnen Sie diesen Link ( {{ $link }} ), um eine Auswahl zu treffen.
 
 Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:
@@ -12,4 +12,6 @@ Sollten Sie noch Fragen haben, können Sie an info@gm-bit.de eine Email schicken
 Viel Erfolg bei der Auswahl
 
 Mit freundlichen Grüßen
-Alexandra Matthaei
+Alexandra Matthaei und Diana Janicki
+
+Bei Fragen wenden Sie sich gerne an alexandra.matthaei@ffgm.de.

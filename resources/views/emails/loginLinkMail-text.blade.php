@@ -1,4 +1,4 @@
-Guten Tag {{ $first_name }} {{ $last_name }},
+Guten Tag {{ $first_name }} {{ $last_name }}!
 Die Berufsfeldwahl ist nun freigeschaltet. Bitte öffnen Sie diesen Link ( {{ $link }} ), um eine Auswahl zu treffen.
 
 Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:
@@ -6,9 +6,9 @@ Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:
 2. Wählen Sie einen allgemeinen Vortrag und zwei Berufsfelder aus
 3. Bestätigen Sie ihre Wahl
 
-Sollten Sie noch Fragen haben, können Sie an info@gm-bit.de eine Email schicken.
+Sollten Sie noch Fragen haben, können Sie an alexandra.matthaei@ffgm.de eine Email schicken.
 
 Viel Erfolg bei der Auswahl
 
 Mit freundlichen Grüßen
-Alexandra Matthaei
+Alexandra Matthaei und Diana Janicki

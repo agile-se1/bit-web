@@ -1,5 +1,5 @@
 Guten Tag {{ $first_name }} {{ $last_name }},
-Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl zusammengefasst.
+kommende Woche findet der nächste Berufsinformationstag statt. Als Erinnerung haben wir Ihnen noch einmal ihre Auswahl zusammengefasst.
 
 @if(isset($generalPresentation, $professionalField1, $professionalField2))
     Allgemeiner Vortrag: {{ $generalPresentation->name }}
@@ -11,4 +11,6 @@ Nächste Woche findet der nächste Berufsinformationstag statt. Als Erinnerung h
 @endif
 
 Mit freundlichen Grüßen
-Alexandra Matthaei
+Alexandra Matthaei und Diana Janicki
+
+Bei Fragen wenden Sie sich gerne an alexandra.matthaei@ffgm.de.
