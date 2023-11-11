@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 const infoBlocks = {
     generalInfos: {
         title: `Berufsinformationstag ${year}`,
-        text: "Nutze die Gelegenheit, um Einblicke in die Arbeitswelt zu gewinnen und dich bei der Berufsorientierung von Experten beraten zu lassen. Entdecke deine Möglichkeiten und finde heraus, welcher Beruf zu dir passt.",
+        text: "Nutzen Sie die Gelegenheit, um Einblicke in die Arbeitswelt zu gewinnen und sich bei der Berufsorientierung von Experten beraten zu lassen. Entdecken Sie Ihre Möglichkeiten und finden Sie heraus, welcher Beruf zu Ihnen passt.",
     },
 };
 </script>

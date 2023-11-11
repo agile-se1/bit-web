@@ -59,25 +59,6 @@
                         bilateral besprechen zu können sowie erste Kontakte zu knüpfen.
                     </p>
                 </section>
-                <section class="md:row-start-3 md:col-start-1 md:col-span-2 my-4 flex flex-col items-center">
-                    <div>
-                        <p class="mb-4">
-                            Viele Schüler*innen haben noch keinen Plan, wie ihr Weg nach dem Abitur weitergehen soll.
-                            Vielmehr
-                            kennen sie gar nicht die Türen, die ihnen nach dem Abitur offen stehen. Der BIT bietet Ihnen
-                            die
-                            Möglichkeit Ihren Beruf vorzustellen, junge Menschen für Ihre Branche zu begeistern und
-                            ihnen
-                            einzigartige Einblicke in Ihr Berufsleben zu bieten.
-                        </p>
-                    </div>
-                    <div>
-
-                        <a href="mailto:alexandra.matthaei@ffgm.de?subject=Referent für den BIT"
-                           class="bg-bit-blue text-white text-xl md:text-2xl p-2 rounded">Jetzt als Referent
-                            anmelden!</a>
-                    </div>
-                </section>
                 <section class="md:row-start-4 md:col-start-1 md:col-span-2 flex flex-col">
                     <p class="text-bit-blue text-xl md:text-2xl font-semibold">Tipps für Ihren Vortrag</p>
                     <p>
@@ -118,5 +99,5 @@
 
 <script setup>
 import Layout from "@/components/Layout.vue";
-import {Link} from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
 </script>

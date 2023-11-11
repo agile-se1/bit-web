@@ -9,7 +9,7 @@
                 <div class="p-4 mx-32">
                     <p class="text-bit-blue text-center font-semibold md:text-3xl text-lg">Wie alles begann:</p>
                     <p class=" text-bit-blue text-sm md:text-lg leading-relaxed">
-                        Aufgrund des großen Wunsches zahlreicher Schüler und Eltern, dem Thema Berufsinformation am
+                        Aufgrund des großen Wunsches zahlreicher Schüler*innen und Eltern, dem Thema Berufsinformation am
                         Gymnasium Mellendorf einen höheren Stellenwert einzuräumen, organisierten Karen Drews (Erste
                         Vorsitzende des FFGM) und Jutta Holtmann (damals SER-Vorstand) im Jahr 2008 den ersten
                         <strong>B</strong>erufs<strong>I</strong>nformations<strong>T</strong>ag des Gymnasium
@@ -23,39 +23,39 @@
                     <img src="/img_3.png" alt="Foto von Alexandra Matthaei" class="max-h-60 pb-2 object-contain">
                     <label class="text-center text-bit-blue">
                         Alexandra Matthaei <br>
-                        Aktuelle Organisatorin des BIT
+                        Aktuelle Organisatorin des BITs
                     </label>
                 </div>
                 <div class="flex flex-col p-2">
                     <img src="/img_4.png" alt="Foto von Karen Drews" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Karen Drews <br>
-                        Gründerin des BIT
+                        Gründerin des BITs
                     </label>
                 </div>
                 <div class="flex flex-col p-2">
                     <img src="/img_5.png" alt="Foto von Jutta Holtmann" class="max-h-60 object-contain">
                     <label class="text-center text-bit-blue">
                         Jutta Holtmann <br>
-                        Gründerin des BIT
+                        Gründerin des BITs
                     </label>
                 </div>
             </div>
 
             <div class="w-full flex flex-col mt-10">
                 <div class="p-4 mx-32">
-                    <p class="text-bit-blue text-left font-semibold text-xl">Als Referenten für diese Veranstaltung
+                    <p class="text-bit-blue text-left font-semibold text-xl">Als Referent*innen für diese Veranstaltung
                         wurden Eltern, Fördervereinsmitglieder und vor allem Ehemalige des Gymnasiums Mellendorf
-                        angesprochen. Dies motivierte die beiden engagierten Gründer*innen zur weiteren Planung der
+                        angesprochen. Dies motivierte die beiden engagierten Gründerinnen zur weiteren Planung der
                         Veranstaltung, deren Ziele damals wie heute in erster Linie sein sollen:
                     </p>
                     <ul class="list-disc text-bit-blue list-inside text-left">
                         <li>
                             Zusammenführung des 12. Jahrgangs mit Eltern, Ehemaligen, Firmen aus der Wedemark oder
-                            der Region, die in unterschiedlichen Berufen arbeiten
+                            der Region, die in unterschiedlichen Berufen arbeiten.
                         </li>
                         <li>
-                            Vermittlung von Informationen über verschiedene Berufsfelder und Studienmöglichkeiten
+                            Vermittlung von Informationen über verschiedene Berufsfelder und Studienmöglichkeiten.
                         </li>
                         <li>
                             Einblick in persönliche Werdegänge, insbesondere solche, die trotz Brüchen erfolgreich sind,
@@ -119,22 +119,22 @@
                 <li class="text-bit-blue rounded mx-32 py-2">
                     <p> Nach einer Begrüßung und dem „allgemeinen Teil“, in dem die Schüler*innen zeitgleich je nach
                         Interesse Informationen zum Universitätsstudium, zum dualen Studium (Industrie- und
-                        Handelskammer) oder zu Ausbildungsmöglichkeiten im Handwerk, sowie dem trialen Studium (Handwerkskammer) erhalten, findet
+                        Handelskammer) oder zu Ausbildungsmöglichkeiten im Handwerk sowie dem trialen Studium (Handwerkskammer) erhalten, findet
                         eine Kaffeepause statt.
                     </p>
                 </li>
                 <li class="text-bit-blue rounded mx-32 py-2">
                     <p> Anschließend versammeln sich die Schülergruppen je nach Wahl in den entsprechenden
-                        Berufsfeldgruppen und nach ca. einer Stunde wechseln die Schüler*innen zum Workshops ihres zweiten Wunsches.
-                        Den Schüler*innen stehen hervorragende Referenten Rede und Antwort; vielfach sind es junge
+                        Berufsfeldgruppen und nach ca. einer Stunde wechseln die Schüler*innen zum Workshop ihres zweiten Wunsches.
+                        Den Schüler*innen stehen hervorragende Referent*innen Rede und Antwort; vielfach sind es junge
                         Menschen am Anfang der Berufstätigkeit bzw. in Ausbildung, deren Ausführungen von langjährige
-                        Berufstätigen mit großer Erfahrung ergänzt werden – oder auch umgekehrt, kurz Informationen aus
+                        Berufstätigen mit großer Erfahrung ergänzt werden - oder auch umgekehrt, kurz Informationen aus
                         vielerlei Perspektiven werden weitergegeben.
                     </p>
                 </li>
                 <li class="text-bit-blue rounded mx-32 py-2">
                     <p>
-                        Ein Mittagsimbiss mit vielen netten und anregenden Gesprächen zwischen den Referentinnen, Referenten sowie Schüler*innen bildet den Abschluss des Vormittags.
+                        Ein Mittagsimbiss mit vielen netten und anregenden Gesprächen zwischen den Referent*innen sowie Schüler*innen bildet den Abschluss des Vormittags.
                     </p>
                 </li>
             </ul>
