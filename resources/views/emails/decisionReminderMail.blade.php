@@ -35,7 +35,7 @@
                 <br/>
                 <p class="text-gray-600">Sollten Sie noch Fragen haben, können Sie an <a
                         href="mailto:alexandra.matthaei@ffgm.de" class="text-bit-blue">alexandra.matthaei@ffgm.de</a> eine Email schicken,</p>
-                <p class="text-gray-600">Sollte der <Button></Button> nicht funktionieren. Können Sie auch diesen Link in Ihren
+                <p class="text-gray-600">Sollte der Button nicht funktionieren. Können Sie auch diesen Link in Ihren
                     Browser eingeben:</p>
                 <div style="text-align: center;">
                     <p class="text-gray-600">{{ $link }}</p>
