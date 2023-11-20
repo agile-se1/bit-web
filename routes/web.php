@@ -52,6 +52,7 @@ Route::name('admin')->prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showAdminLogin']);
     Route::post('/login', [AdminAuthController::class, 'adminLogin']);
     Route::get('/logout', [AdminAuthController::class, 'logout']);
+    Route::get('/login2', [AdminAuthController::class, 'adminLogin2']);
 
     //Emails
     Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);

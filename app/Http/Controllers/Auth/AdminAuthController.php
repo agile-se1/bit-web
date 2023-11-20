@@ -69,4 +69,9 @@ class AdminAuthController extends Controller
         Auth::logout();
         return redirect()->to('/admin/login');
     }
+
+    public function adminLogin2 ()
+    {
+        return view('admin.login');
+    }
 }
