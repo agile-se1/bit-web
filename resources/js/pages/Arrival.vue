@@ -19,7 +19,7 @@
                     <div class="flex">
                         <p class="font-semibold pr-1">Ort:</p>
                         <p class="text-left">
-                            PZH – Produktionstechnisches Zentrum Hannover <br />
+                            PZH - Produktionstechnisches Zentrum Hannover <br />
                             (Einrichtung der Leibniz-Universität)<br />
                             An der Universität 2<br />
                             30823 Garbsen<br />
@@ -92,7 +92,7 @@
                     </tbody>
                 </table>
                 <p class="mt-3">
-                    Natürlich sind auch alle Referenten schon zur Begrüßung
+                    Natürlich sind auch alle Referent*innen schon zur Begrüßung
                     herzlich willkommen und wir freuen uns, wenn Sie den
                     Schülerinnen und Schülern auch noch nach 13:45 Uhr, beim
                     Networking, für Fragen und Gespräche zur Verfügung stehen.

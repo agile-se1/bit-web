@@ -15,7 +15,7 @@
             <div>
                 <p>Die Berufsfeldwahl für den BIT ist nun freigeschaltet. Nutzen Sie diese Gelegenheit, um Einblicke in
                     die Arbeitswelt zu gewinnen und sich von Experten beraten zu lassen. Bitte klicken Sie auf den
-                    Knopf, um eine Auswahl zu treffen.</p>
+                    Button, um eine Auswahl zu treffen.</p>
                 <br/>
                 <div style="text-align: center;">
                     <a class="text-white font-bold py-2 px-4 rounded bg-bit-blue hover:shadow" href="{{ $link }}">
@@ -25,7 +25,7 @@
                 <br/>
 
                 <p><b>Um Berufsfelder und Vortrag auszuwählen, folgen Sie bitte diesen Schritten:</b></p>
-                <p>1. Klicken Sie auf den Knopf, der Sie zur Berufsfeldwahlseite weiterleitet</p>
+                <p>1. Klicken Sie auf den Button, der Sie zur Berufsfeldwahlseite weiterleitet</p>
                 <p>2. Wählen Sie einen allgemeinen Vortrag und zwei Berufsfelder aus</p>
                 <p>3. Bestätigen Sie ihre Wahl</p>
                 <br>
@@ -36,7 +36,7 @@
                 <br/>
                 <p class="text-gray-600">Sollten Sie noch Fragen haben, können Sie an <a
                         href="mailto:alexandra.matthaei@ffgm.de" class="text-bit-blue">alexandra.matthaei@ffgm.de</a> eine Email schicken,</p>
-                <p class="text-gray-600">Sollte der Knopf nicht funktionieren. Können Sie auch diesen Link in Ihren
+                <p class="text-gray-600">Sollte der Button nicht funktionieren. Können Sie auch diesen Link in Ihren
                     Browser eingeben:</p>
                 <div style="text-align: center;">
                     <p class="text-gray-600">{{ $link }}</p>
