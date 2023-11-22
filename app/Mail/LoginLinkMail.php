@@ -49,7 +49,7 @@ class LoginLinkMail extends Mailable
             html: 'emails.loginLinkMail',
             text: 'emails.loginLinkMail-text',
             with: [
-                'link' => "http://localhost/login/" . $this->user->hash,
+                'link' =>  url("/login/{$this->user->hash}"),
                 'first_name' => $this->user->first_name,
                 'last_name' => $this->user->surname,
             ]
