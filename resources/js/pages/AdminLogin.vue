@@ -1,7 +1,7 @@
 <template>
     <Layout type="admin">
         <div class="flex flex-col justify-around">
-            <div class="grid border-gray-200 border border-solid rounded p-5 w-72">
+            <form class="grid border-gray-200 border border-solid rounded p-5 w-72">
                 <p class="text-2xl text-bit-blue">Admin Login</p>
                 <p v-if="errors.username" class="text-red-700 text-xs">Fehler: {{ errors.username }}</p>
                 <p v-if="errors.password" class="text-red-700 text-xs">Fehler: {{ errors.password }}</p>
@@ -10,7 +10,7 @@
                 <button class="bg-bit-blue text-white rounded p-2 my-2" type="submit"
                         @click="login">Login
                 </button>
-            </div>
+            </form>
         </div>
     </Layout>
 

@@ -21,6 +21,7 @@ class AdminController extends Controller
         private ResponseFactory $responseFactory,
     )
     {
+
     }
 
     public function index(): Response
