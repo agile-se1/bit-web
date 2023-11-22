@@ -12,10 +12,5 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'https://king-prawn-app-sd4tt.ondigitalocean.app/*',
-        'https://king-prawn-app-sd4tt.ondigitalocean.app/',
-        'https://king-prawn-app-sd4tt.ondigitalocean.app/admin/login',
-        'https://king-prawn-app-sd4tt.ondigitalocean.app/admin/',
-        'https://king-prawn-app-sd4tt.ondigitalocean.app/admin/dashboard'
     ];
 }
