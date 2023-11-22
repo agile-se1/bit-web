@@ -52,7 +52,7 @@ Route::name('admin')->prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showAdminLogin']);
     Route::post('/login', [AdminAuthController::class, 'adminLogin']);
     Route::get('/logout', [AdminAuthController::class, 'logout']);
-    Route::get('/login2', [AdminAuthController::class, 'adminLogin2']);
+    //Route::get('/login2', [AdminAuthController::class, 'adminLogin2']);
 
     //Emails
     Route::get('/email/sendNewLoginLinkMail/{first_name}/{surname}', [EmailController::class, 'sendNewLoginLinkMailByFirstAndSurname']);
@@ -90,7 +90,7 @@ Route::middleware('auth:admin')->group(function () {
 Route::get('/noticeToLogin', [HashAuthController::class, 'showNoticeToLogin'])->name('noticeToLogin');
 
 //Test routes
-Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
-Route::get('/testLoginLinks', [TestSitesController::class, 'testLoginLinks']);
+//Route::get('/showAuthData', [TestSitesController::class, 'showAuthData']);
+//Route::get('/testLoginLinks', [TestSitesController::class, 'testLoginLinks']);
 
 
