@@ -23,7 +23,8 @@
                     <input type="radio" :id="presentation.id" :value="presentation" name="presentation"
                            class="checked:bg-bit-blue mr-2" @change="validate" v-model="selectedPresentation">
                     <label class="text-center" :for="presentation.id">{{ presentation.name }}</label>
-                    <button class="ml-2" :value="presentation" @click="showModal(presentation)">
+                    <button class="ml-2" :value="presentation" @click="showModal(presentation)"
+                            @mousedown.stop="preventSelect($event)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
@@ -35,15 +36,17 @@
                 <div v-for="field in professional_fields" :key="field.id"
                      class="p-4 m-2 min-w-full text-xl flex border border-gray-200 rounded-lg shadow max-h-fit items-center justify-between cursor-pointer"
                      @mousedown="selectField(field)">
-                    <input type="checkbox" :id="field.id" :value="field" name="field" v-show="isAvailable(field)"
+                    <input type="checkbox" :id="field.id" :value="field" name="field" v-if="isAvailable(field)"
                            class="checked:bg-bit-blue mr-2"
                            :class="{invisible: !isAvailable(field)}"
                            @change="validate" v-model="selectedFields">
-                    <div v-show="!isAvailable(field)"></div>
-                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}" class="text-center cursor-pointer" @click="selectField(field.id)">
+                    <div v-else></div>
+                    <label :for="field.id" :class="{'line-through': !isAvailable(field)}"
+                           class="text-center cursor-pointer" @mousedown="selectField(field)">
                         {{ field.name }}
                     </label>
-                    <button class="ml-2" :value="field" @click="showModal(field)">
+                    <button class="ml-2" :value="field" @click="showModal(field)"
+                            @mousedown.stop="preventSelect($event)">
                         <font-awesome-icon icon="fa-solid fa-circle-info" class="text-bit-blue"/>
                     </button>
                 </div>
@@ -229,6 +232,11 @@ function selectField(field) {
         const checkbox = document.getElementById(field.id);
         checkbox.click();
     }
+}
+
+function preventSelect(event) {
+    // This function prevents the selectField function from being triggered
+    event.stopPropagation();
 }
 //Modal functions
 
