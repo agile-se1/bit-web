@@ -18,7 +18,7 @@ class HashAuthController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
     }
 
@@ -27,6 +27,10 @@ class HashAuthController extends Controller
      */
     public function hashLogin(String $hash): Redirector|Application|RedirectResponse
     {
+        if(Auth::check()){
+            return redirect('/decision');
+        }
+        
         //Check if there is a value
         Validator::make(['hash' => $hash], [
             'hash' => ['required', 'size:14']
