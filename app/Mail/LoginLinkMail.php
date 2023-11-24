@@ -34,7 +34,7 @@ class LoginLinkMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Wählen Sie ihr Berufsfeld aus',
+            subject: 'Wählen Sie Ihre zwei Berufsfelder aus',
         );
     }
 
